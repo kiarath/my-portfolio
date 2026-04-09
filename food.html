@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Veggy – Vegan Food App case study by Kiara Correa, UX/UI Designer &amp; Researcher." />
-  <title>Veggy – Case Study | Kiara Correa</title>
+  <meta name="description" content="Veggy – Vegan Food App case study by Kiara Correa, UX/UI Designer &amp; Researcher." data-i18n-meta="food.pageDesc" />
+  <title data-i18n-title="food.pageTitle">Veggy – Case Study | Kiara Correa</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="translations.js"></script>
 </head>
 <body>
 
@@ -19,24 +20,37 @@
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
       </svg>
-      Back to Portfolio
+      <span data-i18n="shared.backToPortfolio">Back to Portfolio</span>
     </a>
-    <a href="https://www.behance.net/gallery/176414951/Vegan-App-UXUI-Case-Study"
-       target="_blank" rel="noopener noreferrer" class="btn btn--outline" style="font-size:.85rem;padding:.4rem 1rem;">
-      View on Behance
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-      </svg>
-    </a>
+    <div style="display:flex;align-items:center;gap:.75rem;">
+      <button id="lang-toggle" class="lang-toggle" aria-label="Cambiar a Español" onclick="LangEngine.toggle()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+          <path d="M2 12h20"/>
+        </svg>
+        <span class="lang-toggle__active">EN</span>
+        <span class="lang-toggle__sep">/</span>
+        <span class="lang-toggle__other">ES</span>
+      </button>
+      <a href="https://www.behance.net/gallery/176414951/Vegan-App-UXUI-Case-Study"
+         target="_blank" rel="noopener noreferrer" class="btn btn--outline" style="font-size:.85rem;padding:.4rem 1rem;">
+        <span data-i18n="shared.viewOnBehance">View on Behance</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </nav>
 
 <!-- ═════════════════════ HERO ══════════════════════════ -->
 <div class="cs-hero page-bg">
   <div class="cs-hero__inner reveal">
-    <h1 class="cs-hero__title">Veggy – Vegan Food</h1>
-    <p class="cs-hero__desc">
+    <h1 class="cs-hero__title" data-i18n="food.heroTitle">Veggy – Vegan Food</h1>
+    <p class="cs-hero__desc" data-i18n="food.heroDesc">
       A comprehensive UX/UI case study for a mobile app that helps users discover local restaurants
       with vegan options, making plant-based dining accessible and enjoyable.
     </p>
@@ -49,21 +63,21 @@
           <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
           <circle cx="9" cy="7" r="4"/>
         </svg>
-        <div><small>Role</small>UX/UI Designer &amp; Researcher</div>
+        <div><small data-i18n="shared.role">Role</small><span data-i18n="food.roleValue">UX/UI Designer &amp; Researcher</span></div>
       </div>
       <div class="cs-meta-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>
         </svg>
-        <div><small>Timeline</small>2023</div>
+        <div><small data-i18n="shared.timeline">Timeline</small><span data-i18n="food.timelineValue">2023</span></div>
       </div>
       <div class="cs-meta-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/>
         </svg>
-        <div><small>Tools</small>Figma, User Research</div>
+        <div><small data-i18n="shared.tools">Tools</small><span data-i18n="food.toolsValue">Figma, User Research</span></div>
       </div>
     </div>
     <div class="cs-hero__badges">
@@ -80,7 +94,7 @@
 <!-- ═════════════════════ CONTENT ═══════════════════════ -->
 
 <!-- 01. Strategy -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="f_strategy">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -111,9 +125,40 @@
     </div>
   </div>
 </div>
+<template id="es-f_strategy">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <circle cx="12" cy="12" r="6"/>
+      <circle cx="12" cy="12" r="2"/>
+    </svg>
+    01. Estrategia
+  </div>
+  <div style="display:flex;flex-direction:column;gap:1rem;">
+    <div class="card card--tc">
+      <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Lo Que Sabemos (El Contexto)</h3>
+      <p style="color:var(--gray-700);line-height:1.7;">Se ha observado un aumento significativo en la población vegetariana, lo que se refleja en la inclusión de más opciones vegetarianas en los menús de los restaurantes.</p>
+    </div>
+    <div class="card card--tc">
+      <h3 style="color:var(--tc-600);margin-bottom:.5rem;">El Problema</h3>
+      <p style="color:var(--gray-700);line-height:1.7;margin-bottom:.75rem;">No toda esta comida es de buena calidad. A veces, las opciones del menú se agregan simplemente para cumplir con la demanda, lo que permite a los restaurantes afirmar que ofrecen opciones "veggie" en plataformas como Google Maps o Tripadvisor.</p>
+      <p style="color:var(--gray-700);line-height:1.7;">Además, las reseñas y calificaciones de estos lugares suelen ser escritas por personas que normalmente no consumen comida vegetariana. Esto hace que sea considerablemente difícil encontrar restaurantes que realmente ofrezcan platos vegetarianos y veganos de alta calidad.</p>
+    </div>
+    <div class="card card--tc">
+      <h3 style="color:var(--tc-600);margin-bottom:.5rem;">El Objetivo</h3>
+      <p style="color:var(--gray-700);line-height:1.7;">Permitir que las personas encuentren más fácilmente restaurantes y opciones vegetarianas en su área, y al mismo tiempo permitirles obtener información confiable sobre estos lugares.</p>
+    </div>
+    <div class="card card--highlight">
+      <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Nuestra Solución</h3>
+      <p style="color:var(--gray-700);line-height:1.7;margin-bottom:.75rem;">Usar geolocalización para mostrar al usuario los lugares aptos para vegetarianos más cercanos y garantizar que las reseñas sean escritas por miembros de la comunidad veggie.</p>
+      <p style="color:var(--gray-700);line-height:1.7;">De esta manera, podemos brindar información confiable y precisa sobre los establecimientos con opciones vegetarianas y veganas en la zona del usuario.</p>
+    </div>
+  </div>
+</template>
 
 <!-- 02. User Research -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="f_research">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -160,9 +205,56 @@
     </div>
   </div>
 </div>
+<template id="es-f_research">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <circle cx="12" cy="10" r="3"/>
+      <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/>
+    </svg>
+    02. Investigación de Usuarios
+  </div>
+  <div class="card card--tc">
+    <h3 style="color:var(--tc-600);margin-bottom:.75rem;">Persona de Usuario: Nadia</h3>
+    <p style="color:var(--gray-700);margin-bottom:1rem;"><strong>26 años, Programadora</strong><br /><strong>Tipo de Usuario:</strong> Quiere encontrar nuevos restaurantes.</p>
+    <div style="background:var(--tc-50);border-radius:.5rem;padding:.85rem 1rem;border:1px solid var(--tc-200);margin-bottom:1.5rem;font-style:italic;color:var(--gray-700);">
+      "Trabajo mucho desde casa, así que disfruto salir a comer con mi pareja. Sin embargo, hemos notado que generalmente terminamos yendo a los mismos restaurantes, porque cuando probamos lugares nuevos, descubrimos que la oferta vegana en sus menús suele ser limitada y poco variada."
+    </div>
+    <div style="margin-bottom:1.5rem;">
+      <h4 style="color:var(--tc-600);margin-bottom:.35rem;">Biografía</h4>
+      <p style="color:var(--gray-700);line-height:1.7;">Nadia es una programadora que disfruta de salir a comer para romper con su rutina después de pasar largas horas en casa. Le encantaría descubrir lugares nuevos con su pareja, pero malas experiencias previas (con opciones veganas limitadas y de baja calidad) evitan que lo hagan.</p>
+    </div>
+    <div class="grid-3">
+      <div>
+        <h4 style="color:var(--tc-600);margin-bottom:.5rem;">Objetivos y Metas</h4>
+        <ul style="color:var(--gray-700);font-size:.875rem;line-height:2;">
+          <li>• Descubrir nuevos sabores y comidas</li>
+          <li>• Poder salir más de casa</li>
+          <li>• Encontrar lugares nuevos para ir con su pareja</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:var(--tc-600);margin-bottom:.5rem;">Motivaciones</h4>
+        <ul style="color:var(--gray-700);font-size:.875rem;line-height:2;">
+          <li>• Descubrir nuevos sabores</li>
+          <li>• Pasar buenos momentos con su pareja</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:var(--tc-600);margin-bottom:.5rem;">Frustraciones</h4>
+        <ul style="color:var(--gray-700);font-size:.875rem;line-height:2;">
+          <li>• Rara vez encuentra información sobre platos veganos específicos</li>
+          <li>• No confía en reseñas de usuarios no veganos</li>
+          <li>• Tiene miedo de llevar a su pareja a un restaurante de mala calidad</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
 
 <!-- 03. Scope: MVP -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="f_scope">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -211,9 +303,58 @@
     </div>
   </div>
 </div>
+<template id="es-f_scope">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/>
+      <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/>
+      <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/>
+    </svg>
+    03. Alcance: Funcionalidades MVP
+  </div>
+  <p style="color:var(--gray-700);margin-bottom:1.25rem;">Para abordar las necesidades de Nadia, definimos las funcionalidades principales para el Producto Mínimo Viable (MVP).</p>
+  <div class="card card--tc">
+    <div style="display:flex;flex-direction:column;gap:1.5rem;">
+      <div>
+        <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Encontrar Restaurantes</h3>
+        <ul style="color:var(--gray-700);line-height:2;">
+          <li>• Los usuarios deben encontrar restaurantes aptos para vegetarianos apenas abran la aplicación</li>
+          <li>• Mostrar los lugares más cercanos basados en geolocalización</li>
+          <li>• Mostrar ubicaciones en un mapa con una vista de lista debajo</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Buscar Restaurantes</h3>
+        <ul style="color:var(--gray-700);line-height:2;">
+          <li>• Barra de búsqueda para especialidades culinarias en particular (ej. Mexicana, China, Japonesa) o platos específicos (ej. empanadas, sushi, pizza)</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Leer Reseñas</h3>
+        <ul style="color:var(--gray-700);line-height:2;">
+          <li>• Los usuarios deben poder leer reseñas escritas por otros usuarios veggie</li>
+          <li>• Acceso a reseñas de usuarios vegetarianos y veganos verificados</li>
+          <li>• Ver la calificación en estrellas del restaurante y platos individuales</li>
+          <li>• Identificar si un plato específico en una reseña es vegano o vegetariano</li>
+          <li>• Votar sobre la utilidad de una reseña</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Escribir Reseñas</h3>
+        <ul style="color:var(--gray-700);line-height:2;">
+          <li>• Los usuarios deben poder reseñar un lugar, un plato y su experiencia</li>
+          <li>• Posibilidad de calificar con estrellas</li>
+          <li>• Especificar si el plato consumido fue vegetariano o vegano</li>
+          <li>• Subir fotos del lugar, menú o platos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
 
 <!-- 04. Structure -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="f_structure">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -278,9 +419,74 @@
     <p style="color:var(--gray-700);line-height:1.7;"><strong>Flow:</strong> Open App → Log In → Enter "Explore" → Choose a recommended restaurant → Check reviews (from other veggie users) → Go to the restaurant → Write a review</p>
   </div>
 </div>
+<template id="es-f_structure">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+      <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+      <path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>
+    </svg>
+    04. Estructura
+  </div>
+
+  <!-- Dendrogram -->
+  <div class="card card--tc" style="margin-bottom:1.25rem;">
+    <h3 style="color:var(--tc-600);margin-bottom:.75rem;">Investigación de Usuarios: Dendrograma</h3>
+    <p style="color:var(--gray-700);margin-bottom:1rem;">Para entender cómo los usuarios agrupan la información, usamos un dendrograma. Esto reveló cinco categorías principales de acuerdo entre los usuarios:</p>
+    <ul style="color:var(--gray-700);line-height:2;margin-bottom:1.5rem;">
+      <li>• <strong>Búsqueda / Inicio:</strong> (Filtros, Buscar)</li>
+      <li>• <strong>Inicio / Menú:</strong> (Recomendaciones, Menús, Comida Vegetariana/Vegana)</li>
+      <li>• <strong>Buscar Restaurante / Mapa:</strong> (Horarios, Cómo llegar, Mapa, Distancia)</li>
+      <li>• <strong>Inicio / Restaurantes:</strong> (Calificación, Nombre del Restaurante)</li>
+      <li>• <strong>Mi Perfil / Mi Usuario:</strong> (Ajustes, Datos Personales, Mis Reseñas, Favoritos)</li>
+    </ul>
+    <div style="border-radius:.5rem;overflow:hidden;border:1px solid var(--tc-200);">
+      <img src="images/ef27edf88e2bb7af09839efab687b56d4acd180a.webp" alt="Dendrogram showing user grouping categories" style="width:100%;height:auto;" />
+    </div>
+  </div>
+
+  <!-- Information Architecture -->
+  <div class="card card--tc" style="margin-bottom:1.25rem;">
+    <h3 style="color:var(--tc-600);margin-bottom:.75rem;">Arquitectura de la Información</h3>
+    <p style="color:var(--gray-700);margin-bottom:1rem;">Basados en el dendrograma, creamos el mapa del sitio:</p>
+    <div class="sitemap">
+      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">🏠 <strong style="color:var(--tc-600);font-size:1.1rem;">Inicio</strong></div>
+      <div style="margin-left:2rem;">
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem;color:var(--gray-700);">├── 🔍 <strong style="color:#7c3d23;">Explorar</strong></div>
+        <div style="margin-left:2rem;color:var(--gray-600);font-size:.9rem;">
+          <div>├─ Recomendaciones</div>
+          <div>├── Filtros</div>
+          <div>└── Sitios Nuevos</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem;color:var(--gray-700);">├── 🔎 <strong style="color:#7c3d23;">Buscar</strong></div>
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem;color:var(--gray-700);">├── ⭐ <strong style="color:#7c3d23;">Favoritos</strong></div>
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem;color:var(--gray-700);">├── 👤 <strong style="color:#7c3d23;">Mi Perfil</strong></div>
+        <div style="margin-left:2rem;color:var(--gray-600);font-size:.9rem;">
+          <div>├── Ajustes</div>
+          <div>├── Datos Personales</div>
+          <div>├── Mis Reseñas</div>
+          <div>└── Lugares Favoritos</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.5rem;color:var(--gray-700);">└── 🗺️ <strong style="color:#7c3d23;">Mapa</strong></div>
+        <div style="margin-left:2rem;color:var(--gray-600);font-size:.9rem;">
+          <div>├── Info del Restaurante</div>
+          <div>└── Lista de Restaurantes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Flow -->
+  <div class="card card--highlight">
+    <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Flujo del Usuario</h3>
+    <p style="color:var(--gray-700);margin-bottom:.75rem;">Mapeamos el camino principal de Nadia: encontrar un nuevo restaurante, verificar su confiabilidad y luego tener la opción de contribuir a la comunidad.</p>
+    <p style="color:var(--gray-700);line-height:1.7;"><strong>Flujo:</strong> Abrir App → Iniciar Sesión → Entrar a "Explorar" → Elegir un restaurante recomendado → Ver reseñas (de otros usuarios veggie) → Ir al restaurante → Escribir una reseña</p>
+  </div>
+</template>
 
 <!-- 05. Skeleton -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="f_skeleton">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -308,9 +514,37 @@
     </div>
   </div>
 </div>
+<template id="es-f_skeleton">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/>
+      <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/>
+      <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/>
+    </svg>
+    05. Esqueleto (Wireframes)
+  </div>
+  <p style="color:var(--gray-700);margin-bottom:1.25rem;line-height:1.7;">Tradujimos la estructura de la aplicación en diseños visuales, iterando desde baja hasta alta fidelidad.</p>
+  <div style="display:flex;flex-direction:column;gap:1rem;">
+    <div class="card card--tc">
+      <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Wireframes Manuales (Dibujados a Mano)</h3>
+      <p style="color:var(--gray-700);margin-bottom:1rem;">Bocetos iniciales de las cinco pantallas principales: Inicio, Explorar, Restaurante, Cómo llegar y Escribir Reseña.</p>
+      <div style="border-radius:.5rem;overflow:hidden;border:1px solid var(--tc-200);">
+        <img src="images/24b5675cf30a7cf2274b7cc41482ab2c4c9f729f.avif" alt="Hand-drawn wireframe sketches" style="width:100%;height:auto;" />
+      </div>
+    </div>
+    <div class="card card--tc">
+      <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Wireframes de Baja Fidelidad</h3>
+      <p style="color:var(--gray-700);margin-bottom:1rem;">Versiones digitales de los bocetos a mano, estableciendo la estructura básica y la ubicación de los componentes.</p>
+      <div style="border-radius:.5rem;overflow:hidden;border:1px solid var(--tc-200);">
+        <img src="images/336a53243a9c8601430575a6ce4690e6a18463c1.avif" alt="Low-Fidelity wireframe sketches" style="width:100%;height:auto;" />
+      </div>
+    </div>
+  </div>
+</template>
 
 <!-- 06. Surface -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="f_surface">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -335,9 +569,34 @@
     </div>
   </div>
 </div>
+<template id="es-f_surface">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/>
+    </svg>
+    06. Superficie (Fidelidad)
+  </div>
+  <div style="display:flex;flex-direction:column;gap:1rem;">
+    <div class="card card--tc">
+      <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Fidelidad Media</h3>
+      <p style="color:var(--gray-700);margin-bottom:1rem;">En esta etapa, aplicamos patrones de diseño estándar, agregamos imágenes en escala de grises e implementamos los íconos para crear una versión funcional (pero sin estilos) de la aplicación.</p>
+      <div style="border-radius:.5rem;overflow:hidden;border:1px solid var(--tc-200);">
+        <img src="images/5c64ccd1459bd417d15878ffc1761c10681a2a33.avif" alt="Medium-Fidelity Wireframe" style="width:100%;height:auto;" />
+      </div>
+    </div>
+    <div class="card card--tc">
+      <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Alta Fidelidad</h3>
+      <p style="color:var(--gray-700);margin-bottom:1rem;">Aplicamos el Kit de UI final, incluyendo color, tipografía y componentes pulidos, para crear el aspecto final de la aplicación.</p>
+      <div style="border-radius:.5rem;overflow:hidden;border:1px solid var(--tc-200);">
+        <img src="images/942d6921e34c4ca0923d8cce33ccc129e6c3d514.avif" alt="High-Fidelity Mockup" style="width:100%;height:auto;" />
+      </div>
+    </div>
+  </div>
+</template>
 
 <!-- 07. Validation -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="f_validation">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -374,9 +633,46 @@
     </div>
   </div>
 </div>
+<template id="es-f_validation">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+    </svg>
+    07. Validación
+  </div>
+  <h3 style="color:var(--tc-600);margin-bottom:1rem;">Pruebas de Usabilidad</h3>
+  <p style="color:var(--gray-700);line-height:1.7;margin-bottom:1.25rem;">Era hora de evaluar el diseño con usuarios reales.</p>
+
+  <div class="card card--tc" style="margin-bottom:1.25rem;">
+    <h4 style="color:var(--tc-600);margin-bottom:.5rem;">Metodología</h4>
+    <p style="color:var(--gray-700);margin-bottom:1rem;">Se le dio a los usuarios el prototipo de fidelidad media para probar.</p>
+    <h4 style="color:var(--tc-600);margin-bottom:.5rem;">Objetivos</h4>
+    <p style="color:var(--gray-700);margin-bottom:1rem;">Analizar el recorrido del usuario, identificar inconsistencias y descubrir cualquier dificultad en el flujo.</p>
+    <h4 style="color:var(--tc-600);margin-bottom:.5rem;">Preguntas Clave</h4>
+    <ul style="color:var(--gray-700);line-height:2;">
+      <li>• ¿Pudiste encontrar lo que buscabas?</li>
+      <li>• ¿Tuviste alguna dificultad?</li>
+      <li>• ¿Qué tan simple fue usar la aplicación?</li>
+      <li>• ¿Qué tan simple fue encontrar un restaurante?</li>
+    </ul>
+  </div>
+
+  <h3 style="color:var(--tc-600);margin-bottom:1rem;">Métricas de Satisfacción y Resultados</h3>
+  <p style="color:var(--gray-700);line-height:1.7;margin-bottom:1.25rem;">Los resultados de la prueba de usabilidad fueron mixtos, proporcionando información clara para una segunda iteración.</p>
+  <div style="display:flex;flex-direction:column;gap:.75rem;">
+    <div class="card" style="background:#f0fdf4;border-color:#bbf7d0;">
+      <p style="color:var(--gray-700);">El <strong style="color:#15803d;">95%</strong> de los usuarios encontró fácil hallar un restaurante. (Esto muestra que el flujo de usuario principal fue un éxito).</p>
+    </div>
+    <div class="card" style="background:#fefce8;border-color:#fef08a;">
+      <p style="color:var(--gray-700);margin-bottom:.35rem;">Sin embargo, solo el <strong style="color:#a16207;">65%</strong> encontró lo que buscaba y solo al <strong style="color:#a16207;">65%</strong> le pareció fácil usar la app.</p>
+      <p style="color:var(--gray-700);">El <strong style="color:#a16207;">35%</strong> de los usuarios experimentó alguna dificultad durante la prueba.</p>
+    </div>
+  </div>
+</template>
 
 <!-- 08. Conclusion -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="f_conclusion">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -394,9 +690,27 @@
     <p style="color:var(--gray-700);line-height:1.7;">Our next steps will be to iterate on the medium-fidelity prototype, focusing specifically on clarifying the information architecture of the "My Profile" section and improving the discoverability of the "Search" and "Filter" functions.</p>
   </div>
 </div>
+<template id="es-f_conclusion">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+      <path d="M9 18h6"/><path d="M10 22h4"/>
+    </svg>
+    08. Conclusión y Próximos Pasos
+  </div>
+  <div class="card card--highlight" style="margin-bottom:1.25rem;">
+    <p style="color:var(--gray-700);line-height:1.7;margin-bottom:.75rem;">Las pruebas de usabilidad confirmaron que logramos resolver el problema principal del usuario: <strong>encontrar un restaurante es simple y efectivo (95% de éxito)</strong>. Esto valida nuestra arquitectura principal y las funcionalidades de "Explorar" y "Mapa".</p>
+    <p style="color:var(--gray-700);line-height:1.7;">Sin embargo, los resultados mixtos (65% en facilidad de uso, 35% experimentó dificultad) indican que, si bien el flujo principal es sólido, las funciones secundarias y la navegación general no son tan intuitivas.</p>
+  </div>
+  <div class="card card--tc">
+    <h3 style="color:var(--tc-600);margin-bottom:.5rem;">Próximos Pasos</h3>
+    <p style="color:var(--gray-700);line-height:1.7;">Nuestros próximos pasos serán iterar sobre el prototipo de fidelidad media, centrándonos específicamente en aclarar la arquitectura de la información de la sección "Mi Perfil" y mejorar la visibilidad de las funciones "Buscar" y "Filtro".</p>
+  </div>
+</template>
 
 <!-- 09. Final Change -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="f_finalchange">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -421,9 +735,34 @@
     </div>
   </div>
 </div>
+<template id="es-f_finalchange">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/>
+      <path d="M20 2v4"/><path d="M22 4h-4"/>
+      <circle cx="4" cy="20" r="2"/>
+    </svg>
+    09. Cambios Finales
+  </div>
+  <div class="card card--tc">
+    <p style="color:var(--gray-700);margin-bottom:1.25rem;">Basado en la retroalimentación de los usuarios durante la prueba, se aplicaron los siguientes cambios:</p>
+    <ul style="color:var(--gray-700);line-height:2.2;margin-bottom:1.5rem;">
+      <li><strong style="color:var(--tc-600);">Agregar animaciones:</strong> Las opciones no eran del todo intuitivas. Planeo agregar animaciones al iniciar la app para explicar su uso correcto.</li>
+      <li><strong style="color:var(--tc-600);">Más información del restaurante:</strong> Los usuarios 1, 2 y 5 destacaron la falta de direcciones y números de teléfono.</li>
+      <li><strong style="color:var(--tc-600);">Filtros para reseñas:</strong> El usuario 4 dijo que quería una opción para filtrar reseñas.</li>
+      <li><strong style="color:var(--tc-600);">Reportar problemas:</strong> El usuario 1 preguntó: "¿Qué pasa si la información es incorrecta?". Para cubrir esto, agregué la opción de reportar errores.</li>
+      <li><strong style="color:var(--tc-600);">Opciones alternativas para llegar:</strong> Una pregunta común fue: "¿Las indicaciones son para ir en auto o caminando?". Basado en esto, agregué la opción de elegir indicaciones.</li>
+      <li><strong style="color:var(--tc-600);">Correcciones de interfaz:</strong> Algunos detalles no estaban claros, como cómo salir de las reseñas y retroceder entre pantallas.</li>
+    </ul>
+    <div style="border-radius:.5rem;overflow:hidden;border:1px solid var(--tc-200);">
+      <img src="images/171d71e361cd7a5f214af9c7a0507e4afe2f5691.avif" alt="Design iteration and user feedback" style="width:100%;height:auto;" />
+    </div>
+  </div>
+</template>
 
 <!-- 10. Final Results -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="f_results">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -442,12 +781,31 @@
     <p style="color:var(--gray-700);line-height:1.7;">The project demonstrates the value of <strong>iterative design</strong>: moving from a prototype that works to a final design that is intuitive, reliable, and user-friendly.</p>
   </div>
 </div>
+<template id="es-f_results">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>
+    </svg>
+    10. Resultados Finales (Segunda Prueba)
+  </div>
+  <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border-color:#bbf7d0;padding:2rem;margin-bottom:1.25rem;">
+    <p style="color:var(--gray-700);line-height:1.7;margin-bottom:.75rem;">Después de implementar los cambios, se realizó una segunda ronda de pruebas de usabilidad.</p>
+    <p style="color:var(--gray-700);line-height:1.7;">Los resultados mostraron una mejora significativa en la usabilidad general de la aplicación. El número de usuarios que experimentaron alguna dificultad durante la prueba disminuyó del <strong style="color:#dc2626;">35%</strong> al <strong style="color:#15803d;">15%</strong>. Esto confirma que los cambios iterativos abordaron directamente los principales puntos de fricción.</p>
+  </div>
+  <div class="card card--tc">
+    <h3 style="color:var(--tc-600);margin-bottom:.75rem;">Conclusión</h3>
+    <p style="color:var(--gray-700);line-height:1.7;margin-bottom:.75rem;">La investigación inicial identificó correctamente una clara necesidad en el mercado, y el primer prototipo validó nuestra hipótesis central: al 95% de los usuarios le pareció simple encontrar un restaurante.</p>
+    <p style="color:var(--gray-700);line-height:1.7;margin-bottom:.75rem;">Sin embargo, las pruebas iniciales mostraron que un núcleo funcional no es suficiente. Al escuchar a los usuarios e iterar sobre el diseño (agregando funciones como filtros de reseñas, reporte de errores y señales de interfaz más claras), logramos reducir la fricción en más del 50%.</p>
+    <p style="color:var(--gray-700);line-height:1.7;">Este proyecto demuestra el valor del <strong>diseño iterativo</strong>: pasar de un prototipo que funciona a un diseño final que sea intuitivo, confiable y amigable.</p>
+  </div>
+</template>
 
 <!-- CTA -->
 <div class="cs-section reveal" style="text-align:center;padding-bottom:4rem;">
   <a href="https://www.behance.net/gallery/176414951/Vegan-App-UXUI-Case-Study"
      target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg">
-    View Full Case Study on Behance
+    <span data-i18n="shared.viewFullCaseStudy">View Full Case Study on Behance</span>
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
@@ -462,6 +820,7 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  LangEngine.init();
 </script>
 </body>
 </html>

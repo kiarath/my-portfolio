@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Cine.AR – Streaming Service redesign case study by Kiara Correa, UX/UI Designer." />
-  <title>Cine.AR – Case Study | Kiara Correa</title>
+  <meta name="description" content="Cine.AR – Streaming Service redesign case study by Kiara Correa, UX/UI Designer." data-i18n-meta="cinear.pageDesc" />
+  <title data-i18n-title="cinear.pageTitle">Cine.AR – Case Study | Kiara Correa</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="translations.js"></script>
 </head>
 <body>
 
@@ -19,24 +20,37 @@
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
       </svg>
-      Back to Portfolio
+      <span data-i18n="shared.backToPortfolio">Back to Portfolio</span>
     </a>
-    <a href="https://www.behance.net/gallery/185152481/Cine-AR-Rediseno-Web"
-       target="_blank" rel="noopener noreferrer" class="btn btn--outline" style="font-size:.85rem;padding:.4rem 1rem;">
-      View on Behance
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-      </svg>
-    </a>
+    <div style="display:flex;align-items:center;gap:.75rem;">
+      <button id="lang-toggle" class="lang-toggle" aria-label="Cambiar a Español" onclick="LangEngine.toggle()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+          <path d="M2 12h20"/>
+        </svg>
+        <span class="lang-toggle__active">EN</span>
+        <span class="lang-toggle__sep">/</span>
+        <span class="lang-toggle__other">ES</span>
+      </button>
+      <a href="https://www.behance.net/gallery/185152481/Cine-AR-Rediseno-Web"
+         target="_blank" rel="noopener noreferrer" class="btn btn--outline" style="font-size:.85rem;padding:.4rem 1rem;">
+        <span data-i18n="shared.viewOnBehance">View on Behance</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </nav>
 
 <!-- ═════════════════════ HERO ══════════════════════════ -->
 <div class="cs-hero page-bg">
   <div class="cs-hero__inner reveal">
-    <h1 class="cs-hero__title">Cine.AR – Streaming Service</h1>
-    <p class="cs-hero__desc">
+    <h1 class="cs-hero__title" data-i18n="cinear.heroTitle">Cine.AR – Streaming Service</h1>
+    <p class="cs-hero__desc" data-i18n="cinear.heroDesc">
       A complete web redesign for Cine.AR, an Argentinian-focused free streaming service,
       enhancing user experience and showcasing local cinema.
     </p>
@@ -49,14 +63,14 @@
           <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
           <circle cx="9" cy="7" r="4"/>
         </svg>
-        <div><small>Role</small>UX/UI Designer</div>
+        <div><small data-i18n="shared.role">Role</small><span data-i18n="cinear.roleValue">UX/UI Designer</span></div>
       </div>
       <div class="cs-meta-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>
         </svg>
-        <div><small>Timeline</small>2023</div>
+        <div><small data-i18n="shared.timeline">Timeline</small><span data-i18n="cinear.timelineValue">2023</span></div>
       </div>
       <div class="cs-meta-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -67,7 +81,7 @@
           <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
           <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
         </svg>
-        <div><small>Tools</small>Figma</div>
+        <div><small data-i18n="shared.tools">Tools</small><span data-i18n="cinear.toolsValue">Figma</span></div>
       </div>
     </div>
     <div class="cs-hero__badges">
@@ -84,7 +98,7 @@
 <!-- ═════════════════════ CONTENT ═══════════════════════ -->
 
 <!-- What is Cine.AR -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_whatIs">
   <div class="card card--tc">
     <h2 style="color:var(--tc-600);margin-bottom:.75rem;">What is CINE.AR PLAY?</h2>
     <p style="color:var(--gray-700);line-height:1.7;">
@@ -94,9 +108,19 @@
     </p>
   </div>
 </div>
+<template id="es-c_whatIs">
+  <div class="card card--tc">
+    <h2 style="color:var(--tc-600);margin-bottom:.75rem;">¿Qué es CINE.AR PLAY?</h2>
+    <p style="color:var(--gray-700);line-height:1.7;">
+      Cine.AR Play es una plataforma de streaming gratuita enfocada en contenido producido en Argentina,
+      incluyendo películas, series y documentales. Presentada originalmente como el "Netflix Criollo",
+      actualmente cuenta con miles de horas de contenido y una curaduría muy variada.
+    </p>
+  </div>
+</template>
 
 <!-- Why a Redesign -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_whyRedesign">
   <div class="card card--tc">
     <h2 style="color:var(--tc-600);margin-bottom:.75rem;">Why a Redesign?</h2>
     <p style="color:var(--gray-700);line-height:1.7;">
@@ -107,9 +131,20 @@
     </p>
   </div>
 </div>
+<template id="es-c_whyRedesign">
+  <div class="card card--tc">
+    <h2 style="color:var(--tc-600);margin-bottom:.75rem;">¿Por qué un Rediseño?</h2>
+    <p style="color:var(--gray-700);line-height:1.7;">
+      A pesar de su gran cantidad de contenido, encontramos que los usuarios tienen dificultades
+      para navegar la plataforma y encontrar lo que buscan. El último rediseño de la plataforma
+      fue en 2017, y han pasado muchas cosas desde entonces. Decidimos llevar a cabo una investigación
+      para ver qué aspectos se podían mejorar.
+    </p>
+  </div>
+</template>
 
 <!-- Context / Problem -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_contextProb">
   <div class="grid-2">
     <div class="card" style="border-left:4px solid #16a34a;transition:transform .3s,box-shadow .3s;cursor:pointer;"
          onmouseenter="this.style.transform='scale(1.03)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.12)'"
@@ -133,9 +168,32 @@
     </div>
   </div>
 </div>
+<template id="es-c_contextProb">
+  <div class="grid-2">
+    <div class="card" style="border-left:4px solid #16a34a;transition:transform .3s,box-shadow .3s;cursor:pointer;"
+         onmouseenter="this.style.transform='scale(1.03)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.12)'"
+         onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <h2 style="color:var(--tc-600);margin-bottom:.75rem;">Contexto</h2>
+      <p style="color:var(--gray-700);line-height:1.7;">
+        Actualmente, está surgiendo un gran interés en el Cine Argentino debido a un acceso más fácil
+        a las películas, sumado a un aumento del interés por los recientes premios internacionales que han recibido.
+      </p>
+    </div>
+    <div class="card" style="border-left:4px solid #dc2626;transition:transform .3s,box-shadow .3s;cursor:pointer;"
+         onmouseenter="this.style.transform='scale(1.03)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.12)'"
+         onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <h2 style="color:var(--tc-600);margin-bottom:.75rem;">El Problema</h2>
+      <p style="color:var(--gray-700);line-height:1.7;">
+        Debido a la saturación del mercado y a la feroz competencia, la aplicación web de Cine.AR Play
+        ha quedado rezagada en comparación con las innovaciones introducidas por plataformas líderes como
+        Netflix o Prime Video. Esta situación dificulta que la página se destaque y atraiga nuevos usuarios.
+      </p>
+    </div>
+  </div>
+</template>
 
 <!-- 01. User Research -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_research">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -177,9 +235,49 @@
     <p>• 7/10 had problems with the page's slowness.</p>
   </div>
 </div>
+<template id="es-c_research">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/>
+    </svg>
+    01. Investigación de Usuarios
+  </div>
+  <p style="color:var(--gray-700);margin-bottom:1.5rem;"><strong>10 Usuarios</strong> (Argentinos, todos usan plataformas de streaming)</p>
+
+  <div class="card card--tc" style="margin-bottom:1.25rem;">
+    <h3 style="color:var(--tc-600);margin-bottom:1rem;">¿Qué plataformas prefieren (para ver cine Argentino)?</h3>
+    <div class="progress-wrap"><div class="progress-label"><span>Netflix</span><span>40%</span></div>
+      <div class="progress-track"><div class="progress-fill" style="width:40%;background:#dc2626;"></div></div></div>
+    <div class="progress-wrap"><div class="progress-label"><span>Prime Video</span><span>30%</span></div>
+      <div class="progress-track"><div class="progress-fill" style="width:30%;background:#2563eb;"></div></div></div>
+    <div class="progress-wrap"><div class="progress-label"><span>Max</span><span>20%</span></div>
+      <div class="progress-track"><div class="progress-fill" style="width:20%;background:#7c3aed;"></div></div></div>
+    <div class="progress-wrap"><div class="progress-label"><span>MUBI</span><span>10%</span></div>
+      <div class="progress-track"><div class="progress-fill" style="width:10%;background:#0ea5e9;"></div></div></div>
+    <div class="progress-wrap"><div class="progress-label"><span>Cine.AR</span><span>0%</span></div>
+      <div class="progress-track"><div class="progress-fill" style="width:0%;background:#9ca3af;"></div></div></div>
+  </div>
+
+  <div class="card card--highlight" style="margin-bottom:1.25rem;">
+    <h3 style="color:var(--tc-600);margin-bottom:.75rem;">¿Por qué las prefieren?</h3>
+    <p style="color:var(--gray-700);margin-bottom:.4rem;">💬 "Es muy fácil encontrar películas…" <span style="color:var(--gray-500);">(Prime Video)</span></p>
+    <p style="color:var(--gray-700);margin-bottom:.4rem;">💬 "…es muy rápida y conveniente." <span style="color:var(--gray-500);">(Netflix)</span></p>
+    <p style="color:var(--gray-700);">💬 "…puedo encontrar las cosas más rápido." <span style="color:var(--gray-500);">(Netflix)</span></p>
+  </div>
+
+  <h3 style="color:var(--tc-600);margin-bottom:.75rem;">Hallazgos Clave</h3>
+  <div style="color:var(--gray-700);line-height:2;">
+    <p>• El 70% de los usuarios conoció Cine.AR a través de la plataforma web.</p>
+    <p>• 8/10 usuarios clasificaron la plataforma con la palabra <strong>"LENTA."</strong></p>
+    <p>• El 60% considera que la interfaz de usuario está desorganizada.</p>
+    <p>• El 80% considera que las opciones en el reproductor de video son limitadas.</p>
+    <p>• 7/10 tuvieron problemas con la lentitud de la página.</p>
+  </div>
+</template>
 
 <!-- User Personas -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_personas">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -226,9 +324,56 @@
     </div>
   </div>
 </div>
+<template id="es-c_personas">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+      <path d="M16 3.128a4 4 0 0 1 0 7.744"/>
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+      <circle cx="9" cy="7" r="4"/>
+    </svg>
+    User Personas
+  </div>
+  <p style="color:var(--gray-700);margin-bottom:1.5rem;">Creamos dos modelos de usuario basados en nuestro objetivo.</p>
+
+  <!-- Martina -->
+  <div class="card card--tc" style="margin-bottom:1.25rem;">
+    <h3 style="margin-bottom:.35rem;">Persona 1: Martina</h3>
+    <p style="color:var(--gray-700);margin-bottom:1rem;">28 años, Diseñadora Gráfica</p>
+    <h4 style="color:var(--tc-600);margin-bottom:.35rem;">Sobre ella:</h4>
+    <p style="color:var(--gray-700);margin-bottom:1rem;">Martina es una persona creativa, apasionada por el arte y la cultura. Como diseñadora gráfica, explora nuevas formas de autoexpresión. Es cinéfila, escéptica pero entusiasta sobre ver cine argentino.</p>
+    <div style="background:var(--tc-50);border-radius:.5rem;padding:.85rem 1rem;margin-bottom:1rem;font-style:italic;color:var(--gray-700);">
+      💬 "Amo el cine argentino, he visto muchas películas y me gustaría cambiar algunas cosas."
+    </div>
+    <div class="grid-2">
+      <div><h4 style="color:var(--tc-600);margin-bottom:.35rem;">Nivel Técnico:</h4><p style="color:var(--gray-700);">Bueno</p></div>
+      <div><h4 style="color:var(--tc-600);margin-bottom:.35rem;">Objetivos:</h4><p style="color:var(--gray-700);">Encontrar inspiración en películas locales; explorar su propia cultura.</p></div>
+      <div><h4 style="color:var(--tc-600);margin-bottom:.35rem;">Motivaciones:</h4><p style="color:var(--gray-700);">Descubrir nuevas producciones locales; explorar su cultura a través de películas.</p></div>
+      <div><h4 style="color:var(--tc-600);margin-bottom:.35rem;">Frustraciones:</h4><p style="color:var(--gray-700);">Toma mucho tiempo elegir; escéptica sobre el volumen de contenido en pantalla.</p></div>
+    </div>
+  </div>
+
+  <!-- Cristina -->
+  <div class="card card--tc">
+    <h3 style="margin-bottom:.35rem;">Persona 2: Cristina</h3>
+    <p style="color:var(--gray-700);margin-bottom:1rem;">28 años, Maestra de Escuela Primaria</p>
+    <h4 style="color:var(--tc-600);margin-bottom:.35rem;">Sobre ella:</h4>
+    <p style="color:var(--gray-700);margin-bottom:1rem;">Una maestra apasionada que disfruta diversos géneros. A menudo ve películas en casa con familiares y amigos.</p>
+    <div style="background:var(--tc-50);border-radius:.5rem;padding:.85rem 1rem;margin-bottom:1rem;font-style:italic;color:var(--gray-700);">
+      💬 "El cine es mi escape perfecto; me encanta encontrar películas desde la comodidad de mi hogar."
+    </div>
+    <div class="grid-2">
+      <div><h4 style="color:var(--tc-600);margin-bottom:.35rem;">Nivel Técnico:</h4><p style="color:var(--gray-700);">Bueno</p></div>
+      <div><h4 style="color:var(--tc-600);margin-bottom:.35rem;">Objetivos:</h4><p style="color:var(--gray-700);">Encontrar una plataforma con una amplia variedad de películas.</p></div>
+      <div><h4 style="color:var(--tc-600);margin-bottom:.35rem;">Motivaciones:</h4><p style="color:var(--gray-700);">Apoyar la industria nacional; disfrutar estrenos de películas.</p></div>
+      <div><h4 style="color:var(--tc-600);margin-bottom:.35rem;">Frustraciones:</h4><p style="color:var(--gray-700);">Difícil de navegar para alguien no experto; lenta para aprender.</p></div>
+    </div>
+  </div>
+</template>
 
 <!-- User Journey Map -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_journey">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -280,9 +425,61 @@
     </ul>
   </div>
 </div>
+<template id="es-c_journey">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/>
+      <path d="M15 5.764v15"/><path d="M9 3.236v15"/>
+    </svg>
+    User Journey Map: Martina
+  </div>
+  <div class="card card--highlight" style="margin-bottom:1rem;">
+    <p style="color:var(--gray-700);margin-bottom:.35rem;"><strong>Una cinéfila que explora el cine argentino.</strong></p>
+    <p style="color:var(--gray-700);margin-bottom:.35rem;"><strong>Escenario Hipotético:</strong> Cansada de un largo día de trabajo, quiere usar su tiempo libre para ver una película y relajarse.</p>
+    <p style="color:var(--gray-700);"><strong>Objetivo:</strong> Encontrar y ver una película argentina que se ajuste a sus gustos, de forma rápida y sencilla.</p>
+  </div>
+  <h3 style="color:var(--tc-600);margin-bottom:.75rem;">Viaje y Puntos de Dolor:</h3>
+  <div class="journey-step journey-step--green">
+    <div class="journey-step__head">😊 <span>Abre el navegador</span></div>
+  </div>
+  <div class="journey-step journey-step--green">
+    <div class="journey-step__head">😊 <span>Va a play.cine.ar</span></div>
+  </div>
+  <div class="journey-step journey-step--green">
+    <div class="journey-step__head">😊 <span>Hace clic en "Ingresar"</span></div>
+  </div>
+  <div class="journey-step journey-step--yellow">
+    <div class="journey-step__head">😐 <span>Ingresa usuario/contraseña</span></div>
+    <div class="journey-step__pain">⚠️ <strong>Punto de Dolor:</strong> No hay opciones de "olvidé mi contraseña" ni métodos alternativos de inicio (ej. Google).</div>
+  </div>
+  <div class="journey-step journey-step--red">
+    <div class="journey-step__head">😞 <span>Explora la página de inicio</span></div>
+    <div class="journey-step__pain">⚠️ <strong>Punto de Dolor:</strong> El inicio está desorganizado y es difícil de entender; el usuario no sabe qué elegir.</div>
+  </div>
+  <div class="journey-step journey-step--red">
+    <div class="journey-step__head">😞 <span>Hace clic en una película</span></div>
+  </div>
+  <div class="journey-step journey-step--red">
+    <div class="journey-step__head">😞 <span>Lee la sinopsis</span></div>
+    <div class="journey-step__pain">⚠️ <strong>Punto de Dolor:</strong> Si al usuario no le gusta la sinopsis, tiene que volver atrás y repetir todo el proceso de selección.</div>
+  </div>
+  <div class="journey-step journey-step--yellow">
+    <div class="journey-step__head">😐 <span>Hace clic en "Reproducir"</span></div>
+    <div class="journey-step__pain">⚠️ <strong>Punto de Dolor:</strong> El reproductor carece de controles completos (subtítulos, velocidad de reproducción, contenido relacionado).</div>
+  </div>
+  <div class="card" style="background:#f0fdf4;border-color:#bbf7d0;margin-top:1.5rem;">
+    <h3 style="color:var(--tc-600);margin-bottom:.75rem;">Oportunidades Identificadas:</h3>
+    <ul style="color:var(--gray-700);line-height:2;">
+      <li>• Acelerar el proceso de inicio de sesión agregando más opciones.</li>
+      <li>• Rediseñar el inicio para mejorar la jerarquía de contenido y acelerar la selección de películas.</li>
+      <li>• Agregar más opciones al reproductor para hacerlo más accesible y mejorar la coherencia.</li>
+    </ul>
+  </div>
+</template>
 
 <!-- 02. Requirements -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_reqs">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -355,9 +552,82 @@
     </div>
   </div>
 </div>
+<template id="es-c_reqs">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+      <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+      <path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>
+    </svg>
+    02. Requisitos (Alcance)
+  </div>
+  <h3 style="color:var(--tc-600);margin-bottom:1rem;">Matriz de Necesidades</h3>
+  <div style="overflow-x:auto;margin-bottom:2rem;">
+    <table class="cs-table">
+      <thead><tr><th>Oportunidad</th><th>Punto de Dolor</th><th>Necesidad</th><th>Solución</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Acelerar el proceso de inicio de sesión.</td>
+          <td>El usuario tiene que ingresar manualmente sus datos de acceso cada vez.</td>
+          <td>El usuario quiere ingresar a su cuenta más rápido.</td>
+          <td>Agregar opciones de inicio de sesión (Google, Facebook).</td>
+        </tr>
+        <tr>
+          <td>Rediseñar el inicio para mejorar la jerarquía de contenido.</td>
+          <td>El inicio está desorganizado y es difícil de navegar.</td>
+          <td>El usuario quiere encontrar contenido que se ajuste a sus gustos.</td>
+          <td>Agregar "Recomendaciones" al principio y nuevos botones de contenido.</td>
+        </tr>
+        <tr>
+          <td>Agregar más opciones al reproductor.</td>
+          <td>El reproductor actual carece de funciones básicas como subtítulos, velocidad, etc.</td>
+          <td>El usuario quiere un reproductor con funciones de streaming estándar.</td>
+          <td>Agregar botones para subtítulos, velocidad de reproducción, etc.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="color:var(--tc-600);margin-bottom:1rem;">Matriz de Viabilidad y Deseabilidad</h3>
+  <div class="grid-2">
+    <div class="card" style="border-left:4px solid #dc2626;">
+      <h4 style="color:var(--tc-600);margin-bottom:.75rem;">Prioridad 1 (Alta):</h4>
+      <ul style="color:var(--gray-700);line-height:2;">
+        <li>• Reducir la cantidad de elementos en el inicio.</li>
+        <li>• Agregar la capacidad de ver la sinopsis desde el inicio.</li>
+        <li>• Filtrar series/películas por género.</li>
+        <li>• Acelerar los métodos de inicio de sesión (Google/Facebook).</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid #f97316;">
+      <h4 style="color:var(--tc-600);margin-bottom:.75rem;">Prioridad 2:</h4>
+      <ul style="color:var(--gray-700);line-height:2;">
+        <li>• Agregar una sección de "Recomendaciones" basada en comportamiento.</li>
+        <li>• Cambiar el nombre de "Mi Lista" a "Mis Favoritos".</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid #eab308;">
+      <h4 style="color:var(--tc-600);margin-bottom:.75rem;">Prioridad 3:</h4>
+      <ul style="color:var(--gray-700);line-height:2;">
+        <li>• Agregar iconos a perfiles para diferentes usuarios.</li>
+        <li>• Agregar diferencias claras entre contenido alquilado y gratuito.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid #16a34a;">
+      <h4 style="color:var(--tc-600);margin-bottom:.75rem;">Prioridad 4 (Baja):</h4>
+      <ul style="color:var(--gray-700);line-height:2;">
+        <li>• Crear una sección de "Tendencias".</li>
+        <li>• Agregar opción para ver tráilers antes de reproducir.</li>
+        <li>• Mejorar la visibilidad de opciones en el reproductor.</li>
+        <li>• Optimizar la velocidad de la función de búsqueda.</li>
+      </ul>
+    </div>
+  </div>
+</template>
 
 <!-- 03. Structure -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_structure">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -415,9 +685,67 @@
     </div>
   </div>
 </div>
+<template id="es-c_structure">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/>
+      <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/>
+      <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/>
+    </svg>
+    03. Estructura
+  </div>
+  <div class="card card--highlight" style="margin-bottom:1.25rem;">
+    <h3 style="color:var(--tc-600);margin-bottom:.35rem;">Metodología</h3>
+    <p style="color:var(--gray-700);">1er Tree Testing → Cardsorting → 2do Tree Testing</p>
+  </div>
+
+  <h3 style="color:var(--tc-600);margin-bottom:1rem;">1er Tree Testing (Estructura Original)</h3>
+  <div class="card card--tc" style="margin-bottom:1.25rem;">
+    <p style="color:var(--gray-700);margin-bottom:1rem;"><strong>Resultados:</strong> Tasa de éxito muy baja (35%).</p>
+    <div style="margin-bottom:1rem;">
+      <h4 style="color:var(--tc-600);margin-bottom:.35rem;">Tarea 1: "Quieres ver una película que compraste antes, ¿dónde lo harías?"</h4>
+      <p style="color:#dc2626;margin-bottom:.35rem;"><strong>Resultado: 60% FALLÓ.</strong></p>
+      <p style="color:var(--gray-700);">Conclusión: Los usuarios se confundían con etiquetas ambiguas como "Mi Sala".</p>
+    </div>
+    <div>
+      <h4 style="color:var(--tc-600);margin-bottom:.35rem;">Tarea 2: "Tienes ganas de ver una comedia, ¿dónde buscarías?"</h4>
+      <p style="color:#dc2626;margin-bottom:.35rem;"><strong>Resultado: 80% FALLÓ.</strong></p>
+      <p style="color:var(--gray-700);">Conclusión: La ruta para buscar por género era poco clara y fragmentada.</p>
+    </div>
+  </div>
+
+  <h3 style="color:var(--tc-600);margin-bottom:1rem;">Cardsorting</h3>
+  <div class="card card--highlight" style="margin-bottom:1.25rem;">
+    <p style="color:var(--gray-700);margin-bottom:1rem;">Basado en la 1ra prueba, se realizó un ejercicio de card sorting, que resultó en un mapa de sitio nuevo y simplificado:</p>
+    <div class="grid-3">
+      <div style="padding:.75rem;background:#fff;border-radius:.375rem;border:1px solid var(--tc-200);text-align:center;">Películas</div>
+      <div style="padding:.75rem;background:#fff;border-radius:.375rem;border:1px solid var(--tc-200);text-align:center;">Series</div>
+      <div style="padding:.75rem;background:#fff;border-radius:.375rem;border:1px solid var(--tc-200);text-align:center;">Mi Lista</div>
+      <div style="padding:.75rem;background:#fff;border-radius:.375rem;border:1px solid var(--tc-200);text-align:center;">Mis Compras</div>
+      <div style="padding:.75rem;background:#fff;border-radius:.375rem;border:1px solid var(--tc-200);text-align:center;">Mi Perfil</div>
+      <div style="padding:.75rem;background:#fff;border-radius:.375rem;border:1px solid var(--tc-200);text-align:center;">Ayuda</div>
+    </div>
+  </div>
+
+  <h3 style="color:var(--tc-600);margin-bottom:1rem;">2do Tree Testing (Nueva Estructura)</h3>
+  <div class="card card--tc">
+    <p style="color:var(--gray-700);margin-bottom:1rem;"><strong>Resultados:</strong> Tasa de éxito muy alta (95%).</p>
+    <div style="margin-bottom:1rem;">
+      <h4 style="color:var(--tc-600);margin-bottom:.35rem;">Tarea 1: "Quieres ver una película que compraste antes…"</h4>
+      <p style="color:#16a34a;margin-bottom:.35rem;"><strong>Resultado: 90% ÉXITO.</strong></p>
+      <p style="color:var(--gray-700);">(Ruta: Inicio → Mis Compras)</p>
+    </div>
+    <div>
+      <h4 style="color:var(--tc-600);margin-bottom:.35rem;">Tarea 2: "Tienes ganas de ver una comedia…"</h4>
+      <p style="color:#16a34a;margin-bottom:.35rem;"><strong>Resultado: 100% ÉXITO.</strong></p>
+      <p style="color:var(--gray-700);">(Ruta: Inicio → Películas → Comedia)</p>
+    </div>
+  </div>
+</template>
 
 <!-- 04. Skeleton -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_skeleton">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -446,9 +774,38 @@
     <p style="color:#15803d;"><strong>Results:</strong> 4/4 (100%) of users successfully completed ALL TASKS.</p>
   </div>
 </div>
+<template id="es-c_skeleton">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>
+    </svg>
+    04. Esqueleto
+  </div>
+  <h3 style="color:var(--tc-600);margin-bottom:1rem;">Pruebas Moderadas</h3>
+  <div class="card card--highlight" style="margin-bottom:1.25rem;">
+    <p style="color:var(--gray-700);"><strong>Escenario Hipotético:</strong> Vuelves del trabajo y tienes ganas de explorar el cine argentino, así que decides probar esta página "Cine.Ar".</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
+    <div class="card card--tc">
+      <h4 style="color:var(--tc-600);margin-bottom:.35rem;">Tarea 1: ELEGIR UNA PELÍCULA</h4>
+      <p style="color:var(--gray-700);"><strong>Objetivo:</strong> El usuario puede elegir una película rápidamente.</p>
+      <p style="color:var(--gray-700);"><strong>Criterio de Éxito:</strong> Reproducir una película.</p>
+    </div>
+    <div class="card card--tc">
+      <h4 style="color:var(--tc-600);margin-bottom:.35rem;">Tarea 2: ALQUILAR UNA PELÍCULA</h4>
+      <p style="color:var(--gray-700);"><strong>Objetivo:</strong> El usuario puede alquilar una película.</p>
+      <p style="color:var(--gray-700);"><strong>Criterio de Éxito:</strong> Completar el proceso de pago.</p>
+    </div>
+  </div>
+  <div class="card" style="background:#f0fdf4;border-color:#bbf7d0;">
+    <p style="color:var(--gray-700);margin-bottom:.35rem;"><strong>Usuarios:</strong> 4 usuarios (habilidades técnicas medias-bajas, 18-30 años).</p>
+    <p style="color:#15803d;"><strong>Resultados:</strong> 4/4 (100%) de los usuarios completaron TODAS LAS TAREAS con éxito.</p>
+  </div>
+</template>
 
 <!-- 05. Surface -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_surface">
   <div class="cs-section-title">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -495,9 +852,56 @@
     </div>
   </div>
 </div>
+<template id="es-c_surface">
+  <div class="cs-section-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+      <path d="M9 18h6"/><path d="M10 22h4"/>
+    </svg>
+    05. Superficie
+  </div>
+  <h3 style="color:var(--tc-600);margin-bottom:1rem;">El Círculo Dorado</h3>
+  <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;">
+    <div class="card" style="border-left:4px solid var(--tc-600);">
+      <h4 style="color:var(--tc-600);margin-bottom:.35rem;">¿Por qué?</h4>
+      <p style="color:var(--gray-700);">Cine.AR es un servicio de streaming de películas, series y documentales argentinos. Los usuarios pueden disfrutar contenido visual, acceder a información, estrenos y mucho más.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--tc-600);">
+      <h4 style="color:var(--tc-600);margin-bottom:.35rem;">¿Cómo?</h4>
+      <p style="color:var(--gray-700);">Nuestra misión es democratizar el cine latinoamericano. Queremos que la gente conecte con sus raíces a través de contenido de calidad que refleje su realidad.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--tc-600);">
+      <h4 style="color:var(--tc-600);margin-bottom:.35rem;">¿Qué?</h4>
+      <p style="color:var(--gray-700);">Somos una plataforma que facilita la búsqueda, permitiendo a los usuarios encontrar películas y documentales de diferentes géneros con recomendaciones basadas en sus gustos.</p>
+    </div>
+  </div>
+
+  <h3 style="color:var(--tc-600);margin-bottom:1rem;">Tono</h3>
+  <div class="card card--tc">
+    <p style="color:var(--gray-700);margin-bottom:1rem;">Se creó una línea de tiempo para visualizar el tono de voz a usar, desde "Amistoso" hasta "Serio", dependiendo de la tarea del usuario.</p>
+    <div style="display:flex;flex-direction:column;gap:.75rem;">
+      <div style="display:flex;align-items:center;gap:1rem;"><div style="width:9rem;color:var(--gray-700);">Onboarding</div>
+        <div style="flex:1;height:.5rem;background:linear-gradient(to right,#4ade80,#86efac);border-radius:9999px;"></div>
+        <div style="width:5rem;color:#16a34a;font-size:.85rem;">Amistoso</div></div>
+      <div style="display:flex;align-items:center;gap:1rem;"><div style="width:9rem;color:var(--gray-700);">Elegir contenido</div>
+        <div style="flex:1;height:.5rem;background:linear-gradient(to right,#4ade80,#86efac);border-radius:9999px;"></div>
+        <div style="width:5rem;color:#16a34a;font-size:.85rem;">Amistoso</div></div>
+      <div style="display:flex;align-items:center;gap:1rem;"><div style="width:9rem;color:var(--gray-700);">Ingresar</div>
+        <div style="flex:1;height:.5rem;background:linear-gradient(to right,#facc15,#fde68a);border-radius:9999px;"></div>
+        <div style="width:5rem;color:#ca8a04;font-size:.85rem;">Neutral</div></div>
+      <div style="display:flex;align-items:center;gap:1rem;"><div style="width:9rem;color:var(--gray-700);">Validar pago</div>
+        <div style="flex:1;height:.5rem;background:linear-gradient(to right,#f87171,#fca5a5);border-radius:9999px;"></div>
+        <div style="width:5rem;color:#dc2626;font-size:.85rem;">Serio</div></div>
+      <div style="display:flex;align-items:center;gap:1rem;"><div style="width:9rem;color:var(--gray-700);">Ver contenido</div>
+        <div style="flex:1;height:.5rem;background:linear-gradient(to right,#4ade80,#86efac);border-radius:9999px;"></div>
+        <div style="width:5rem;color:#16a34a;font-size:.85rem;">Amistoso</div></div>
+    </div>
+  </div>
+</template>
 
 <!-- Impact -->
-<div class="cs-section reveal">
+<div class="cs-section reveal" data-i18n-tmpl="c_impact">
   <div class="card" style="background:linear-gradient(135deg,var(--tc-50),var(--tc-100));border-color:var(--tc-200);padding:2rem;">
     <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;">
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -533,12 +937,48 @@
     </div>
   </div>
 </div>
+<template id="es-c_impact">
+  <div class="card" style="background:linear-gradient(135deg,var(--tc-50),var(--tc-100));border-color:var(--tc-200);padding:2rem;">
+    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--tc-600);">
+        <path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>
+      </svg>
+      <h2 style="color:var(--tc-600);margin:0;">Impacto y Resultados</h2>
+    </div>
+    <p style="color:var(--gray-700);line-height:1.7;margin-bottom:2rem;">El rediseño tuvo un impacto directo y medible en la usabilidad de la plataforma, abordando con éxito los problemas centrales identificados durante la investigación inicial.</p>
+    <div style="display:flex;flex-direction:column;gap:1.25rem;">
+      <div class="card">
+        <h3 style="color:var(--tc-600);margin-bottom:.5rem;">🎯 Navegación Drásticamente Mejorada</h3>
+        <p style="color:var(--gray-700);line-height:1.7;margin-bottom:1rem;">El resultado más significativo fue el aumento en la tasa de éxito de tareas del <strong style="color:#dc2626;">35%</strong> al <strong style="color:#16a34a;">95%</strong> en las pruebas de árbol (tree testing).</p>
+        <div class="impact-bar">
+          <div class="impact-bar__item">
+            <div class="impact-bar__item-label"><span>Antes</span><span style="color:#dc2626;">35%</span></div>
+            <div class="progress-track"><div class="progress-fill" style="width:35%;background:#ef4444;"></div></div>
+          </div>
+          <div class="impact-bar__item">
+            <div class="impact-bar__item-label"><span>Después</span><span style="color:#16a34a;">95%</span></div>
+            <div class="progress-track"><div class="progress-fill" style="width:95%;background:#22c55e;"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--tc-600);margin-bottom:.5rem;">✅ 100% Tareas Principales Completadas</h3>
+        <p style="color:var(--gray-700);line-height:1.7;">En pruebas de usabilidad moderadas, el <strong style="color:#16a34a;">100%</strong> de los usuarios pudo completar con éxito las tareas principales de elegir y alquilar una película.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--tc-600);margin-bottom:.5rem;">📊 Soluciones Basadas en Datos</h3>
+        <p style="color:var(--gray-700);line-height:1.7;">El rediseño resolvió exitosamente las principales quejas de los usuarios. La interfaz desorganizada y confusa, que el 60% de los usuarios criticó inicialmente, fue reemplazada por una estructura validada centrada en el usuario.</p>
+      </div>
+    </div>
+  </div>
+</template>
 
 <!-- CTA -->
 <div class="cs-section reveal" style="text-align:center;padding-bottom:4rem;">
   <a href="https://www.behance.net/gallery/185152481/Cine-AR-Rediseno-Web"
      target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg">
-    View Full Case Study on Behance
+    <span data-i18n="shared.viewFullCaseStudy">View Full Case Study on Behance</span>
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
@@ -553,6 +993,7 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  LangEngine.init();
 </script>
 </body>
 </html>

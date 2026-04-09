@@ -556,8 +556,99 @@ footer {
 }
 .reveal.visible { opacity: 1; transform: none; }
 
+/* ── Language toggle ─────────────────────────────────────── */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .3rem .65rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--tc-300);
+  background: transparent;
+  color: var(--tc-600);
+  font-family: inherit;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, box-shadow .2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.lang-toggle:hover {
+  background: var(--tc-100);
+  border-color: var(--tc-600);
+  box-shadow: 0 0 0 3px rgba(164,93,59,.12);
+}
+.lang-toggle svg { flex-shrink: 0; }
+.lang-toggle__active {
+  color: var(--tc-600);
+  font-weight: 900;
+}
+.lang-toggle__sep {
+  color: var(--tc-300);
+  font-weight: 400;
+  font-size: .7rem;
+}
+.lang-toggle__other {
+  color: var(--tc-400);
+  font-weight: 500;
+}
+
 /* ── Responsive nav ──────────────────────────────────────── */
 @media(max-width:767px){
   .nav__links { display: none; }
   .nav__hamburger { display: flex; }
+}
+
+/* =========================================================
+   Interaction Design card — spin icon + sparks
+   ========================================================= */
+
+/* Icon wrapper */
+.spark-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform .15s ease;
+}
+
+/* Spin on card hover */
+@keyframes spark-spin {
+  0%   { transform: rotate(0deg); }
+  30%  { transform: rotate(-18deg); }
+  60%  { transform: rotate(22deg); }
+  80%  { transform: rotate(-8deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.skill-card--interaction:hover .spark-icon {
+  animation: spark-spin .55s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Individual spark dots (injected by JS) */
+.spark-particle {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  animation: spark-fly var(--dur, .7s) ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes spark-fly {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
+
+/* ── Language switch fade transition ─────────────────────── */
+html body {
+  transition: opacity 180ms ease;
+}
+
+html.lang-fading body {
+  opacity: 0;
+  pointer-events: none;
 }

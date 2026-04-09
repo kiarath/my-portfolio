@@ -1,384 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kiara Correa – UX/UI Designer portfolio showcasing case studies in product design, user research, and visual systems." />
-  <title>Kiara Correa – UX Designer</title>
+  <meta name="description"
+    content="Kiara Correa – UX/UI Designer portfolio showcasing case studies in product design, user research, and visual systems."
+    data-i18n-meta="index.pageDesc" />
+  <title data-i18n-title="index.pageTitle">Kiara Correa – UX Designer</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="translations.js"></script>
 </head>
+
 <body>
 
-<!-- Ambient glow -->
-<div class="ambient-glow"></div>
+  <!-- Ambient glow -->
+  <div class="ambient-glow"></div>
 
-<!-- ═══════════════════════ NAV ═══════════════════════════ -->
-<nav class="nav">
-  <div class="nav__inner">
-    <a class="nav__logo" href="index.html" aria-label="Home">
-      <img src="images/c7e822ef514f68ff036ef64874e3c04e9413c51c.avif" alt="KC Logo" />
-    </a>
-    <div class="nav__links">
-      <a href="#home" class="active" id="nav-home">Home</a>
-      <a href="#work" id="nav-work">Work</a>
-      <a href="#experience" id="nav-about">About</a>
-      <a href="#connect" id="nav-contact">Contact</a>
-      <a href="https://drive.google.com/file/d/1O8qPREZJ7ZtxcY4rWE-giiZFD4n_zwBJ/view?usp=sharing"
-         target="_blank" rel="noopener noreferrer">
-        <button class="btn btn--outline" style="padding:.4rem 1rem;font-size:.85rem;">
-          <!-- file-text icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
-            <path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>
-          </svg>
-          Resume
-        </button>
+  <!-- ═══════════════════════ NAV ═══════════════════════════ -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="index.html" aria-label="Home">
+        <img src="images/c7e822ef514f68ff036ef64874e3c04e9413c51c.avif" alt="KC Logo" />
       </a>
-    </div>
-    <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- Mobile menu -->
-<div class="nav__mobile" id="mobile-menu">
-  <a href="#home">Home</a>
-  <a href="#work">Work</a>
-  <a href="#experience">About</a>
-  <a href="#connect">Contact</a>
-  <a href="https://drive.google.com/file/d/1O8qPREZJ7ZtxcY4rWE-giiZFD4n_zwBJ/view?usp=sharing"
-     target="_blank" rel="noopener noreferrer">Resume ↗</a>
-</div>
-
-<!-- ═══════════════════════ HERO ══════════════════════════ -->
-<section id="home" class="hero page-bg">
-  <div class="hero__inner">
-    <div class="hero__text reveal">
-      <h1 class="hero__title">Hi, I'm Kiara!</h1>
-      <p class="hero__subtitle">
-        I'm a designer with expertise in UX/UI and visual identity development.
-        My focus is on user research, prototyping, and the creation of design
-        systems, emphasising innovative and functional solutions that enhance
-        the user experience.
-      </p>
-      <div class="social-links">
-        <a class="social-link"
-           href="https://www.linkedin.com/in/kiara-correa/"
-           target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-            <rect width="4" height="12" x="2" y="9"/>
-            <circle cx="4" cy="4" r="2"/>
-          </svg>
-          <span class="social-link__tooltip">linkedin.com/in/kiara-correa</span>
-        </a>
-        <a class="social-link"
-           href="https://www.behance.net/kiaracorrea"
-           target="_blank" rel="noopener noreferrer" aria-label="Behance">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:1.5rem;height:1.5rem;">
-            <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
-          </svg>
-          <span class="social-link__tooltip">behance.net/kiaracorrea</span>
-        </a>
-        <a class="social-link"
-           href="mailto:kiaracorrea.work@gmail.com" aria-label="Email">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-          </svg>
-          <span class="social-link__tooltip">kiaracorrea.work@gmail.com</span>
+      <div class="nav__links">
+        <a href="#home" class="active" id="nav-home" data-i18n="index.navHome">Home</a>
+        <a href="#work" id="nav-work" data-i18n="index.navWork">Work</a>
+        <a href="#experience" id="nav-about" data-i18n="index.navAbout">About</a>
+        <a href="#connect" id="nav-contact" data-i18n="index.navContact">Contact</a>
+        <a id="resume-link"
+           href="https://drive.google.com/file/d/1kZ580G0D5ZuJrEBjy2N1U_e679s3bFAT/view?usp=sharing"
+           data-i18n-href="index.resumeUrl"
+           target="_blank" rel="noopener noreferrer">
+          <button class="btn btn--outline" style="padding:.4rem 1rem;font-size:.85rem;">
+            <!-- file-text icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+              <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+              <path d="M10 9H8" />
+              <path d="M16 13H8" />
+              <path d="M16 17H8" />
+            </svg>
+            <span data-i18n="index.navResume">Resume</span>
+          </button>
         </a>
       </div>
+      <button id="lang-toggle" class="lang-toggle" aria-label="Cambiar a Español" onclick="LangEngine.toggle()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+          <path d="M2 12h20" />
+        </svg>
+        <span class="lang-toggle__active">EN</span>
+        <span class="lang-toggle__sep">/</span>
+        <span class="lang-toggle__other">ES</span>
+      </button>
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div class="hero__avatar-wrap reveal" style="transition-delay:.15s;">
-      <img src="images/62cb69ff29cf21c5dc585990e31d58b29fdfcc8a.avif" alt="Kiara Correa" />
-    </div>
-  </div>
-</section>
+  </nav>
 
-<!-- ═══════════════════════ WORK ══════════════════════════ -->
-<section id="work" class="sec" style="background:#fff;">
-  <div class="sec__inner">
-    <div class="reveal">
-      <h2 class="sec__title">Case studies</h2>
-      <p class="sec__subtitle">A selection of projects showcasing my design process and problem-solving approach</p>
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="mobile-menu">
+    <a href="#home" data-i18n="index.navHome">Home</a>
+    <a href="#work" data-i18n="index.navWork">Work</a>
+    <a href="#experience" data-i18n="index.navAbout">About</a>
+    <a href="#connect" data-i18n="index.navContact">Contact</a>
+    <a id="resume-link-mobile"
+      href="https://drive.google.com/file/d/1kZ580G0D5ZuJrEBjy2N1U_e679s3bFAT/view?usp=sharing"
+      data-i18n-href="index.resumeUrl"
+      target="_blank" rel="noopener noreferrer"><span data-i18n="index.navResume">Resume</span> ↗</a>
+  </div>
+
+  <!-- ═══════════════════════ HERO ══════════════════════════ -->
+  <section id="home" class="hero page-bg">
+    <div class="hero__inner">
+      <div class="hero__text reveal">
+        <h1 class="hero__title" data-i18n="index.heroTitle">Hi, I'm Kiara!</h1>
+        <p class="hero__subtitle" data-i18n="index.heroSubtitle">
+          I'm a designer with expertise in UX/UI and visual identity development.
+          My focus is on user research, prototyping, and the creation of design
+          systems, emphasising innovative and functional solutions that enhance
+          the user experience.
+        </p>
+        <div class="social-links">
+          <a class="social-link" href="https://www.linkedin.com/in/kiara-correa/" target="_blank"
+            rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect width="4" height="12" x="2" y="9" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            <span class="social-link__tooltip">linkedin.com/in/kiara-correa</span>
+          </a>
+          <a class="social-link" href="https://www.behance.net/kiaracorrea" target="_blank" rel="noopener noreferrer"
+            aria-label="Behance">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+              style="width:1.5rem;height:1.5rem;">
+              <path
+                d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
+            </svg>
+            <span class="social-link__tooltip">behance.net/kiaracorrea</span>
+          </a>
+          <a class="social-link" href="mailto:kiaracorrea.work@gmail.com" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+            </svg>
+            <span class="social-link__tooltip">kiaracorrea.work@gmail.com</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero__avatar-wrap reveal" style="transition-delay:.15s;">
+        <img src="images/62cb69ff29cf21c5dc585990e31d58b29fdfcc8a.avif" alt="Kiara Correa" />
+      </div>
     </div>
-    <div class="grid-2">
-      <!-- Jodify -->
+  </section>
+
+  <!-- ═══════════════════════ WORK ══════════════════════════ -->
+  <section id="work" class="sec" style="background:#fff;">
+    <div class="sec__inner">
       <div class="reveal">
-        <a class="project-card" href="jodify.html">
-          <div class="project-card__img-wrap">
-            <img src="images/98a6b03f15da70021a3c30ca67eb0fb7d5b2e5d9.avif"
-                 alt="Jodify – Electronic music app" />
-          </div>
-          <div class="project-card__body">
-            <span class="project-card__type">Mobile App</span>
-            <h3 class="project-card__title">Jodify – Electronic music app</h3>
-            <p class="project-card__desc">An app to find local music events</p>
-            <div class="project-card__tags">
-              <span class="tag">iOS</span>
-              <span class="tag">Android</span>
-              <span class="tag">Web</span>
-              <span class="tag">Entertainment</span>
-              <span class="tag">Figma</span>
-            </div>
-          </div>
-        </a>
+        <h2 class="sec__title" data-i18n="index.workTitle">Case studies</h2>
+        <p class="sec__subtitle" data-i18n="index.workSubtitle">A selection of projects showcasing my design process and
+          problem-solving approach</p>
       </div>
-      <!-- Cine.AR -->
-      <div class="reveal" style="transition-delay:.1s;">
-        <a class="project-card" href="cinear.html">
-          <div class="project-card__img-wrap">
-            <img src="images/4bc1cce42dfc7fc683b47ec90d19e0da9c8590cb.avif"
-                 alt="Cine.AR – Streaming service" />
-          </div>
-          <div class="project-card__body">
-            <span class="project-card__type">Web Redesign</span>
-            <h3 class="project-card__title">Cine.AR – Streaming service</h3>
-            <p class="project-card__desc">An Argentinian focused free streaming service</p>
-            <div class="project-card__tags">
-              <span class="tag">Web</span>
-              <span class="tag">Entertainment</span>
-              <span class="tag">Figma</span>
+      <div class="grid-2">
+        <!-- Jodify -->
+        <div class="reveal">
+          <a class="project-card" href="jodify.html">
+            <div class="project-card__img-wrap">
+              <img src="images/98a6b03f15da70021a3c30ca67eb0fb7d5b2e5d9.avif" alt="Jodify – Electronic music app" />
             </div>
-          </div>
-        </a>
-      </div>
-      <!-- Veggy -->
-      <div class="reveal" style="transition-delay:.2s;">
-        <a class="project-card" href="food.html">
-          <div class="project-card__img-wrap">
-            <img src="images/74bc78feec4a23f1b11f8d7ed0c79b5ad45eead7.avif"
-                 alt="Veggy – Vegan food" />
-          </div>
-          <div class="project-card__body">
-            <span class="project-card__type">Mobile App</span>
-            <h3 class="project-card__title">Veggy – Vegan food</h3>
-            <p class="project-card__desc">Find local restaurants with vegan options</p>
-            <div class="project-card__tags">
-              <span class="tag">Mobile</span>
-              <span class="tag">Food</span>
-              <span class="tag">Research</span>
+            <div class="project-card__body">
+              <span class="project-card__type" data-i18n="index.jodifyType">Mobile App</span>
+              <h3 class="project-card__title" data-i18n="index.jodifyTitle">Jodify – Electronic music app</h3>
+              <p class="project-card__desc" data-i18n="index.jodifyDesc">An app to find local music events</p>
+              <div class="project-card__tags">
+                <span class="tag">iOS</span>
+                <span class="tag">Android</span>
+                <span class="tag">Web</span>
+                <span class="tag">Entertainment</span>
+                <span class="tag">Figma</span>
+              </div>
             </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ ABOUT ═════════════════════════ -->
-<section id="experience" class="sec page-bg">
-  <div class="sec__inner">
-    <div class="reveal">
-      <h2 class="sec__title">About Me</h2>
-    </div>
-
-    <!-- Skills -->
-    <div class="reveal" style="margin-bottom:4rem;">
-      <h3 style="text-align:center;color:var(--tc-600);font-size:1.35rem;font-weight:700;margin-bottom:2rem;">Skills &amp; Expertise</h3>
-      <div class="grid-4" style="max-width:60rem;margin:0 auto;">
-        <div class="skill-card">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-            <path d="M16 3.128a4 4 0 0 1 0 7.744"/>
-            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-            <circle cx="9" cy="7" r="4"/>
-          </svg>
-          <h3>User Research</h3>
-          <p>Interviews, surveys, usability testing</p>
+          </a>
         </div>
-        <div class="skill-card">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/>
-            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
-            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
-            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
-            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
-          </svg>
-          <h3>UI/UX Design</h3>
-          <p>Wireframing, prototyping, visual design</p>
+        <!-- Cine.AR -->
+        <div class="reveal" style="transition-delay:.1s;">
+          <a class="project-card" href="cinear.html">
+            <div class="project-card__img-wrap">
+              <img src="images/4bc1cce42dfc7fc683b47ec90d19e0da9c8590cb.avif" alt="Cine.AR – Streaming service" />
+            </div>
+            <div class="project-card__body">
+              <span class="project-card__type" data-i18n="index.cinearType">Web Redesign</span>
+              <h3 class="project-card__title" data-i18n="index.cinearTitle">Cine.AR – Streaming service</h3>
+              <p class="project-card__desc" data-i18n="index.cinearDesc">An Argentinian focused free streaming service
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">Web</span>
+                <span class="tag">Entertainment</span>
+                <span class="tag">Figma</span>
+              </div>
+            </div>
+          </a>
         </div>
-        <div class="skill-card">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
-            <path d="M9 18h6"/><path d="M10 22h4"/>
-          </svg>
-          <h3>Design Thinking</h3>
-          <p>Problem solving, ideation, iteration</p>
-        </div>
-        <div class="skill-card">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/>
-            <path d="M20 2v4"/><path d="M22 4h-4"/>
-            <circle cx="4" cy="20" r="2"/>
-          </svg>
-          <h3>Interaction Design</h3>
-          <p>Micro-interactions, animations</p>
+        <!-- Veggy -->
+        <div class="reveal" style="transition-delay:.2s;">
+          <a class="project-card" href="food.html">
+            <div class="project-card__img-wrap">
+              <img src="images/74bc78feec4a23f1b11f8d7ed0c79b5ad45eead7.avif" alt="Veggy – Vegan food" />
+            </div>
+            <div class="project-card__body">
+              <span class="project-card__type" data-i18n="index.veggyType">Mobile App</span>
+              <h3 class="project-card__title" data-i18n="index.veggyTitle">Veggy – Vegan food</h3>
+              <p class="project-card__desc" data-i18n="index.veggyDesc">Find local restaurants with vegan options</p>
+              <div class="project-card__tags">
+                <span class="tag">Mobile</span>
+                <span class="tag">Food</span>
+                <span class="tag">Research</span>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="grid-2" style="max-width:56rem;margin:0 auto;gap:3rem;">
-      <!-- Education -->
+  <!-- ═══════════════════════ ABOUT ═════════════════════════ -->
+  <section id="experience" class="sec page-bg">
+    <div class="sec__inner">
       <div class="reveal">
-        <h3 style="color:var(--tc-600);font-size:1.35rem;font-weight:700;margin-bottom:2rem;text-align:center;">Education</h3>
-        <div class="timeline">
-          <div class="timeline__item">
-            <div class="timeline__dot"></div>
-            <div class="timeline__date">2023 – 2025</div>
-            <h4 class="timeline__title">Bachelor in Graphic Design</h4>
-            <p class="timeline__org">Universidad Provincial de Córdoba</p>
-            <p class="timeline__body">Specialised in UX/UI design and digital media. Completed coursework in user research, interaction design, and visual communication.</p>
+        <h2 class="sec__title" data-i18n="index.aboutTitle">About Me</h2>
+      </div>
+
+      <!-- Skills -->
+      <div class="reveal" style="margin-bottom:4rem;">
+        <h3 style="text-align:center;color:var(--tc-600);font-size:1.35rem;font-weight:700;margin-bottom:2rem;"
+          data-i18n="index.skillsLabel">Skills &amp; Expertise</h3>
+        <div class="grid-4" style="max-width:60rem;margin:0 auto;">
+          <div class="skill-card">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <circle cx="9" cy="7" r="4" />
+            </svg>
+            <h3 data-i18n="index.skill1Title">User Research</h3>
+            <p data-i18n="index.skill1Desc">Interviews, surveys, usability testing</p>
           </div>
-          <div class="timeline__item">
-            <div class="timeline__dot"></div>
-            <div class="timeline__date">2023 – 2024</div>
-            <h4 class="timeline__title">UX/UI Design Career Certification</h4>
-            <p class="timeline__org">Coderhouse</p>
-            <p class="timeline__body">Advanced certification in UX design methodologies, including user research, prototyping, and usability testing.</p>
+          <div class="skill-card">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" />
+              <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+              <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+              <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+              <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            </svg>
+            <h3 data-i18n="index.skill2Title">UI/UX Design</h3>
+            <p data-i18n="index.skill2Desc">Wireframing, prototyping, visual design</p>
+          </div>
+          <div class="skill-card">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+              <path d="M9 18h6" />
+              <path d="M10 22h4" />
+            </svg>
+            <h3 data-i18n="index.skill3Title">Design Thinking</h3>
+            <p data-i18n="index.skill3Desc">Problem solving, ideation, iteration</p>
+          </div>
+          <div class="skill-card skill-card--interaction" id="interaction-skill-card">
+            <span class="spark-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+                <path d="M20 2v4" />
+                <path d="M22 4h-4" />
+                <circle cx="4" cy="20" r="2" />
+              </svg>
+            </span>
+            <h3 data-i18n="index.skill4Title">Interaction Design</h3>
+            <p data-i18n="index.skill4Desc">Micro-interactions, animations</p>
           </div>
         </div>
       </div>
 
-      <!-- Experience -->
-      <div class="reveal" style="transition-delay:.1s;">
-        <h3 style="color:var(--tc-600);font-size:1.35rem;font-weight:700;margin-bottom:2rem;text-align:center;">Experience</h3>
-        <div class="timeline">
-          <div class="timeline__item">
-            <div class="timeline__dot"></div>
-            <div class="timeline__date">Feb 2024 – Present</div>
-            <h4 class="timeline__title">UX/UI Designer</h4>
-            <p class="timeline__org">Jodify</p>
-            <p class="timeline__body" style="margin-bottom:.75rem;">Built and maintained a Design System ensuring brand-wide consistency. Designed and tested high-fidelity prototypes, iterating quickly with user feedback to cut costs and development time.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.75rem;">
-              <span class="badge">Figma</span>
-              <span class="badge">Design Systems</span>
-              <span class="badge">Prototyping</span>
-              <span class="badge">User Research</span>
+      <div class="grid-2" style="max-width:56rem;margin:0 auto;gap:3rem;">
+        <!-- Education -->
+        <div class="reveal">
+          <h3 style="color:var(--tc-600);font-size:1.35rem;font-weight:700;margin-bottom:2rem;text-align:center;"
+            data-i18n="index.educationLabel">Education</h3>
+          <div class="timeline">
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">2023 – 2025</div>
+              <h4 class="timeline__title" data-i18n="index.edu1Title">Bachelor in Graphic Design</h4>
+              <p class="timeline__org" data-i18n="index.edu1Org">Universidad Provincial de Córdoba</p>
+              <p class="timeline__body" data-i18n="index.edu1Body">Specialised in UX/UI design and digital media.
+                Completed coursework in user research, interaction design, and visual communication.</p>
             </div>
-            <a href="jodify.html" class="btn btn--primary" style="margin-top:.5rem;font-size:.8rem;padding:.4rem 1rem;">Check project</a>
-          </div>
-          <div class="timeline__item">
-            <div class="timeline__dot"></div>
-            <div class="timeline__date">2023 – 2024</div>
-            <h4 class="timeline__title">Multimedia + UX/UI</h4>
-            <p class="timeline__org">Mahalo</p>
-            <p class="timeline__body" style="margin-bottom:.75rem;">Responsible for designing a complete e-commerce website, from the navigation structure to the creation of visual interfaces.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
-              <span class="badge">Figma</span><span class="badge">Adobe XD</span>
-              <span class="badge">Illustrator</span><span class="badge">Photoshop</span>
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">2023 – 2024</div>
+              <h4 class="timeline__title" data-i18n="index.edu2Title">UX/UI Design Career Certification</h4>
+              <p class="timeline__org" data-i18n="index.edu2Org">Coderhouse</p>
+              <p class="timeline__body" data-i18n="index.edu2Body">Advanced certification in UX design methodologies,
+                including user research, prototyping, and usability testing.</p>
             </div>
           </div>
-          <div class="timeline__item">
-            <div class="timeline__dot"></div>
-            <div class="timeline__date">2022 – 2023</div>
-            <h4 class="timeline__title">Graphic Designer</h4>
-            <p class="timeline__org">Freelance</p>
-            <p class="timeline__body" style="margin-bottom:.75rem;">Designed visual identities for local brands, including logos, color palettes, and typography.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
-              <span class="badge">Illustrator</span><span class="badge">Photoshop</span><span class="badge">Indesign</span>
+        </div>
+
+        <!-- Experience -->
+        <div class="reveal" style="transition-delay:.1s;">
+          <h3 style="color:var(--tc-600);font-size:1.35rem;font-weight:700;margin-bottom:2rem;text-align:center;"
+            data-i18n="index.experienceLabel">Experience</h3>
+          <div class="timeline">
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">Feb 2024 – Present</div>
+              <h4 class="timeline__title" data-i18n="index.exp1Title">UX/UI Designer</h4>
+              <p class="timeline__org" data-i18n="index.exp1Org">Jodify</p>
+              <p class="timeline__body" style="margin-bottom:.75rem;" data-i18n="index.exp1Body">Built and maintained a
+                Design System ensuring brand-wide consistency. Designed and tested high-fidelity prototypes, iterating
+                quickly with user feedback to cut costs and development time.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.75rem;">
+                <span class="badge">Figma</span>
+                <span class="badge">Design Systems</span>
+                <span class="badge">Prototyping</span>
+                <span class="badge">User Research</span>
+              </div>
+              <a href="jodify.html" class="btn btn--primary"
+                style="margin-top:.5rem;font-size:.8rem;padding:.4rem 1rem;" data-i18n="index.exp1Btn">Check project</a>
+            </div>
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">2023 – 2024</div>
+              <h4 class="timeline__title" data-i18n="index.exp2Title">Multimedia + UX/UI</h4>
+              <p class="timeline__org" data-i18n="index.exp2Org">Mahalo</p>
+              <p class="timeline__body" style="margin-bottom:.75rem;" data-i18n="index.exp2Body">Responsible for
+                designing a complete e-commerce website, from the navigation structure to the creation of visual
+                interfaces.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                <span class="badge">Figma</span><span class="badge">Adobe XD</span>
+                <span class="badge">Illustrator</span><span class="badge">Photoshop</span>
+              </div>
+            </div>
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">2022 – 2023</div>
+              <h4 class="timeline__title" data-i18n="index.exp3Title">Graphic Designer</h4>
+              <p class="timeline__org" data-i18n="index.exp3Org">Freelance</p>
+              <p class="timeline__body" style="margin-bottom:.75rem;" data-i18n="index.exp3Body">Designed visual
+                identities for local brands, including logos, color palettes, and typography.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                <span class="badge">Illustrator</span><span class="badge">Photoshop</span><span
+                  class="badge">Indesign</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════ CONNECT ═══════════════════════ -->
-<section id="connect" class="sec" style="background:#fff;">
-  <div class="sec__inner" style="max-width:56rem;">
-    <div class="reveal" style="text-align:center;">
-      <h2 class="sec__title">Let's Connect</h2>
-      <p style="color:var(--gray-600);max-width:40rem;margin:0 auto 2.5rem;">
-        Did you like my portfolio or want to share feedback? I'm open to connecting
-        with other professionals in design, technology, and innovation.
-      </p>
-      <div class="connect-card">
-        <a href="mailto:kiaracorrea.work@gmail.com" class="btn btn--primary btn--lg" style="margin-bottom:2rem;width:100%;max-width:280px;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-          </svg>
-          Send me a message!
-        </a>
-        <hr style="border:none;border-top:1px solid var(--tc-200);margin-bottom:1.5rem;" />
-        <div class="connect-links">
-          <a class="connect-link" href="https://www.linkedin.com/in/kiara-correa/" target="_blank" rel="noopener noreferrer">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-              <rect width="4" height="12" x="2" y="9"/>
-              <circle cx="4" cy="4" r="2"/>
+  <!-- ═══════════════════════ CONNECT ═══════════════════════ -->
+  <section id="connect" class="sec" style="background:#fff;">
+    <div class="sec__inner" style="max-width:56rem;">
+      <div class="reveal" style="text-align:center;">
+        <h2 class="sec__title" data-i18n="index.connectTitle">Let's Connect</h2>
+        <p style="color:var(--gray-600);max-width:40rem;margin:0 auto 2.5rem;" data-i18n="index.connectSubtitle">
+          Did you like my portfolio or want to share feedback? I'm open to connecting
+          with other professionals in design, technology, and innovation.
+        </p>
+        <div class="connect-card">
+          <a href="mailto:kiaracorrea.work@gmail.com" class="btn btn--primary btn--lg"
+            style="margin-bottom:2rem;width:100%;max-width:280px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+              <rect x="2" y="4" width="20" height="16" rx="2" />
             </svg>
-            LinkedIn
+            <span data-i18n="index.connectBtn">Send me a message!</span>
           </a>
-          <a class="connect-link" href="https://www.behance.net/kiaracorrea" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:1.25rem;height:1.25rem;">
-              <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
-            </svg>
-            Behance
-          </a>
-          <a class="connect-link" href="https://drive.google.com/file/d/1O8qPREZJ7ZtxcY4rWE-giiZFD4n_zwBJ/view?usp=sharing"
-             target="_blank" rel="noopener noreferrer">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
-              <path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>
-            </svg>
-            Resume
-          </a>
+          <hr style="border:none;border-top:1px solid var(--tc-200);margin-bottom:1.5rem;" />
+          <div class="connect-links">
+            <a class="connect-link" href="https://www.linkedin.com/in/kiara-correa/" target="_blank"
+              rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
+            </a>
+            <a class="connect-link" href="https://www.behance.net/kiaracorrea" target="_blank"
+              rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                style="width:1.25rem;height:1.25rem;">
+                <path
+                  d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
+              </svg>
+              Behance
+            </a>
+            <a class="connect-link"
+              href="https://drive.google.com/file/d/1O8qPREZJ7ZtxcY4rWE-giiZFD4n_zwBJ/view?usp=sharing" target="_blank"
+              rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                <path d="M10 9H8" />
+                <path d="M16 13H8" />
+                <path d="M16 17H8" />
+              </svg>
+              Resume
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════ FOOTER ════════════════════════ -->
-<footer>
-  <p>© 2025 Kiara Correa.</p>
-</footer>
+  <!-- ═══════════════════════ FOOTER ════════════════════════ -->
+  <footer>
+    <p data-i18n="index.footerText">© 2026 Kiara Correa.</p>
+  </footer>
 
-<script>
-  // ── Hamburger ──────────────────────────────────
-  const ham = document.getElementById('hamburger');
-  const mob = document.getElementById('mobile-menu');
-  ham.addEventListener('click', () => {
-    mob.classList.toggle('open');
-    ham.setAttribute('aria-expanded', mob.classList.contains('open'));
-  });
-  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
-
-  // ── Scroll reveal ────────────────────────────
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // ── Active nav on scroll ─────────────────────
-  const sections = ['home', 'work', 'experience', 'connect'];
-  const navLinks = { home: 'nav-home', work: 'nav-work', experience: 'nav-about', connect: 'nav-contact' };
-  window.addEventListener('scroll', () => {
-    let current = 'home';
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  <script>
+    // ── Hamburger ──────────────────────────────────
+    const ham = document.getElementById('hamburger');
+    const mob = document.getElementById('mobile-menu');
+    ham.addEventListener('click', () => {
+      mob.classList.toggle('open');
+      ham.setAttribute('aria-expanded', mob.classList.contains('open'));
     });
-    sections.forEach(id => {
-      const link = document.getElementById(navLinks[id]);
-      if (link) link.classList.toggle('active', id === current);
-    });
-  }, { passive: true });
-</script>
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+    // ── Scroll reveal ────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Active nav on scroll ─────────────────────
+    const sections = ['home', 'work', 'experience', 'connect'];
+    const navLinks = { home: 'nav-home', work: 'nav-work', experience: 'nav-about', connect: 'nav-contact' };
+    window.addEventListener('scroll', () => {
+      let current = 'home';
+      const atBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 10;
+      if (atBottom) {
+        current = 'connect';
+      } else {
+        sections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el && window.scrollY >= el.offsetTop - 120) current = id;
+        });
+      }
+      sections.forEach(id => {
+        const link = document.getElementById(navLinks[id]);
+        if (link) link.classList.toggle('active', id === current);
+      });
+    }, { passive: true });
+
+    // ── Language init ─────────────────────────────────────
+    LangEngine.init();
+
+    // ── Interaction Design card sparks ────────────────────
+    (function () {
+      const SPARK_COLORS = ['#d98a5a', '#e8ae87', '#f3d0b8', '#a45d3b', '#fff', '#f97316'];
+      const card = document.getElementById('interaction-skill-card');
+      if (!card) return;
+
+      function burst(originEl) {
+        const rect = originEl.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top  + rect.height / 2;
+        const count = 12;
+
+        for (let i = 0; i < count; i++) {
+          const p = document.createElement('div');
+          p.className = 'spark-particle';
+
+          // random angle & distance
+          const angle = (360 / count) * i + (Math.random() - .5) * 25;
+          const dist  = 28 + Math.random() * 30;
+          const rad   = angle * (Math.PI / 180);
+          const tx    = Math.cos(rad) * dist;
+          const ty    = Math.sin(rad) * dist;
+          const dur   = (.45 + Math.random() * .35).toFixed(2) + 's';
+          const color = SPARK_COLORS[Math.floor(Math.random() * SPARK_COLORS.length)];
+          const size  = (3 + Math.random() * 4).toFixed(1) + 'px';
+
+          p.style.cssText = `
+            left:${cx}px; top:${cy}px;
+            background:${color};
+            width:${size}; height:${size};
+            --tx:${tx.toFixed(1)}px; --ty:${ty.toFixed(1)}px;
+            --dur:${dur};
+          `;
+
+          document.body.appendChild(p);
+          p.addEventListener('animationend', () => p.remove(), { once: true });
+        }
+      }
+
+      let cooldown = false;
+      card.addEventListener('mouseenter', () => {
+        if (cooldown) return;
+        cooldown = true;
+        const icon = card.querySelector('.spark-icon');
+        burst(icon || card);
+        setTimeout(() => { cooldown = false; }, 600);
+      });
+    })();
+  </script>
 </body>
+
 </html>
