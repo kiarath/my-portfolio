@@ -762,7 +762,7 @@ export const translations = {
       heroTitle: "Sumun – Sitio web de plataforma educativa",
       heroDesc: "Diseño del sitio web de Sumun, una propuesta educativa impulsada por IA y datos en tiempo real, pensado para explicar sus tres pilares a directivos, docentes y familias.",
       roleValue: "Diseñadora UX/UI",
-      timelineValue: "[Agregar fechas]",
+      timelineValue: "2026",
       toolsValue: "Figma, Diseño responsive",
       s_whatIsTitle: "¿Qué es SUMUN?",
       s_whatIsBody: "SUMUN es una propuesta educativa que combina inteligencia artificial, datos de aprendizaje y método pedagógico para ayudar a las escuelas a lograr aprendizajes más profundos, medibles y sostenibles. Se apoya en tres pilares: Cultura de alto desempeño, High Tech (IA y datos) e Inteligencia curricular, y se complementa con un Tutor IA disponible 24/7 y una biblioteca de recursos educativos gratuitos.",
