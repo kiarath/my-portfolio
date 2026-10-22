@@ -15,6 +15,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const jodifyHref = lang === 'es' ? `${base}/es/jodify/` : `${base}/jodify/`;
 const cinearHref = lang === 'es' ? `${base}/es/cinear/` : `${base}/cinear/`;
 const foodHref = lang === 'es' ? `${base}/es/food/` : `${base}/food/`;
+const sumunHref = lang === 'es' ? `${base}/es/sumun/` : `${base}/sumun/`;
 ---
 
 <BaseLayout
@@ -73,6 +74,17 @@ const foodHref = lang === 'es' ? `${base}/es/food/` : `${base}/food/`;
         <p class="sec__subtitle">{t.workSubtitle}</p>
       </div>
       <div class="grid-2">
+        <!-- Sumun -->
+        <ProjectCard
+          href={sumunHref}
+          imgSrc={`${base}/images/sumun-card.webp`}
+          imgAlt="Sumun – Educational Platform"
+          type={t.sumunType}
+          title={t.sumunTitle}
+          desc={t.sumunDesc}
+          tags={['Web', 'AI', 'EdTech', 'Figma']}
+        />
+
         <!-- Jodify -->
         <ProjectCard
           href={jodifyHref}
@@ -82,6 +94,7 @@ const foodHref = lang === 'es' ? `${base}/es/food/` : `${base}/food/`;
           title={t.jodifyTitle}
           desc={t.jodifyDesc}
           tags={['iOS', 'Android', 'Web', 'Entertainment', 'Figma']}
+          delay=".1s"
         />
 
         <!-- Cine.AR -->
@@ -93,7 +106,7 @@ const foodHref = lang === 'es' ? `${base}/es/food/` : `${base}/food/`;
           title={t.cinearTitle}
           desc={t.cinearDesc}
           tags={['Web', 'Entertainment', 'Figma']}
-          delay=".1s"
+          delay=".2s"
         />
 
         <!-- Veggy -->
@@ -105,7 +118,7 @@ const foodHref = lang === 'es' ? `${base}/es/food/` : `${base}/food/`;
           title={t.veggyTitle}
           desc={t.veggyDesc}
           tags={['Mobile', 'Food', 'Research']}
-          delay=".2s"
+          delay=".3s"
         />
       </div>
     </div>
@@ -186,14 +199,14 @@ const foodHref = lang === 'es' ? `${base}/es/food/` : `${base}/food/`;
           <div class="timeline">
             <div class="timeline__item">
               <div class="timeline__dot"></div>
-              <div class="timeline__date">2023 – 2025</div>
+              <div class="timeline__date">{t.edu1Date}</div>
               <h4 class="timeline__title">{t.edu1Title}</h4>
               <p class="timeline__org">{t.edu1Org}</p>
               <p class="timeline__body">{t.edu1Body}</p>
             </div>
             <div class="timeline__item">
               <div class="timeline__dot"></div>
-              <div class="timeline__date">2023 – 2024</div>
+              <div class="timeline__date">{t.edu2Date}</div>
               <h4 class="timeline__title">{t.edu2Title}</h4>
               <p class="timeline__org">{t.edu2Org}</p>
               <p class="timeline__body">{t.edu2Body}</p>
@@ -207,12 +220,27 @@ const foodHref = lang === 'es' ? `${base}/es/food/` : `${base}/food/`;
             {t.experienceLabel}
           </h3>
           <div class="timeline">
+            <!-- Nexbu -->
             <div class="timeline__item">
               <div class="timeline__dot"></div>
-              <div class="timeline__date">Feb 2024 – Present</div>
+              <div class="timeline__date">{t.exp1Date}</div>
               <h4 class="timeline__title">{t.exp1Title}</h4>
               <p class="timeline__org">{t.exp1Org}</p>
               <p class="timeline__body" style="margin-bottom:.75rem;">{t.exp1Body}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                <span class="badge">Figma</span>
+                <span class="badge">Design Systems</span>
+                <span class="badge">Web & Mobile</span>
+                <span class="badge">Client Management</span>
+              </div>
+            </div>
+            <!-- Jodify -->
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">{t.exp2Date}</div>
+              <h4 class="timeline__title">{t.exp2Title}</h4>
+              <p class="timeline__org">{t.exp2Org}</p>
+              <p class="timeline__body" style="margin-bottom:.75rem;">{t.exp2Body}</p>
               <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.75rem;">
                 <span class="badge">Figma</span>
                 <span class="badge">Design Systems</span>
@@ -221,28 +249,21 @@ const foodHref = lang === 'es' ? `${base}/es/food/` : `${base}/food/`;
               </div>
               <a href={jodifyHref} class="btn btn--primary"
                 style="margin-top:.5rem;font-size:.8rem;padding:.4rem 1rem;">
-                {t.exp1Btn}
+                {t.exp2Btn}
               </a>
             </div>
+            <!-- Freelance -->
             <div class="timeline__item">
               <div class="timeline__dot"></div>
-              <div class="timeline__date">2023 – 2024</div>
-              <h4 class="timeline__title">{t.exp2Title}</h4>
-              <p class="timeline__org">{t.exp2Org}</p>
-              <p class="timeline__body" style="margin-bottom:.75rem;">{t.exp2Body}</p>
-              <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
-                <span class="badge">Figma</span><span class="badge">Adobe XD</span>
-                <span class="badge">Illustrator</span><span class="badge">Photoshop</span>
-              </div>
-            </div>
-            <div class="timeline__item">
-              <div class="timeline__dot"></div>
-              <div class="timeline__date">2022 – 2023</div>
+              <div class="timeline__date">{t.exp3Date}</div>
               <h4 class="timeline__title">{t.exp3Title}</h4>
               <p class="timeline__org">{t.exp3Org}</p>
               <p class="timeline__body" style="margin-bottom:.75rem;">{t.exp3Body}</p>
               <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
-                <span class="badge">Illustrator</span><span class="badge">Photoshop</span><span class="badge">Indesign</span>
+                <span class="badge">Branding</span>
+                <span class="badge">Typography</span>
+                <span class="badge">Illustrator</span>
+                <span class="badge">Photoshop</span>
               </div>
             </div>
           </div>

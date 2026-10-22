@@ -20,11 +20,13 @@ if (lang === 'en') {
   if (currentPath.includes('jodify')) switchTarget = `${base}/es/jodify/`;
   else if (currentPath.includes('cinear')) switchTarget = `${base}/es/cinear/`;
   else if (currentPath.includes('food')) switchTarget = `${base}/es/food/`;
+  else if (currentPath.includes('sumun')) switchTarget = `${base}/es/sumun/`;
   else switchTarget = `${base}/es/`;
 } else {
   if (currentPath.includes('jodify')) switchTarget = `${base}/jodify/`;
   else if (currentPath.includes('cinear')) switchTarget = `${base}/cinear/`;
   else if (currentPath.includes('food')) switchTarget = `${base}/food/`;
+  else if (currentPath.includes('sumun')) switchTarget = `${base}/sumun/`;
   else switchTarget = `${base}/`;
 }
 ---
@@ -66,6 +68,7 @@ if (lang === 'en') {
             <span>{tIndex.navResume}</span>
           </button>
         </a>
+
       </div>
     )}
 
