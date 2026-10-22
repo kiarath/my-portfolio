@@ -37,7 +37,7 @@ jobs:
       - name: Build with Astro
         env:
           ASTRO_TELEMETRY_DISABLED: 1
-        run: npx --no-install astro build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
