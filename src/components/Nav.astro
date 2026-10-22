@@ -1,0 +1,104 @@
+---
+import { translations } from '../data/translations';
+
+interface Props {
+  lang?: 'en' | 'es';
+  currentPath?: string;
+  isCaseStudy?: boolean;
+}
+
+const { lang = 'en', currentPath = '', isCaseStudy = false } = Astro.props;
+const tShared = translations.shared[lang];
+const tIndex = translations.index[lang];
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const homeHref = lang === 'es' ? `${base}/es/` : `${base}/`;
+
+// Determine language switch target URL
+let switchTarget = `${base}/`;
+if (lang === 'en') {
+  if (currentPath.includes('jodify')) switchTarget = `${base}/es/jodify/`;
+  else if (currentPath.includes('cinear')) switchTarget = `${base}/es/cinear/`;
+  else if (currentPath.includes('food')) switchTarget = `${base}/es/food/`;
+  else switchTarget = `${base}/es/`;
+} else {
+  if (currentPath.includes('jodify')) switchTarget = `${base}/jodify/`;
+  else if (currentPath.includes('cinear')) switchTarget = `${base}/cinear/`;
+  else if (currentPath.includes('food')) switchTarget = `${base}/food/`;
+  else switchTarget = `${base}/`;
+}
+---
+
+<nav class="nav">
+  <div class="nav__inner">
+    {isCaseStudy ? (
+      <a class="nav__back" href={`${homeHref}#work`}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
+        </svg>
+        <span>{tShared.backToPortfolio}</span>
+      </a>
+    ) : (
+      <a class="nav__logo" href={homeHref} aria-label="Home">
+        <img src={`${base}/images/c7e822ef514f68ff036ef64874e3c04e9413c51c.avif`} alt="KC Logo" />
+      </a>
+    )}
+
+    {!isCaseStudy && (
+      <div class="nav__links">
+        <a href="#home" class="active" id="nav-home">{tIndex.navHome}</a>
+        <a href="#work" id="nav-work">{tIndex.navWork}</a>
+        <a href="#experience" id="nav-about">{tIndex.navAbout}</a>
+        <a href="#connect" id="nav-contact">{tIndex.navContact}</a>
+        <a id="resume-link"
+           href={tShared.resumeUrl}
+           target="_blank" rel="noopener noreferrer">
+          <button class="btn btn--outline" style="padding:.4rem 1rem;font-size:.85rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+              <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+              <path d="M10 9H8" />
+              <path d="M16 13H8" />
+              <path d="M16 17H8" />
+            </svg>
+            <span>{tIndex.navResume}</span>
+          </button>
+        </a>
+      </div>
+    )}
+
+    <div style="display:flex;align-items:center;gap:.75rem;">
+      <a href={switchTarget} class="lang-toggle" aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+          <path d="M2 12h20" />
+        </svg>
+        <span class="lang-toggle__active">{lang.toUpperCase()}</span>
+        <span class="lang-toggle__sep">/</span>
+        <span class="lang-toggle__other">{lang === 'es' ? 'EN' : 'ES'}</span>
+      </a>
+
+      {!isCaseStudy && (
+        <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      )}
+    </div>
+  </div>
+</nav>
+
+{!isCaseStudy && (
+  <div class="nav__mobile" id="mobile-menu">
+    <a href="#home">{tIndex.navHome}</a>
+    <a href="#work">{tIndex.navWork}</a>
+    <a href="#experience">{tIndex.navAbout}</a>
+    <a href="#connect">{tIndex.navContact}</a>
+    <a href={tShared.resumeUrl} target="_blank" rel="noopener noreferrer">
+      <span>{tIndex.navResume}</span> ↗
+    </a>
+  </div>
+)}

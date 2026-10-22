@@ -1,0 +1,93 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  role: string;
+  timeline: string;
+  tools: string;
+  badges: string[];
+  bannerSrc: string;
+  bannerAlt: string;
+  roleLabel?: string;
+  timelineLabel?: string;
+  toolsLabel?: string;
+  behanceUrl?: string;
+  behanceLabel?: string;
+}
+
+const {
+  title,
+  description,
+  role,
+  timeline,
+  tools,
+  badges,
+  bannerSrc,
+  bannerAlt,
+  roleLabel = 'Role',
+  timelineLabel = 'Timeline',
+  toolsLabel = 'Tools',
+  behanceUrl,
+  behanceLabel = 'View on Behance'
+} = Astro.props;
+---
+
+<div class="cs-hero page-bg">
+  <div class="cs-hero__inner reveal">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.5rem;margin-bottom:1rem;">
+      <h1 class="cs-hero__title" style="margin-bottom:0;">{title}</h1>
+      {behanceUrl && (
+        <a href={behanceUrl} target="_blank" rel="noopener noreferrer" class="btn btn--outline" style="font-size:.85rem;padding:.5rem 1.25rem;">
+          <span>{behanceLabel}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          </svg>
+        </a>
+      )}
+    </div>
+
+    <p class="cs-hero__desc">
+      {description}
+    </p>
+
+    <div class="cs-hero__meta">
+      <div class="cs-meta-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <path d="M16 3.128a4 4 0 0 1 0 7.744"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+          <circle cx="9" cy="7" r="4"/>
+        </svg>
+        <div><small>{roleLabel}</small><span>{role}</span></div>
+      </div>
+      <div class="cs-meta-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>
+        </svg>
+        <div><small>{timelineLabel}</small><span>{timeline}</span></div>
+      </div>
+      <div class="cs-meta-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/>
+          <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+          <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+          <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+          <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+        </svg>
+        <div><small>{toolsLabel}</small><span>{tools}</span></div>
+      </div>
+    </div>
+
+    <div class="cs-hero__badges">
+      {badges.map((badge) => <span class="badge">{badge}</span>)}
+    </div>
+
+    <div class="cs-hero__banner">
+      <img src={bannerSrc} alt={bannerAlt} />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,309 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from './ProjectCard.astro';
+import { translations } from '../data/translations';
+
+interface Props {
+  lang: 'en' | 'es';
+}
+
+const { lang } = Astro.props;
+const t = translations.index[lang];
+const tShared = translations.shared[lang];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const jodifyHref = lang === 'es' ? `${base}/es/jodify/` : `${base}/jodify/`;
+const cinearHref = lang === 'es' ? `${base}/es/cinear/` : `${base}/cinear/`;
+const foodHref = lang === 'es' ? `${base}/es/food/` : `${base}/food/`;
+---
+
+<BaseLayout
+  title={t.pageTitle}
+  description={t.pageDesc}
+  lang={lang}
+  currentPath={lang === 'es' ? '/es/' : '/'}
+>
+  <!-- ═══════════════════════ HERO ══════════════════════════ -->
+  <section id="home" class="hero page-bg">
+    <div class="hero__inner">
+      <div class="hero__text reveal">
+        <h1 class="hero__title">{t.heroTitle}</h1>
+        <p class="hero__subtitle">{t.heroSubtitle}</p>
+        <div class="social-links">
+          <a class="social-link" href="https://www.linkedin.com/in/kiara-correa/" target="_blank"
+            rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect width="4" height="12" x="2" y="9" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            <span class="social-link__tooltip">linkedin.com/in/kiara-correa</span>
+          </a>
+          <a class="social-link" href="https://www.behance.net/kiaracorrea" target="_blank" rel="noopener noreferrer"
+            aria-label="Behance">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+              style="width:1.5rem;height:1.5rem;">
+              <path
+                d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
+            </svg>
+            <span class="social-link__tooltip">behance.net/kiaracorrea</span>
+          </a>
+          <a class="social-link" href="mailto:kiaracorrea.work@gmail.com" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+            </svg>
+            <span class="social-link__tooltip">kiaracorrea.work@gmail.com</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero__avatar-wrap reveal" style="transition-delay:.15s;">
+        <img src={`${base}/images/62cb69ff29cf21c5dc585990e31d58b29fdfcc8a.avif`} alt="Kiara Correa" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ WORK ══════════════════════════ -->
+  <section id="work" class="sec" style="background:#fff;">
+    <div class="sec__inner">
+      <div class="reveal">
+        <h2 class="sec__title">{t.workTitle}</h2>
+        <p class="sec__subtitle">{t.workSubtitle}</p>
+      </div>
+      <div class="grid-2">
+        <!-- Jodify -->
+        <ProjectCard
+          href={jodifyHref}
+          imgSrc={`${base}/images/98a6b03f15da70021a3c30ca67eb0fb7d5b2e5d9.avif`}
+          imgAlt="Jodify – Electronic music app"
+          type={t.jodifyType}
+          title={t.jodifyTitle}
+          desc={t.jodifyDesc}
+          tags={['iOS', 'Android', 'Web', 'Entertainment', 'Figma']}
+        />
+
+        <!-- Cine.AR -->
+        <ProjectCard
+          href={cinearHref}
+          imgSrc={`${base}/images/4bc1cce42dfc7fc683b47ec90d19e0da9c8590cb.avif`}
+          imgAlt="Cine.AR – Streaming service"
+          type={t.cinearType}
+          title={t.cinearTitle}
+          desc={t.cinearDesc}
+          tags={['Web', 'Entertainment', 'Figma']}
+          delay=".1s"
+        />
+
+        <!-- Veggy -->
+        <ProjectCard
+          href={foodHref}
+          imgSrc={`${base}/images/74bc78feec4a23f1b11f8d7ed0c79b5ad45eead7.avif`}
+          imgAlt="Veggy – Vegan food"
+          type={t.veggyType}
+          title={t.veggyTitle}
+          desc={t.veggyDesc}
+          tags={['Mobile', 'Food', 'Research']}
+          delay=".2s"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ ABOUT ═════════════════════════ -->
+  <section id="experience" class="sec page-bg">
+    <div class="sec__inner">
+      <div class="reveal">
+        <h2 class="sec__title">{t.aboutTitle}</h2>
+      </div>
+
+      <!-- Skills -->
+      <div class="reveal" style="margin-bottom:4rem;">
+        <h3 style="text-align:center;color:var(--tc-600);font-size:1.35rem;font-weight:700;margin-bottom:2rem;">
+          {t.skillsLabel}
+        </h3>
+        <div class="grid-4" style="max-width:60rem;margin:0 auto;">
+          <div class="skill-card">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <circle cx="9" cy="7" r="4" />
+            </svg>
+            <h3>{t.skill1Title}</h3>
+            <p>{t.skill1Desc}</p>
+          </div>
+          <div class="skill-card">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" />
+              <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+              <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+              <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+              <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            </svg>
+            <h3>{t.skill2Title}</h3>
+            <p>{t.skill2Desc}</p>
+          </div>
+          <div class="skill-card">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+              <path d="M9 18h6" />
+              <path d="M10 22h4" />
+            </svg>
+            <h3>{t.skill3Title}</h3>
+            <p>{t.skill3Desc}</p>
+          </div>
+          <div class="skill-card skill-card--interaction" id="interaction-skill-card">
+            <span class="spark-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+                <path d="M20 2v4" />
+                <path d="M22 4h-4" />
+                <circle cx="4" cy="20" r="2" />
+              </svg>
+            </span>
+            <h3>{t.skill4Title}</h3>
+            <p>{t.skill4Desc}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education & Experience -->
+      <div class="grid-2" style="max-width:56rem;margin:0 auto;gap:3rem;">
+        <!-- Education -->
+        <div class="reveal">
+          <h3 style="color:var(--tc-600);font-size:1.35rem;font-weight:700;margin-bottom:2rem;text-align:center;">
+            {t.educationLabel}
+          </h3>
+          <div class="timeline">
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">2023 – 2025</div>
+              <h4 class="timeline__title">{t.edu1Title}</h4>
+              <p class="timeline__org">{t.edu1Org}</p>
+              <p class="timeline__body">{t.edu1Body}</p>
+            </div>
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">2023 – 2024</div>
+              <h4 class="timeline__title">{t.edu2Title}</h4>
+              <p class="timeline__org">{t.edu2Org}</p>
+              <p class="timeline__body">{t.edu2Body}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="reveal" style="transition-delay:.1s;">
+          <h3 style="color:var(--tc-600);font-size:1.35rem;font-weight:700;margin-bottom:2rem;text-align:center;">
+            {t.experienceLabel}
+          </h3>
+          <div class="timeline">
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">Feb 2024 – Present</div>
+              <h4 class="timeline__title">{t.exp1Title}</h4>
+              <p class="timeline__org">{t.exp1Org}</p>
+              <p class="timeline__body" style="margin-bottom:.75rem;">{t.exp1Body}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.75rem;">
+                <span class="badge">Figma</span>
+                <span class="badge">Design Systems</span>
+                <span class="badge">Prototyping</span>
+                <span class="badge">User Research</span>
+              </div>
+              <a href={jodifyHref} class="btn btn--primary"
+                style="margin-top:.5rem;font-size:.8rem;padding:.4rem 1rem;">
+                {t.exp1Btn}
+              </a>
+            </div>
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">2023 – 2024</div>
+              <h4 class="timeline__title">{t.exp2Title}</h4>
+              <p class="timeline__org">{t.exp2Org}</p>
+              <p class="timeline__body" style="margin-bottom:.75rem;">{t.exp2Body}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                <span class="badge">Figma</span><span class="badge">Adobe XD</span>
+                <span class="badge">Illustrator</span><span class="badge">Photoshop</span>
+              </div>
+            </div>
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__date">2022 – 2023</div>
+              <h4 class="timeline__title">{t.exp3Title}</h4>
+              <p class="timeline__org">{t.exp3Org}</p>
+              <p class="timeline__body" style="margin-bottom:.75rem;">{t.exp3Body}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                <span class="badge">Illustrator</span><span class="badge">Photoshop</span><span class="badge">Indesign</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ CONNECT ═══════════════════════ -->
+  <section id="connect" class="sec" style="background:#fff;">
+    <div class="sec__inner" style="max-width:56rem;">
+      <div class="reveal" style="text-align:center;">
+        <h2 class="sec__title">{t.connectTitle}</h2>
+        <p style="color:var(--gray-600);max-width:40rem;margin:0 auto 2.5rem;">
+          {t.connectSubtitle}
+        </p>
+        <div class="connect-card">
+          <a href="mailto:kiaracorrea.work@gmail.com" class="btn btn--primary btn--lg"
+            style="margin-bottom:2rem;width:100%;max-width:280px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+            </svg>
+            <span>{t.connectBtn}</span>
+          </a>
+          <hr style="border:none;border-top:1px solid var(--tc-200);margin-bottom:1.5rem;" />
+          <div class="connect-links">
+            <a class="connect-link" href="https://www.linkedin.com/in/kiara-correa/" target="_blank"
+              rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
+            </a>
+            <a class="connect-link" href="https://www.behance.net/kiaracorrea" target="_blank"
+              rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                style="width:1.25rem;height:1.25rem;">
+                <path
+                  d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
+              </svg>
+              Behance
+            </a>
+            <a class="connect-link" href={tShared.resumeUrl} target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                <path d="M10 9H8" />
+                <path d="M16 13H8" />
+                <path d="M16 17H8" />
+              </svg>
+              <span>{t.navResume}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

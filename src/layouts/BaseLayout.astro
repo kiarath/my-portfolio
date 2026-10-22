@@ -1,0 +1,139 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'en' | 'es';
+  currentPath?: string;
+  isCaseStudy?: boolean;
+  image?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'en',
+  currentPath = '',
+  isCaseStudy = false,
+  image
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <BaseHead title={title} description={description} lang={lang} image={image} />
+  </head>
+  <body>
+    <!-- Ambient glow -->
+    <div class="ambient-glow"></div>
+
+    <!-- Navigation -->
+    <Nav lang={lang} currentPath={currentPath} isCaseStudy={isCaseStudy} />
+
+    <!-- Main Content -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer lang={lang} />
+
+    <script>
+      // ── Mobile Hamburger Menu ─────────────────────
+      const ham = document.getElementById('hamburger');
+      const mob = document.getElementById('mobile-menu');
+      if (ham && mob) {
+        ham.addEventListener('click', () => {
+          mob.classList.toggle('open');
+          ham.setAttribute('aria-expanded', mob.classList.contains('open') ? 'true' : 'false');
+        });
+        mob.querySelectorAll('a').forEach(a => {
+          a.addEventListener('click', () => mob.classList.remove('open'));
+        });
+      }
+
+      // ── Scroll Reveal ─────────────────────────────
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // ── Active Nav on Scroll ──────────────────────
+      const sections = ['home', 'work', 'experience', 'connect'];
+      const navLinks: Record<string, string> = { home: 'nav-home', work: 'nav-work', experience: 'nav-about', connect: 'nav-contact' };
+      window.addEventListener('scroll', () => {
+        let current = 'home';
+        const atBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 10;
+        if (atBottom) {
+          current = 'connect';
+        } else {
+          sections.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && window.scrollY >= el.offsetTop - 120) current = id;
+          });
+        }
+        sections.forEach(id => {
+          const link = document.getElementById(navLinks[id]);
+          if (link) link.classList.toggle('active', id === current);
+        });
+      }, { passive: true });
+
+      // ── Interaction Design Card Sparks ────────────
+      (function () {
+        const SPARK_COLORS = ['#d98a5a', '#e8ae87', '#f3d0b8', '#a45d3b', '#fff', '#f97316'];
+        const card = document.getElementById('interaction-skill-card');
+        if (!card) return;
+
+        function burst(originEl: Element) {
+          const rect = originEl.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const count = 12;
+
+          for (let i = 0; i < count; i++) {
+            const p = document.createElement('div');
+            p.className = 'spark-particle';
+
+            const angle = (360 / count) * i + (Math.random() - .5) * 25;
+            const dist = 28 + Math.random() * 30;
+            const rad = angle * (Math.PI / 180);
+            const tx = Math.cos(rad) * dist;
+            const ty = Math.sin(rad) * dist;
+            const dur = (.45 + Math.random() * .35).toFixed(2) + 's';
+            const color = SPARK_COLORS[Math.floor(Math.random() * SPARK_COLORS.length)];
+            const size = (3 + Math.random() * 4).toFixed(1) + 'px';
+
+            p.style.cssText = `
+              left:${cx}px; top:${cy}px;
+              background:${color};
+              width:${size}; height:${size};
+              --tx:${tx.toFixed(1)}px; --ty:${ty.toFixed(1)}px;
+              --dur:${dur};
+            `;
+
+            document.body.appendChild(p);
+            p.addEventListener('animationend', () => p.remove(), { once: true });
+          }
+        }
+
+        let cooldown = false;
+        card.addEventListener('mouseenter', () => {
+          if (cooldown) return;
+          cooldown = true;
+          const icon = card.querySelector('.spark-icon');
+          burst(icon || card);
+          setTimeout(() => { cooldown = false; }, 600);
+        });
+      })();
+    </script>
+  </body>
+</html>

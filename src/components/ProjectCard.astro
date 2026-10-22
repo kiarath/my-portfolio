@@ -1,0 +1,30 @@
+---
+interface Props {
+  href: string;
+  imgSrc: string;
+  imgAlt: string;
+  type: string;
+  title: string;
+  desc: string;
+  tags: string[];
+  delay?: string;
+}
+
+const { href, imgSrc, imgAlt, type, title, desc, tags, delay = '0s' } = Astro.props;
+---
+
+<div class="reveal" style={delay ? `transition-delay:${delay};` : undefined}>
+  <a class="project-card" href={href}>
+    <div class="project-card__img-wrap">
+      <img src={imgSrc} alt={imgAlt} loading="lazy" />
+    </div>
+    <div class="project-card__body">
+      <span class="project-card__type">{type}</span>
+      <h3 class="project-card__title">{title}</h3>
+      <p class="project-card__desc">{desc}</p>
+      <div class="project-card__tags">
+        {tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+    </div>
+  </a>
+</div>
