@@ -19,6 +19,8 @@ import imgTripan from '../assets/projects/card-tripan.jpg';
 import imgSantillana from '../assets/projects/card-santillana.jpg';
 import imgPortfolio from '../assets/projects/card-portfolio.jpg';
 import imgVeggy from '../assets/projects/card-veggy.jpg';
+import imgRacing from '../assets/projects/card-racing-patagonia.jpg';
+import imgPubliflex from '../assets/projects/card-publiflex.jpg';
 
 /** Case studies with their own page, in "next project" order. */
 export const cases: CaseStudy[] = [sumun, jodify, cinear, santillana, veggy];
@@ -209,5 +211,35 @@ export const projects: ProjectCard[] = [
     image: imgVeggy,
     caseSlug: 'veggy',
     links: [],
+  },
+  {
+    slug: 'racing-patagonia',
+    name: 'Racing Patagonia',
+    kind: 'Event & Ticket Management',
+    description:
+      'Design of the websites for Racing Patagonia, organizer of international races in Chilean Patagonia like Patagonian International Marathon and Ultra Paine, focused on race info and registration.',
+    es: {
+      kind: 'Gestión de eventos y venta de entradas',
+      description:
+        'Diseño de los sitios web de Racing Patagonia, organizadora de carreras internacionales en la Patagonia chilena como Patagonian International Marathon y Ultra Paine, enfocados en la información de las carreras y la inscripción.',
+    },
+    image: imgRacing, // TODO: placeholder — replace card-racing-patagonia.jpg with the Figma image
+    links: [{ label: 'visit website', href: '#' }],
+    hidden: true, // site not published yet
+  },
+  {
+    slug: 'publiflex',
+    name: 'Publiflex',
+    kind: 'Corporate Website',
+    description:
+      'Design of the corporate website for Publiflex, a Chilean manufacturer of custom printed packaging tapes, presenting its product line and printing services to businesses.',
+    es: {
+      kind: 'Sitio corporativo',
+      description:
+        'Diseño del sitio corporativo de Publiflex, fabricante chilena de cintas de embalaje impresas a medida, que presenta su línea de productos y servicios de impresión a empresas.',
+    },
+    image: imgPubliflex, // TODO: placeholder — replace card-publiflex.jpg with the Figma image
+    links: [{ label: 'visit website', href: '#' }],
+    hidden: true, // site not published yet
   },
 ];

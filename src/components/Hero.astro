@@ -6,6 +6,7 @@
  */
 import T from './T.astro';
 import HeroCursor from './HeroCursor.astro';
+import HeroShape from './HeroShape.astro';
 import arrow from '../assets/icons/arrow-down.svg?raw';
 import FigmaMock from './FigmaMock.astro';
 
@@ -47,7 +48,7 @@ const grid = Array.from({ length: 8 }, (_, r) =>
       <div class="absolute" style={vbox(20, 70, 335)}>
         <FigmaMock>
           <div data-hero data-mode="mobile" class="absolute inset-0">
-            <span class="hero-square absolute top-0 left-0 bg-coral" data-square></span>
+            <HeroShape id="hero-grad-m" />
             <HeroCursor />
           </div>
         </FigmaMock>
@@ -77,7 +78,7 @@ const grid = Array.from({ length: 8 }, (_, r) =>
         <span class="stage-art absolute bg-coral" style={box(971, 651, 96, 95)} aria-hidden="true"></span>
 
         <!-- Animated square + cursor (see script) -->
-        <span class="stage-art hero-square absolute top-0 left-0 bg-coral" data-square aria-hidden="true"></span>
+        <div class="stage-art" aria-hidden="true"><HeroShape id="hero-grad-d" /></div>
         <div class="stage-art" aria-hidden="true"><HeroCursor /></div>
 
         <!-- Copy -->
@@ -107,12 +108,6 @@ const grid = Array.from({ length: 8 }, (_, r) =>
   .hero-stage {
     --u: calc(100cqw / 971);
     aspect-ratio: 971 / 651;
-  }
-  .hero-square {
-    width: calc(146 * var(--u));
-    height: calc(135 * var(--u));
-    transform-origin: 0 0;
-    z-index: 2;
   }
   .hero-copy {
     position: absolute;
@@ -191,83 +186,265 @@ const grid = Array.from({ length: 8 }, (_, r) =>
 
 <script>
   /**
-   * Replays the Figma prototype "Animación hero": 9 frames with Smart Animate.
-   * Coordinates are in design px of the 971×651 stage (Figma frame − hero offset).
+   * Hero animation. The cursor ("Kiara Correa") comes in from the right, off screen, drags the coral square into
+   * the Figma canvas and edits it like a vector: square → heart → AI "spark" → gradient fill → square,
+   * drags it back to the grid and leaves upwards, off screen; the next loop starts from the right again.
+   * Mobile only shows the editing part, inside the canvas, and the cursor goes up and out of the canvas at the end.
+   * Coordinates are in design px: the 971×651 stage (desktop) or the 657×369 mock (mobile).
    */
-  type State = { sx: number; sy: number; rot: number; radius: number; cx: number; cy: number };
-  type Step = { state: State; delay: number; duration: number; easing: string };
+  type Pt = [number, number];
+  type Shape = { a: Pt[]; c: [Pt, Pt][] }; // 8 anchors (TL, T, TR, R, BR, B, BL, L) + the 2 controls of each segment
+  type State = { sx: number; sy: number; shape: number[]; col: number; hd: number; cx: number; cy: number };
+  type Ease = (t: number) => number;
+  type Step = {
+    delay: number;
+    dur: number;
+    ease?: Ease;
+    to?: Partial<Omit<State, 'cy'>> & { cy?: number | 'off' };
+    /** The cursor holds this anchor while the shape morphs (vertex editing). */
+    follow?: number;
+    click?: boolean;
+    /** Bends the cursor's path (quadratic curve): offset of the control point from the straight line's midpoint. */
+    curve?: Pt;
+  };
 
-  const easeOut = 'cubic-bezier(0, 0, 0.58, 1)';
-  const easeIn = 'cubic-bezier(0.42, 0, 1, 1)';
-  const easeInOut = 'cubic-bezier(0.42, 0, 0.58, 1)';
+  // ── Shapes, in a 100×100 box (stretched to the 146×135 square) ──────────────────────────────
+  const straight = (a: Pt[]): Shape => ({
+    a,
+    c: a.map((p, i) => {
+      const q = a[(i + 1) % a.length];
+      return [
+        [p[0] + (q[0] - p[0]) / 3, p[1] + (q[1] - p[1]) / 3],
+        [p[0] + (2 * (q[0] - p[0])) / 3, p[1] + (2 * (q[1] - p[1])) / 3],
+      ];
+    }),
+  });
+  const SQUARE = straight([[0, 0], [50, 0], [100, 0], [100, 50], [100, 100], [50, 100], [0, 100], [0, 50]]);
+  const HEART: Shape = {
+    a: [[27, 10], [50, 24], [73, 10], [97, 35], [75, 68], [50, 94], [25, 68], [3, 35]],
+    c: [
+      [[38, 10], [50, 16]], [[50, 16], [62, 10]], [[86, 10], [97, 20]], [[97, 50], [87, 58]],
+      [[64, 78], [52, 90]], [[48, 90], [36, 78]], [[13, 58], [3, 50]], [[3, 20], [14, 10]],
+    ],
+  };
+  const SPARK: Shape = {
+    a: [[35.5, 35.5], [50, 0], [64.5, 35.5], [100, 50], [64.5, 64.5], [50, 100], [35.5, 64.5], [0, 50]],
+    c: [
+      [[43, 31], [48, 20]], [[52, 20], [57, 31]], [[69, 40], [80, 48]], [[80, 52], [69, 60]],
+      [[57, 69], [52, 80]], [[48, 80], [43, 69]], [[31, 60], [20, 52]], [[20, 48], [31, 40]],
+    ],
+  };
+  const nums = (s: Shape) => [...s.a.flat(), ...s.c.flat(2)];
+  const sq = nums(SQUARE);
+  const heart = nums(HEART);
+  const spark = nums(SPARK);
+  const anchor = (n: number[], i: number): Pt => [n[i * 2], n[i * 2 + 1]];
+  const toPath = (n: number[]) => {
+    let d = `M${n[0]} ${n[1]}`;
+    for (let i = 0; i < 8; i++) {
+      const c = 16 + i * 4;
+      const [ax, ay] = anchor(n, (i + 1) % 8);
+      d += `C${n[c]} ${n[c + 1]} ${n[c + 2]} ${n[c + 3]} ${ax} ${ay}`;
+    }
+    return d + 'Z';
+  };
 
-  const start: State = { sx: 141, sy: 147, rot: 0, radius: 0, cx: 317, cy: 82 };
-  const steps: Step[] = [
-    { state: start, delay: 600, duration: 900, easing: easeOut }, // 1 · inicio
-    { state: { ...start, cx: 227, cy: 197 }, delay: 250, duration: 1000, easing: easeInOut }, // 2 · agarra
-    { state: { sx: 661, sy: 239, rot: 0, radius: 0, cx: 747, cy: 289 }, delay: 300, duration: 600, easing: easeInOut }, // 3 · suelta
-    { state: { sx: 661, sy: 239, rot: 0, radius: 0, cx: 815, cy: 382 }, delay: 150, duration: 450, easing: easeIn }, // 4 · esquina
-    { state: { sx: 721, sy: 207, rot: 40, radius: 0, cx: 748, cy: 416 }, delay: 800, duration: 450, easing: easeOut }, // 5 · rota 40
-    { state: { sx: 788, sy: 222, rot: 80, radius: 0, cx: 674, cy: 399 }, delay: 300, duration: 800, easing: easeInOut }, // 6 · rota 80
-    { state: { sx: 788, sy: 222, rot: 80, radius: 28, cx: 957, cy: 282 }, delay: 900, duration: 700, easing: easeInOut }, // 7 · redondea
-    { state: { sx: 788, sy: 222, rot: 80, radius: 28, cx: 747, cy: 300 }, delay: 250, duration: 1100, easing: easeInOut }, // 8 · retoma
-    { state: { ...start, cx: 227, cy: 209 }, delay: 300, duration: 800, easing: easeOut }, // 9 · lo devuelve
-  ];
+  // Fill: coral → AI gradient (cyan → violet → coral)
+  const CORAL: number[] = [255, 86, 85];
+  const GRADIENT: number[][] = [[1, 209, 255], [124, 92, 255], [255, 86, 85]];
 
-  /** Mobile: the same frames 3–8 in mock coordinates (stage − mock offset 398,106), looping inside the canvas. */
-  const o = (st: State): State => ({ ...st, sx: st.sx - 398, sy: st.sy - 106, cx: st.cx - 398, cy: st.cy - 106 });
-  const mobileSteps: Step[] = [
-    ...steps.slice(2, 8).map((st) => ({ ...st, state: o(st.state) })),
-    // back to the start of the loop (unrotate) instead of returning to the grid
-  ];
-  mobileSteps[mobileSteps.length - 1] = { ...mobileSteps[mobileSteps.length - 1], duration: 800, easing: easeOut };
+  // ── Easing (CSS cubic-bezier) ───────────────────────────────────────────────────────────────
+  const bezier = (x1: number, y1: number, x2: number, y2: number): Ease => {
+    const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx;
+    const cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+    return (t) => {
+      let s = t;
+      for (let i = 0; i < 8; i++) {
+        const err = ((ax * s + bx) * s + cx) * s - t;
+        const d = (3 * ax * s + 2 * bx) * s + cx;
+        if (Math.abs(err) < 1e-5 || Math.abs(d) < 1e-6) break;
+        s -= err / d;
+      }
+      s = Math.min(1, Math.max(0, s));
+      return ((ay * s + by) * s + cy) * s;
+    };
+  };
+  const easeInOut = bezier(0.42, 0, 0.58, 1);
+  const easeLeave = bezier(0.45, 0, 0.8, 0.6); // starts gently, speeds up as it leaves
 
+  // ── Sequences ───────────────────────────────────────────────────────────────────────────────
+  const W = 146 / 100, H = 135 / 100; // shape box → design px
+  const at = (sx: number, sy: number, n: number[], i: number): Pt => {
+    const [x, y] = anchor(n, i);
+    return [sx + x * W, sy + y * H];
+  };
+  /** The editing part (shared by desktop and mobile), with the square sitting at (x, y). */
+  const edit = (x: number, y: number): Step[] => {
+    const [tx, ty] = at(x, y, sq, 1); // top edge
+    const [hx, hy] = at(x, y, heart, 0); // heart's left lobe
+    const [bx, by] = at(x, y, spark, 6); // spark's lower-left vertex
+    return [
+      { delay: 200, dur: 500, ease: easeInOut, to: { cx: tx, cy: ty, hd: 1 } },
+      { delay: 250, dur: 900, ease: easeInOut, to: { shape: heart }, follow: 1 }, // pull the top down → heart
+      { delay: 350, dur: 450, ease: easeInOut, to: { cx: hx, cy: hy } },
+      { delay: 200, dur: 900, ease: easeInOut, to: { shape: spark }, follow: 0 }, // → AI spark
+      { delay: 350, dur: 500, ease: easeInOut, to: { cx: x + 73, cy: y + 67.5, hd: 0 } },
+      { delay: 150, dur: 800, ease: easeInOut, to: { col: 1 }, click: true }, // gradient fill
+      { delay: 450, dur: 600, ease: easeInOut, to: { cx: bx, cy: by, hd: 1 } },
+      { delay: 200, dur: 900, ease: easeInOut, to: { shape: sq, col: 0 }, follow: 6 }, // back to a square
+    ];
+  };
+
+  const S0: Pt = [141, 147]; // square on the grid
+  const S1: Pt = [661, 239]; // square in the Figma canvas
+  const G: Pt = [86, 50]; // where the cursor grabs it
+  const desktop: { init: State; steps: Step[] } = {
+    init: { sx: S0[0], sy: S0[1], shape: sq, col: 0, hd: 0, cx: 0, cy: 260 }, // cursor starts off screen, right
+    steps: [
+      { delay: 400, dur: 1500, ease: easeInOut, to: { cx: S0[0] + G[0], cy: S0[1] + G[1] }, curve: [0, -45] }, // comes in from the right
+      { delay: 250, dur: 1000, ease: easeInOut, to: { sx: S1[0], sy: S1[1], cx: S1[0] + G[0], cy: S1[1] + G[1] } },
+      ...edit(S1[0], S1[1]),
+      { delay: 250, dur: 400, ease: easeInOut, to: { cx: S1[0] + G[0], cy: S1[1] + G[1], hd: 0 } },
+      { delay: 150, dur: 1100, ease: easeInOut, to: { sx: S0[0], sy: S0[1], cx: S0[0] + G[0], cy: S0[1] + G[1] } },
+      { delay: 300, dur: 1100, ease: easeLeave, to: { cx: S0[0] + G[0] + 80, cy: 'off' }, curve: [120, 70] }, // leaves the square, curving up and off screen
+      { delay: 900, dur: 0 },
+    ],
+  };
+  const M: Pt = [S1[0] - 398, S1[1] - 106]; // same spot, in mock coordinates
+  const mobile: { init: State; steps: Step[] } = {
+    init: { sx: M[0], sy: M[1], shape: sq, col: 0, hd: 0, cx: 0, cy: 190 }, // cursor starts off canvas, right
+    steps: [
+      ...edit(M[0], M[1]).map((st, i) => (i === 0 ? { ...st, delay: 400, dur: 1200, ease: easeInOut, curve: [0, -25] as Pt } : st)),
+      { delay: 250, dur: 1000, ease: easeLeave, to: { cx: M[0] + 60, cy: 'off', hd: 0 }, curve: [130, 60] }, // curves up, out of the canvas
+      { delay: 900, dur: 0 },
+    ],
+  };
+
+  // ── Player ──────────────────────────────────────────────────────────────────────────────────
   const u = (n: number) => `calc(${n} * var(--u))`;
-  const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   document.querySelectorAll<HTMLElement>('[data-hero]').forEach((stage) => {
     const square = stage.querySelector<HTMLElement>('[data-square]');
     const cursor = stage.querySelector<HTMLElement>('[data-cursor]');
-    if (!square || !cursor) return;
-    const seq = stage.dataset.mode === 'mobile' ? mobileSteps : steps;
+    const path = square?.querySelector<SVGPathElement>('[data-shape]');
+    const handles = square?.querySelector<SVGGElement>('[data-handles]');
+    if (!square || !cursor || !path || !handles) return;
+    const dots = [...handles.children] as SVGEllipseElement[];
+    const stops = [...square.querySelectorAll<SVGStopElement>('[data-stop]')];
+    const seq = stage.dataset.mode === 'mobile' ? mobile : desktop;
 
-    const apply = (s: State) => {
-      square.style.transform = `translate(${u(s.sx)}, ${u(s.sy)}) rotate(${s.rot}deg)`;
-      square.style.borderRadius = u(s.radius);
-      // The "Kiara Correa" tag always stays to the right of the arrow. When the viewport is too narrow for it,
-      // the cursor stops a little earlier instead, so the tag is never cut off.
-      const unit = cursor.offsetWidth / 150;
-      // (the hero section clips horizontally, so the limit is the section edge or the viewport, whichever is closer)
-      const edge = Math.min(document.documentElement.clientWidth, stage.closest('section')?.getBoundingClientRect().right ?? Infinity);
-      const maxCx = (edge - 8 - stage.getBoundingClientRect().left) / unit - 143;
-      const cx = Math.min(s.cx, maxCx);
-      cursor.style.transform = `translate(${u(cx)}, ${u(s.cy)})`;
-    };
-    const setTransition = (ms: number, easing: string) => {
-      for (const el of [square, cursor]) el.style.transition = `transform ${ms}ms ${easing}, border-radius ${ms}ms ${easing}`;
+    // The hero section clips horizontally: the visible edge is the section's or the viewport's, whichever is closer.
+    const unit = () => cursor.offsetWidth / 150; // px per design px
+    const edge = () =>
+      Math.min(document.documentElement.clientWidth, stage.closest('section')?.getBoundingClientRect().right ?? Infinity);
+    const left = () => stage.getBoundingClientRect().left;
+    /** The "Kiara Correa" tag always stays right of the arrow: on narrow screens the cursor stops a bit earlier. */
+    const limit = (cx: number) => Math.min(cx, (edge() - 8 - left()) / unit() - 143);
+    /** Fully outside the visible area, to the right. */
+    const offX = () => (edge() - left()) / unit() + 30;
+    /** Fully above the visible area: the top of the screen (desktop, under the header) or of the mobile canvas. */
+    const offY = () => {
+      const top = stage.closest<HTMLElement>('.hero-m-inner')?.getBoundingClientRect().top ?? 0;
+      return (top - stage.getBoundingClientRect().top) / unit() - 70;
     };
 
+    const render = (s: State) => {
+      square.style.transform = `translate(${u(s.sx)}, ${u(s.sy)})`;
+      path.setAttribute('d', toPath(s.shape));
+      path.setAttribute('stroke-opacity', String(s.hd));
+      handles.setAttribute('opacity', String(s.hd));
+      dots.forEach((dot, i) => {
+        const [x, y] = anchor(s.shape, i);
+        dot.setAttribute('cx', String(x));
+        dot.setAttribute('cy', String(y));
+      });
+      stops.forEach((stop, i) => {
+        const rgb = CORAL.map((c, k) => Math.round(lerp(c, GRADIENT[i][k], s.col)));
+        stop.setAttribute('stop-color', `rgb(${rgb.join(' ')})`);
+      });
+      cursor.style.transform = `translate(${u(s.cx)}, ${u(s.cy)})`;
+    };
+
+    let cur: State = { ...seq.init, cx: offX() };
     if (reduced) {
-      apply(seq.find((st) => st.state.radius > 0)?.state ?? seq[0].state);
+      const [x, y] = at(cur.sx, cur.sy, sq, 1);
+      render({ ...cur, cx: limit(x + 20), cy: y + 40 });
       return;
     }
+    render(cur);
 
     let visible = true;
     new IntersectionObserver(([entry]) => (visible = entry.isIntersecting)).observe(stage);
     // Only the version shown for this screen size animates (the other one is display:none).
-    const shown = () => square.offsetParent !== null;
+    const active = () => visible && !document.hidden && square.offsetParent !== null;
+    const frame = () => new Promise<number>((r) => requestAnimationFrame(r));
+    /** Waits `ms` of *visible* time, calling `tick(progress)` every frame. */
+    const elapse = async (ms: number, tick?: (t: number) => void) => {
+      let t = 0;
+      let last = await frame();
+      while (t < ms) {
+        const now = await frame();
+        if (active()) t += Math.min(now - last, 50);
+        last = now;
+        tick?.(Math.min(1, t / ms));
+      }
+      tick?.(1);
+    };
+    const press = () => {
+      cursor.classList.add('is-press');
+      setTimeout(() => cursor.classList.remove('is-press'), 180);
+    };
+
+    const play = async (step: Step) => {
+      await elapse(step.delay);
+      const from = cur;
+      const to = step.to ?? {};
+      const end = {
+        sx: to.sx ?? from.sx,
+        sy: to.sy ?? from.sy,
+        shape: to.shape ?? from.shape,
+        col: to.col ?? from.col,
+        hd: to.hd ?? from.hd,
+        cx: to.cx !== undefined ? limit(to.cx) : from.cx,
+        cy: to.cy === 'off' ? offY() : (to.cy ?? from.cy),
+      };
+      if (step.click) press();
+      const ease = step.ease ?? easeInOut;
+      await elapse(step.dur, (t) => {
+        const k = ease(t);
+        const s: State = {
+          sx: lerp(from.sx, end.sx, k),
+          sy: lerp(from.sy, end.sy, k),
+          shape: from.shape.map((v, i) => lerp(v, end.shape[i], k)),
+          col: lerp(from.col, end.col, k),
+          hd: lerp(from.hd, end.hd, k),
+          cx: lerp(from.cx, end.cx, k),
+          cy: lerp(from.cy, end.cy, k),
+        };
+        if (step.curve) {
+          // quadratic Bézier through a control point beside the straight line → a natural, slightly curved path
+          const qx = (from.cx + end.cx) / 2 + step.curve[0];
+          const qy = (from.cy + end.cy) / 2 + step.curve[1];
+          s.cx = (1 - k) ** 2 * from.cx + 2 * (1 - k) * k * qx + k ** 2 * end.cx;
+          s.cy = (1 - k) ** 2 * from.cy + 2 * (1 - k) * k * qy + k ** 2 * end.cy;
+        }
+        if (step.follow !== undefined) {
+          const [x, y] = at(s.sx, s.sy, s.shape, step.follow);
+          s.cx = limit(x);
+          s.cy = y;
+        }
+        cur = s;
+        render(s);
+      });
+    };
 
     (async () => {
-      setTransition(0, 'linear');
-      apply(seq[0].state);
-      for (let i = 0; ; i = (i + 1) % seq.length) {
-        const step = seq[i];
-        await wait(step.delay);
-        while (!visible || document.hidden || !shown()) await wait(400);
-        setTransition(step.duration, step.easing);
-        apply(seq[(i + 1) % seq.length].state);
-        await wait(step.duration);
+      for (;;) {
+        for (const step of seq.steps) await play(step);
+        cur = { ...seq.init, cx: offX() }; // each loop starts with the cursor coming in from the right
+        render(cur);
       }
     })();
   });

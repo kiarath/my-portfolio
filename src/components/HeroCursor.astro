@@ -39,6 +39,11 @@ const { class: extra = '' } = Astro.props;
     height: calc(26 * var(--u));
     filter: drop-shadow(0 calc(1 * var(--u)) calc(2 * var(--u)) rgb(0 0 0 / 0.08));
     overflow: visible;
+    transform-origin: 27% 25%; /* the arrow tip */
+    transition: transform 0.12s ease-out;
+  }
+  .hero-cursor.is-press .hc-arrow {
+    transform: scale(0.82);
   }
   .hc-tag {
     position: absolute;
