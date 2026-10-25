@@ -32,9 +32,10 @@ const box = (x: number, y: number, w?: number, h?: number) =>
     .filter(Boolean)
     .join(';');
 
-// Mobile: the same Swiss grid at 1:1 (Figma "A · Home" › Frame 8), behind the illustration and the copy.
-const gridM = Array.from({ length: 7 }, (_, r) =>
-  Array.from({ length: 5 }, (_, c) => vbox(c * 79.52, r * 79.25, 96.7, 96.7)),
+// Mobile: the same Swiss grid at 1:1, behind the illustration and the copy. Like on desktop, it starts at the
+// text column (the 16px page margin), so the copy can sit on its lines.
+const gridM = Array.from({ length: 8 }, (_, r) =>
+  Array.from({ length: 5 }, (_, c) => vbox(16 + c * 79.52, r * 79.25, 96.7, 96.7)),
 ).flat();
 
 // Swiss grid: 12 × 8 squares of 96.7px every 79.52px / 79.25px.
@@ -152,9 +153,10 @@ const grid = Array.from({ length: 8 }, (_, r) =>
     --v: calc(100cqw / 375);
     container-type: inline-size;
     position: absolute;
-    inset: 0 0 4px; /* Figma: the frame ends at 600, just above the bottom of "scroll to learn more" */
+    inset: 0 0 auto;
+    height: calc(555 * var(--vw)); /* Figma "A · Home" › Frame 8: 375×555 with a 1px #e9e9e9 border */
     overflow: hidden;
-    border-bottom: 1px solid #e9e9e9;
+    border: 1px solid #e9e9e9;
   }
   .hero-m {
     container-type: inline-size;
@@ -162,8 +164,11 @@ const grid = Array.from({ length: 8 }, (_, r) =>
   .hero-m-inner {
     --v: calc(100cqw / 375);
     position: relative;
-    height: calc(328 * var(--v));
+    height: calc(317 * var(--v)); /* down to the grid line under the coral blocks */
     overflow: hidden;
+  }
+  section {
+    --vw: calc(100vw / 375); /* 1 px of the 375px mobile frame, for the copy (its container is narrower) */
   }
   @media (max-width: 639px) {
     .stage-art {
@@ -178,19 +183,20 @@ const grid = Array.from({ length: 8 }, (_, r) =>
     .hero-scroll {
       position: static;
     }
-    /* Figma: kicker 11,384 · title 11,414 (40/41) · scroll 13,585 — relative to the 16px page margin */
+    /* Figma "A · Home" (positions from the top of the hero box): kicker 19,326 · title 16,360 (40/40)
+       · scroll 16,540. Horizontally the copy starts on the grid's first line (the 16px margin). */
     .hero-kicker {
-      margin-left: -5px;
+      margin: calc(9 * var(--vw)) 0 0 3px;
       font-size: 14px;
       line-height: 21px;
     }
     .hero-title {
-      margin: 9px 0 0 -5px;
+      margin: calc(34 * var(--vw) - 21px) 0 0 0;
       font-size: 40px;
-      line-height: 41px;
+      line-height: 40px;
     }
     .hero-scroll {
-      margin: 48px 0 0 -3px;
+      margin: calc(180 * var(--vw) - 120px) 0 0 0;
       gap: 25px;
       font-size: 12px;
       line-height: 18px;

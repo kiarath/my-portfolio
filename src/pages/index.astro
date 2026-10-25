@@ -12,7 +12,7 @@ import { projects } from '../data/projects';
   <Hero />
 
   <section id="about" class="relative mx-auto max-w-[1194px] scroll-mt-24">
-    <div class="page pt-8 sm:pt-[39px]">
+    <div class="page pt-[15px] sm:pt-[39px]">
       <div class="max-w-[512px] text-[18px] leading-[24px] sm:text-[24px] sm:leading-[1.2]">
         <p>
           <T
@@ -32,7 +32,7 @@ import { projects } from '../data/projects';
 
   <div class="relative mt-10 sm:mt-[72px]">
     <Marquee />
-    <span class="absolute top-[53px] right-0 hidden lg:block" set:html={pixel} aria-hidden="true" />
+    <span class="absolute top-[53px] right-0 hidden min-[1115px]:block" set:html={pixel} aria-hidden="true" />
   </div>
 
   <section id="projects" class="page mt-[33px] scroll-mt-24 sm:mt-[72px]" aria-label="Projects">

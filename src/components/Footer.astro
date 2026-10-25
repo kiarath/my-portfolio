@@ -13,7 +13,8 @@ const contacts = [
 ---
 
 <footer id="contact" class="relative mt-[102px] overflow-hidden pt-3 pb-[100px]">
-  <div class="absolute top-0 left-0 hidden md:block" set:html={pixel} aria-hidden="true" />
+  <!-- only where the side margin fits it (62px pixel + air), so it never overlaps the text -->
+  <div class="absolute top-0 left-0 hidden min-[1115px]:block" set:html={pixel} aria-hidden="true" />
   <div class="absolute top-[37px] right-[max(16px,calc(50%-557px))] flex w-10 flex-col gap-1" aria-hidden="true">
     <span class="h-[37px] bg-cyan"></span>
     <span class="h-[37px] bg-blush"></span>
