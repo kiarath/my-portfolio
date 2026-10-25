@@ -21,19 +21,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Fuerza la versión de Node.js a la más reciente de la rama 22 (>=22.23.4)
+      # 1. Forzar Node.js a la versión 22 más reciente (22.x)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           check-latest: true
 
-      # Ejecuta la instalación y compilación de Astro
-      - name: Install, build, and upload site
-        uses: withastro/action@v3
+      # 2. Instalar dependencias
+      - name: Install dependencies
+        run: npm ci
+
+      # 3. Compilar el proyecto Astro
+      - name: Build Astro site
+        run: npm run build
         env:
           SITE_URL: 'https://kiarath.github.io'
           BASE_PATH: '/my-portfolio'
+
+      # 4. Subir el resultado de la compilación (carpeta dist) para Pages
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     needs: build
