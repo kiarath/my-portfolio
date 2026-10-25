@@ -85,6 +85,32 @@ html[data-lang='es'] .t-en {
   display: none;
 }
 
+/* Language change: all the text (not the logo, images or boxes) fades out, the language swaps while it is
+   invisible, and it fades back in (Figma: 0.3s ease-out). LangToggle.astro toggles html.lang-out / html.lang-in.
+   Keyframe animations are used so the elements' own transitions (hover colors, reveal…) are not touched. */
+@keyframes lang-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes lang-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+html.lang-out :is(span, a, li).t-en,
+html.lang-out :is(span, a, li).t-es,
+html.lang-out .lang-fade,
+html.lang-out :is(div.t-en, div.t-es) :is(h1, h2, h3, h4, h5, p, li, a, span, figcaption, th, td, dt, dd, label, strong, em, small, blockquote) {
+  animation: lang-fade-out 0.3s ease-out forwards;
+}
+html.lang-in :is(span, a, li).t-en,
+html.lang-in :is(span, a, li).t-es,
+html.lang-in .lang-fade,
+html.lang-in :is(div.t-en, div.t-es) :is(h1, h2, h3, h4, h5, p, li, a, span, figcaption, th, td, dt, dd, label, strong, em, small, blockquote) {
+  animation: lang-fade-in 0.3s ease-out;
+}
+
 /* Scroll fade-in (Base.astro adds .js and .is-visible). Without JS everything stays visible. */
 .js [data-reveal] {
   opacity: 0;

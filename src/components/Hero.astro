@@ -5,7 +5,7 @@
  * `--u` (1 design px expressed in container units), so it scales fluidly.
  */
 import T from './T.astro';
-import cursor from '../assets/icons/cursor.svg?raw';
+import HeroCursor from './HeroCursor.astro';
 import arrow from '../assets/icons/arrow-down.svg?raw';
 import FigmaMock from './FigmaMock.astro';
 
@@ -48,7 +48,7 @@ const grid = Array.from({ length: 8 }, (_, r) =>
         <FigmaMock>
           <div data-hero data-mode="mobile" class="absolute inset-0">
             <span class="hero-square absolute top-0 left-0 bg-coral" data-square></span>
-            <span class="hero-cursor absolute top-0 left-0" data-cursor set:html={cursor} />
+            <HeroCursor />
           </div>
         </FigmaMock>
       </div>
@@ -69,21 +69,20 @@ const grid = Array.from({ length: 8 }, (_, r) =>
         <!-- Figma window mock -->
         <div class="stage-art absolute" style={box(398, 106, 657, 369)}><FigmaMock /></div>
 
-        <!-- Coral blocks (Figma Home: 978/1074,571 · 978,666 · 1077,761 · 47,93), in stage coordinates.
+        <!-- Coral blocks (Figma Home: 47,93 · 978,571 · 978,666 · 1074,761), in stage coordinates.
              The ones outside the 971px column only show where there is room for them. -->
         <span class="stage-art absolute bg-coral" style={box(-56, -17, 146, 135)} aria-hidden="true"></span>
         <span class="stage-art absolute bg-coral" style={box(875, 461, 96, 95)} aria-hidden="true"></span>
-        <span class="stage-art absolute bg-coral" style={box(971, 461, 96, 95)} aria-hidden="true"></span>
         <span class="stage-art absolute bg-coral" style={box(875, 556, 96, 95)} aria-hidden="true"></span>
-        <span class="stage-art absolute bg-coral" style={box(974, 651, 96, 95)} aria-hidden="true"></span>
+        <span class="stage-art absolute bg-coral" style={box(971, 651, 96, 95)} aria-hidden="true"></span>
 
         <!-- Animated square + cursor (see script) -->
         <span class="stage-art hero-square absolute top-0 left-0 bg-coral" data-square aria-hidden="true"></span>
-        <span class="stage-art hero-cursor absolute top-0 left-0" data-cursor aria-hidden="true" set:html={cursor} />
+        <div class="stage-art" aria-hidden="true"><HeroCursor /></div>
 
         <!-- Copy -->
         <div class="hero-copy">
-          <p class="hero-kicker font-mono leading-[1.2]">product &amp; graphic</p>
+          <p class="hero-kicker lang-fade font-mono leading-[1.2]">product &amp; graphic</p>
           <h1 id="hero-title" class="hero-title leading-[1.2] font-bold">
             <T en="designer of" es="diseñadora" /><br />
             <T
@@ -114,16 +113,6 @@ const grid = Array.from({ length: 8 }, (_, r) =>
     height: calc(135 * var(--u));
     transform-origin: 0 0;
     z-index: 2;
-  }
-  .hero-cursor {
-    width: calc(14 * var(--u));
-    min-width: 9px;
-    transform-origin: 0 0;
-    z-index: 3;
-  }
-  .hero-cursor :global(svg) {
-    width: 100%;
-    height: auto;
   }
   .hero-copy {
     position: absolute;
@@ -246,7 +235,14 @@ const grid = Array.from({ length: 8 }, (_, r) =>
     const apply = (s: State) => {
       square.style.transform = `translate(${u(s.sx)}, ${u(s.sy)}) rotate(${s.rot}deg)`;
       square.style.borderRadius = u(s.radius);
-      cursor.style.transform = `translate(${u(s.cx)}, ${u(s.cy)})`;
+      // The "Kiara Correa" tag always stays to the right of the arrow. When the viewport is too narrow for it,
+      // the cursor stops a little earlier instead, so the tag is never cut off.
+      const unit = cursor.offsetWidth / 150;
+      // (the hero section clips horizontally, so the limit is the section edge or the viewport, whichever is closer)
+      const edge = Math.min(document.documentElement.clientWidth, stage.closest('section')?.getBoundingClientRect().right ?? Infinity);
+      const maxCx = (edge - 8 - stage.getBoundingClientRect().left) / unit - 143;
+      const cx = Math.min(s.cx, maxCx);
+      cursor.style.transform = `translate(${u(cx)}, ${u(s.cy)})`;
     };
     const setTransition = (ms: number, easing: string) => {
       for (const el of [square, cursor]) el.style.transition = `transform ${ms}ms ${easing}, border-radius ${ms}ms ${easing}`;

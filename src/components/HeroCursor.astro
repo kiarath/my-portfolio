@@ -1,0 +1,63 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: extra = '' } = Astro.props;
+/**
+ * Animated cursor of the hero (Figma: "Group 1" → arrow + "Kiara Correa" pill).
+ * Sized in the parent's --u units; the arrow tip sits at the element's top-left corner.
+ */
+---
+
+<span class:list={['hero-cursor absolute top-0 left-0', extra]} data-cursor aria-hidden="true">
+  <svg class="hc-arrow" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M11.8924 23.712L7.33378 7.72052C7.0984 6.8948 7.95602 6.18177 8.73584 6.55483L23.8385 13.7799C24.6416 14.1641 24.5812 15.3166 23.7425 15.6138L17.5312 17.8146C17.3056 17.8945 17.1164 18.0518 16.9978 18.2581L13.7318 23.9368C13.2908 24.7036 12.1347 24.5623 11.8924 23.712Z"
+      fill="#1570EF"
+      stroke="#1570EF"
+      stroke-width="1"
+      stroke-linejoin="round"></path>
+  </svg>
+  <span class="hc-tag">Kiara Correa</span>
+</span>
+
+<style>
+  .hero-cursor {
+    /* 150×62 Figma box; the arrow tip (≈7,6.4) is aligned with the element origin */
+    width: calc(150 * var(--u));
+    height: calc(62 * var(--u));
+    margin: calc(-6.4 * var(--u)) 0 0 calc(-7 * var(--u));
+    transform-origin: 0 0;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .hc-arrow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(26 * var(--u));
+    height: calc(26 * var(--u));
+    filter: drop-shadow(0 calc(1 * var(--u)) calc(2 * var(--u)) rgb(0 0 0 / 0.08));
+    overflow: visible;
+  }
+  .hc-tag {
+    position: absolute;
+    left: calc(22 * var(--u));
+    top: calc(22 * var(--u));
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(128 * var(--u));
+    height: calc(40 * var(--u));
+    border-radius: calc(24 * var(--u));
+    background: #1570ef;
+    border: calc(2 * var(--u)) solid #1570ef;
+    color: #fff;
+    font-family: 'Inter Variable', 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: calc(16 * var(--u));
+    line-height: 1;
+    white-space: nowrap;
+  }
+</style>
