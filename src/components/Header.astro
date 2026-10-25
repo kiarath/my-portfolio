@@ -1,0 +1,139 @@
+---
+import Logo from './Logo.astro';
+import LangToggle from './LangToggle.astro';
+import T from './T.astro';
+import { site, ui } from '../data/site';
+import { url } from '../utils';
+import mail from '../assets/icons/mail.svg?raw';
+import linkedin from '../assets/icons/linkedin.svg?raw';
+import resume from '../assets/icons/resume.svg?raw';
+---
+
+<div class="h-0 sm:h-[42px]" aria-hidden="true"></div>
+<header class="site-header sticky top-0 z-40 bg-white/90 backdrop-blur-md transition-shadow" data-header>
+  <div class="page flex h-14 items-center justify-between gap-x-6 sm:h-auto sm:py-4">
+    <Logo />
+    <div class="ml-auto sm:ml-0"><LangToggle /></div>
+    <nav aria-label="Main" class="flex items-center gap-[30px] text-[15px] leading-[1.2] font-bold max-sm:hidden">
+      <a class="transition-colors hover:text-coral" href={url('/#projects')}><T en={ui.en.projects} es={ui.es.projects} /></a>
+      <a class="t-en transition-colors hover:text-coral" lang="en" href={site.links.resume.en} target="_blank" rel="noopener">{ui.en.resume}</a>
+      <a class="t-es transition-colors hover:text-coral" lang="es" href={site.links.resume.es} target="_blank" rel="noopener">{ui.es.resume}</a>
+      <a class="transition-colors hover:text-coral" href="#contact"><T en={ui.en.contact} es={ui.es.contact} /></a>
+    </nav>
+    <!-- Mobile: hamburger / close -->
+    <button
+      type="button"
+      class="menu-btn relative -mr-2.5 ml-1 size-11 sm:hidden"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Menu"
+      data-menu-toggle
+    >
+      <i></i><i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu (Figma: "B · Menú abierto") -->
+<div id="mobile-menu" class="mobile-menu fixed inset-0 z-30 overflow-y-auto bg-white pt-14 sm:hidden" data-menu hidden>
+  <nav aria-label="Main" class="page flex flex-col gap-[11px] pt-12">
+    <a class="text-[40px] leading-[49px] font-bold" href={url('/#projects')} data-menu-link><T en={ui.en.projects} es={ui.es.projects} /></a>
+    <a class="t-en text-[40px] leading-[49px] font-bold" lang="en" href={site.links.resume.en} target="_blank" rel="noopener">{ui.en.resume}</a>
+    <a class="t-es text-[40px] leading-[49px] font-bold" lang="es" href={site.links.resume.es} target="_blank" rel="noopener">{ui.es.resume}</a>
+    <a class="text-[40px] leading-[49px] font-bold" href="#contact" data-menu-link><T en={ui.en.contact} es={ui.es.contact} /></a>
+  </nav>
+  <div class="page mt-[23px] border-t border-black/12 pt-[23px]">
+    <p class="font-mono text-[24px] leading-[1.5]"><T en={ui.en.letsCreate} es={ui.es.letsCreate} /></p>
+    <ul class="mt-3 flex flex-col gap-3">
+      <li>
+        <a class="flex items-center gap-2" href={site.links.email}><span class="size-6" set:html={mail} aria-hidden="true" /><T en={ui.en.sendMessage} es={ui.es.sendMessage} /></a>
+      </li>
+      <li>
+        <a class="flex items-center gap-2" href={site.links.linkedin} target="_blank" rel="noopener"><span class="size-6" set:html={linkedin} aria-hidden="true" /><T en={ui.en.letsConnect} es={ui.es.letsConnect} /></a>
+      </li>
+      <li class="t-en" lang="en">
+        <a class="flex items-center gap-2" href={site.links.resume.en} target="_blank" rel="noopener"><span class="size-6" set:html={resume} aria-hidden="true" />{ui.en.checkResume}</a>
+      </li>
+      <li class="t-es" lang="es">
+        <a class="flex items-center gap-2" href={site.links.resume.es} target="_blank" rel="noopener"><span class="size-6" set:html={resume} aria-hidden="true" />{ui.es.checkResume}</a>
+      </li>
+    </ul>
+  </div>
+  <!-- Decoration: coral pixels bottom-left, colour column bottom-right -->
+  <div class="pointer-events-none fixed bottom-0 left-0 w-24" aria-hidden="true">
+    <span class="block h-[46px] w-12 bg-coral"></span><span class="ml-12 block h-[46px] w-12 bg-coral"></span><span class="block h-5 w-12 bg-coral"></span>
+  </div>
+  <div class="pointer-events-none fixed right-0 bottom-[10px] flex w-10 flex-col gap-1" aria-hidden="true">
+    <span class="h-[37px] bg-cyan"></span><span class="h-[37px] bg-blush"></span><span class="h-[37px]"></span><span class="h-[37px] bg-blush"></span><span class="h-[37px] bg-cyan"></span>
+  </div>
+</div>
+
+<style>
+  .site-header.is-scrolled {
+    box-shadow: 0 1px 0 rgb(0 0 0 / 0.08);
+  }
+  .menu-btn i {
+    position: absolute;
+    left: 11px;
+    width: 22px;
+    height: 2px;
+    background: #000;
+    transition:
+      transform 0.25s,
+      opacity 0.2s;
+  }
+  .menu-btn i:nth-child(1) {
+    top: 15px;
+  }
+  .menu-btn i:nth-child(2) {
+    top: 21px;
+  }
+  .menu-btn i:nth-child(3) {
+    top: 27px;
+  }
+  .menu-btn[aria-expanded='true'] i:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .menu-btn[aria-expanded='true'] i:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-btn[aria-expanded='true'] i:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+  .mobile-menu:not([hidden]) {
+    animation: menu-in 0.25s ease-out;
+  }
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  if (header) {
+    const update = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    // Expose the header height for sticky elements below it (case page section bar).
+    const setH = () => document.documentElement.style.setProperty('--header-h', `${header.offsetHeight}px`);
+    setH();
+    window.addEventListener('resize', setH);
+  }
+
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+  if (toggle && menu) {
+    const set = (open: boolean) => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+    };
+    toggle.addEventListener("click", () => set(Boolean(menu.hidden)));
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => set(false)));
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && !menu.hidden && set(false));
+    window.matchMedia('(min-width: 640px)').addEventListener('change', (e) => e.matches && set(false));
+  }
+</script>

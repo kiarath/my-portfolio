@@ -1,0 +1,13 @@
+---
+/**
+ * Bilingual text. Both versions are rendered; CSS shows the active language
+ * (html[data-lang]) so there is no flash and no client-side text swapping.
+ */
+interface Props {
+  en: string;
+  es: string;
+}
+const { en, es } = Astro.props;
+---
+
+<span class="t-en" lang="en" set:html={en} /><span class="t-es" lang="es" set:html={es} />

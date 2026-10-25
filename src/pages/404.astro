@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import T from '../components/T.astro';
+import { url } from '../utils';
+---
+
+<Base title="404 — Kiara Correa">
+  <section class="page relative py-32">
+    <span class="absolute top-24 right-0 h-[95px] w-[96px] bg-coral" aria-hidden="true"></span>
+    <p class="font-mono text-[13px] text-muted">404</p>
+    <h1 class="mt-2 text-[44px] leading-[1.1] font-bold sm:text-[64px]">
+      <T en="this page is a <span class='text-gradient'>banana</span>" es="esta página es una <span class='text-gradient'>banana</span>" />
+    </h1>
+    <a href={url('/')} class="link mt-8 inline-block font-mono text-[14px]"><T en="back home  →" es="volver al inicio  →" /></a>
+  </section>
+</Base>

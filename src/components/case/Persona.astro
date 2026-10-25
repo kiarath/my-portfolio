@@ -1,0 +1,45 @@
+---
+import type { Persona } from '../../data/types';
+
+interface Props {
+  persona: Persona;
+  compact?: boolean;
+}
+const { persona, compact = false } = Astro.props;
+---
+
+<article class:list={['bg-surface', compact ? 'p-5' : 'p-6']}>
+  <h4 class:list={['font-bold', compact ? 'text-[20px]' : 'text-[24px]']}>{persona.name}</h4>
+  <p class="mt-1 font-mono text-[11px] tracking-wide text-muted uppercase sm:text-[12px]">{persona.meta}</p>
+  {
+    persona.quote && (
+      <p
+        class:list={[
+          'mt-4 font-light',
+          compact ? 'text-[15px] leading-[22px]' : 'border-l-[3px] border-coral pl-[15px] text-[16px] leading-[24px]',
+        ]}
+      >
+        {persona.quote}
+      </p>
+    )
+  }
+  {persona.bio && <p class="mt-4 text-[15px] leading-[24px] font-light sm:text-[16px]">{persona.bio}</p>}
+  <div class:list={['mt-5 grid gap-4', !compact && (persona.groups.length === 3 ? 'md:grid-cols-3' : 'sm:grid-cols-2')]}>
+    {
+      persona.groups.map((g) => (
+        <div>
+          <h5 class:list={['font-bold', compact ? 'text-[13px]' : 'text-[14px] sm:text-[15px]']}>{g.label}</h5>
+          {g.items.length === 1 ? (
+            <p class="mt-0.5 text-[13px] leading-[18px] font-light">{g.items[0]}</p>
+          ) : (
+            <ul class="mt-1.5 text-[13px] leading-[22px] font-light sm:text-[14px] sm:leading-[24px]">
+              {g.items.map((i) => (
+                <li>• {i}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</article>

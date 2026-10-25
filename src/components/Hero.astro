@@ -1,0 +1,278 @@
+---
+/**
+ * Hero from Figma (Home › Frame 3) + the "Animación hero (prototipo)" sequence.
+ * The stage keeps the 971×651 proportions of the design: every position uses
+ * `--u` (1 design px expressed in container units), so it scales fluidly.
+ */
+import T from './T.astro';
+import cursor from '../assets/icons/cursor.svg?raw';
+import arrow from '../assets/icons/arrow-down.svg?raw';
+import FigmaMock from './FigmaMock.astro';
+
+/** Mobile illustration box, in px of the 375px Figma frame (`--v`). */
+const vbox = (x: number, y: number, w?: number, h?: number) =>
+  [
+    `left:calc(${x}*var(--v))`,
+    `top:calc(${y}*var(--v))`,
+    w !== undefined ? `width:calc(${w}*var(--v))` : '',
+    h !== undefined ? `height:calc(${h}*var(--v))` : '',
+  ]
+    .filter(Boolean)
+    .join(';');
+
+/** Absolute box in design px → inline style in scalable units. */
+const box = (x: number, y: number, w?: number, h?: number) =>
+  [
+    `left:calc(${x}*var(--u))`,
+    `top:calc(${y}*var(--u))`,
+    w !== undefined ? `width:calc(${w}*var(--u))` : '',
+    h !== undefined ? `height:calc(${h}*var(--u))` : '',
+  ]
+    .filter(Boolean)
+    .join(';');
+
+// Swiss grid: 12 × 8 squares of 96.7px every 79.52px / 79.25px.
+const grid = Array.from({ length: 8 }, (_, r) =>
+  Array.from({ length: 12 }, (_, c) => box(c * 79.52, r * 79.25, 96.7, 96.7)),
+).flat();
+
+---
+
+<section class="relative mx-auto max-w-[1194px] overflow-x-clip" aria-labelledby="hero-title">
+
+  <!-- Mobile illustration (Figma: "A · Home (inicio)"): zoom on the mock, 375×328 -->
+  <div class="hero-m relative sm:hidden" aria-hidden="true">
+    <div class="hero-m-inner">
+      <span class="absolute bg-coral" style={vbox(0, 0, 72, 66)}></span>
+      <div class="absolute" style={vbox(20, 70, 335)}>
+        <FigmaMock>
+          <div data-hero data-mode="mobile" class="absolute inset-0">
+            <span class="hero-square absolute top-0 left-0 bg-coral" data-square></span>
+            <span class="hero-cursor absolute top-0 left-0" data-cursor set:html={cursor} />
+          </div>
+        </FigmaMock>
+      </div>
+      <span class="absolute bg-coral" style={vbox(279, 226, 48, 46)}></span>
+      <span class="absolute bg-coral" style={vbox(327, 226, 48, 46)}></span>
+      <span class="absolute bg-coral" style={vbox(279, 272, 48, 46)}></span>
+    </div>
+  </div>
+
+  <div class="page relative mt-[7px]">
+    <div class="hero-container">
+      <div class="hero-stage relative" data-hero data-mode="desktop">
+        <!-- Grid -->
+        <div class="stage-art" aria-hidden="true">
+          {grid.map((s) => <span class="absolute border border-line opacity-40" style={s} />)}
+        </div>
+
+        <!-- Figma window mock -->
+        <div class="stage-art absolute" style={box(398, 106, 657, 369)}><FigmaMock /></div>
+
+        <!-- Coral blocks (Figma Home: 978/1074,571 · 978,666 · 1077,761 · 47,93), in stage coordinates.
+             The ones outside the 971px column only show where there is room for them. -->
+        <span class="stage-art absolute bg-coral" style={box(-56, -17, 146, 135)} aria-hidden="true"></span>
+        <span class="stage-art absolute bg-coral" style={box(875, 461, 96, 95)} aria-hidden="true"></span>
+        <span class="stage-art absolute bg-coral" style={box(971, 461, 96, 95)} aria-hidden="true"></span>
+        <span class="stage-art absolute bg-coral" style={box(875, 556, 96, 95)} aria-hidden="true"></span>
+        <span class="stage-art absolute bg-coral" style={box(974, 651, 96, 95)} aria-hidden="true"></span>
+
+        <!-- Animated square + cursor (see script) -->
+        <span class="stage-art hero-square absolute top-0 left-0 bg-coral" data-square aria-hidden="true"></span>
+        <span class="stage-art hero-cursor absolute top-0 left-0" data-cursor aria-hidden="true" set:html={cursor} />
+
+        <!-- Copy -->
+        <div class="hero-copy">
+          <p class="hero-kicker font-mono leading-[1.2]">product &amp; graphic</p>
+          <h1 id="hero-title" class="hero-title leading-[1.2] font-bold">
+            <T en="designer of" es="diseñadora" /><br />
+            <T
+              en="unique <span class='text-gradient'>interfaces</span>"
+              es="de interfaces <span class='text-gradient'>únicas</span>"
+            />
+          </h1>
+          <a href="#about" class="hero-scroll group inline-flex items-center gap-[calc(14*var(--u))] font-mono leading-[1.2]">
+            <T en="scroll to learn more" es="scrolleá para ver más" />
+            <span class="inline-block transition-transform group-hover:translate-y-0.5" set:html={arrow} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-container {
+    container-type: inline-size;
+  }
+  .hero-stage {
+    --u: calc(100cqw / 971);
+    aspect-ratio: 971 / 651;
+  }
+  .hero-square {
+    width: calc(146 * var(--u));
+    height: calc(135 * var(--u));
+    transform-origin: 0 0;
+    z-index: 2;
+  }
+  .hero-cursor {
+    width: calc(14 * var(--u));
+    min-width: 9px;
+    transform-origin: 0 0;
+    z-index: 3;
+  }
+  .hero-cursor :global(svg) {
+    width: 100%;
+    height: auto;
+  }
+  .hero-copy {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .hero-copy > * {
+    pointer-events: auto;
+  }
+  .hero-kicker {
+    position: absolute;
+    left: calc(3 * var(--u));
+    top: calc(380 * var(--u));
+    font-size: max(12px, calc(16 * var(--u)));
+  }
+  .hero-title {
+    position: absolute;
+    left: calc(-2 * var(--u));
+    top: calc(413 * var(--u));
+    font-size: calc(64 * var(--u));
+    letter-spacing: -0.01em;
+  }
+  .hero-scroll {
+    position: absolute;
+    left: 0;
+    top: calc(635 * var(--u));
+    font-size: max(11px, calc(13 * var(--u)));
+  }
+
+  /* Mobile (Figma "A · Home"): separate zoomed illustration; the copy flows below it. */
+  .hero-m {
+    container-type: inline-size;
+    margin-top: 8px;
+  }
+  .hero-m-inner {
+    --v: calc(100cqw / 375);
+    position: relative;
+    height: calc(328 * var(--v));
+    background-image:
+      linear-gradient(to right, rgb(199 199 199 / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(199 199 199 / 0.4) 1px, transparent 1px);
+    background-size: calc(40 * var(--v)) calc(40 * var(--v));
+    background-position: calc(16 * var(--v)) calc(8 * var(--v));
+    overflow: hidden;
+  }
+  @media (max-width: 639px) {
+    .stage-art {
+      display: none;
+    }
+    .hero-stage {
+      aspect-ratio: auto;
+    }
+    .hero-copy,
+    .hero-kicker,
+    .hero-title,
+    .hero-scroll {
+      position: static;
+    }
+    .hero-kicker {
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .hero-title {
+      margin-top: 3px;
+      font-size: 40px;
+      line-height: 46px;
+    }
+    .hero-scroll {
+      margin-top: 12px;
+      gap: 10px;
+      font-size: 12px;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * Replays the Figma prototype "Animación hero": 9 frames with Smart Animate.
+   * Coordinates are in design px of the 971×651 stage (Figma frame − hero offset).
+   */
+  type State = { sx: number; sy: number; rot: number; radius: number; cx: number; cy: number };
+  type Step = { state: State; delay: number; duration: number; easing: string };
+
+  const easeOut = 'cubic-bezier(0, 0, 0.58, 1)';
+  const easeIn = 'cubic-bezier(0.42, 0, 1, 1)';
+  const easeInOut = 'cubic-bezier(0.42, 0, 0.58, 1)';
+
+  const start: State = { sx: 141, sy: 147, rot: 0, radius: 0, cx: 317, cy: 82 };
+  const steps: Step[] = [
+    { state: start, delay: 600, duration: 900, easing: easeOut }, // 1 · inicio
+    { state: { ...start, cx: 227, cy: 197 }, delay: 250, duration: 1000, easing: easeInOut }, // 2 · agarra
+    { state: { sx: 661, sy: 239, rot: 0, radius: 0, cx: 747, cy: 289 }, delay: 300, duration: 600, easing: easeInOut }, // 3 · suelta
+    { state: { sx: 661, sy: 239, rot: 0, radius: 0, cx: 815, cy: 382 }, delay: 150, duration: 450, easing: easeIn }, // 4 · esquina
+    { state: { sx: 721, sy: 207, rot: 40, radius: 0, cx: 748, cy: 416 }, delay: 800, duration: 450, easing: easeOut }, // 5 · rota 40
+    { state: { sx: 788, sy: 222, rot: 80, radius: 0, cx: 674, cy: 399 }, delay: 300, duration: 800, easing: easeInOut }, // 6 · rota 80
+    { state: { sx: 788, sy: 222, rot: 80, radius: 28, cx: 957, cy: 282 }, delay: 900, duration: 700, easing: easeInOut }, // 7 · redondea
+    { state: { sx: 788, sy: 222, rot: 80, radius: 28, cx: 747, cy: 300 }, delay: 250, duration: 1100, easing: easeInOut }, // 8 · retoma
+    { state: { ...start, cx: 227, cy: 209 }, delay: 300, duration: 800, easing: easeOut }, // 9 · lo devuelve
+  ];
+
+  /** Mobile: the same frames 3–8 in mock coordinates (stage − mock offset 398,106), looping inside the canvas. */
+  const o = (st: State): State => ({ ...st, sx: st.sx - 398, sy: st.sy - 106, cx: st.cx - 398, cy: st.cy - 106 });
+  const mobileSteps: Step[] = [
+    ...steps.slice(2, 8).map((st) => ({ ...st, state: o(st.state) })),
+    // back to the start of the loop (unrotate) instead of returning to the grid
+  ];
+  mobileSteps[mobileSteps.length - 1] = { ...mobileSteps[mobileSteps.length - 1], duration: 800, easing: easeOut };
+
+  const u = (n: number) => `calc(${n} * var(--u))`;
+  const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-hero]').forEach((stage) => {
+    const square = stage.querySelector<HTMLElement>('[data-square]');
+    const cursor = stage.querySelector<HTMLElement>('[data-cursor]');
+    if (!square || !cursor) return;
+    const seq = stage.dataset.mode === 'mobile' ? mobileSteps : steps;
+
+    const apply = (s: State) => {
+      square.style.transform = `translate(${u(s.sx)}, ${u(s.sy)}) rotate(${s.rot}deg)`;
+      square.style.borderRadius = u(s.radius);
+      cursor.style.transform = `translate(${u(s.cx)}, ${u(s.cy)})`;
+    };
+    const setTransition = (ms: number, easing: string) => {
+      for (const el of [square, cursor]) el.style.transition = `transform ${ms}ms ${easing}, border-radius ${ms}ms ${easing}`;
+    };
+
+    if (reduced) {
+      apply(seq.find((st) => st.state.radius > 0)?.state ?? seq[0].state);
+      return;
+    }
+
+    let visible = true;
+    new IntersectionObserver(([entry]) => (visible = entry.isIntersecting)).observe(stage);
+    // Only the version shown for this screen size animates (the other one is display:none).
+    const shown = () => square.offsetParent !== null;
+
+    (async () => {
+      setTransition(0, 'linear');
+      apply(seq[0].state);
+      for (let i = 0; ; i = (i + 1) % seq.length) {
+        const step = seq[i];
+        await wait(step.delay);
+        while (!visible || document.hidden || !shown()) await wait(400);
+        setTransition(step.duration, step.easing);
+        apply(seq[(i + 1) % seq.length].state);
+        await wait(step.duration);
+      }
+    })();
+  });
+</script>

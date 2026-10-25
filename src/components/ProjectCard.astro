@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import type { ProjectCard } from '../data/types';
+import { url, isPlaceholder } from '../utils';
+import T from './T.astro';
+
+const labelEs: Record<string, string> = {
+  'visit website': 'ver sitio',
+  'explore case': 'ver caso',
+  'download app': 'descargar app',
+  'explore github': 'ver en github',
+  'app store': 'app store',
+  'google play': 'google play',
+};
+
+interface Props {
+  project: ProjectCard;
+  eager?: boolean;
+  /** Position in the grid, used to stagger the fade-in per column. */
+  index?: number;
+}
+const { project, eager = false, index = 0 } = Astro.props;
+const caseHref = project.caseSlug ? url(`/projects/${project.caseSlug}`) : undefined;
+const links = [
+  ...project.links,
+  ...(caseHref ? [{ label: 'explore case', href: caseHref }] : []),
+];
+---
+
+<article class="group flex flex-col gap-[11px]" data-reveal style={`--reveal-delay:${(index % 3) * 90}ms`}>
+  {
+    caseHref ? (
+      <a href={caseHref} class="block overflow-hidden" tabindex="-1" aria-hidden="true">
+        <Image
+          src={project.image}
+          alt=""
+          widths={[400, 562]}
+          sizes="(min-width: 1024px) 281px, (min-width: 640px) 45vw, 100vw"
+          class="aspect-[281/227] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          loading={eager ? 'eager' : 'lazy'}
+        />
+      </a>
+    ) : (
+      <div class="overflow-hidden">
+        <Image
+          src={project.image}
+          alt=""
+          widths={[400, 562]}
+          sizes="(min-width: 1024px) 281px, (min-width: 640px) 45vw, 100vw"
+          class="aspect-[281/227] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          loading={eager ? 'eager' : 'lazy'}
+        />
+      </div>
+    )
+  }
+  <div class="flex flex-1 flex-col gap-2.5">
+    <h3 class="text-[13px] leading-[1.2]">
+      {project.name}<br /><strong class="font-bold"><T en={project.kind} es={project.es.kind} /></strong>
+    </h3>
+    <p class="text-[12px] leading-[1.2] font-light"><T en={project.description} es={project.es.description} /></p>
+    {
+      links.length > 0 && (
+        <p class="mt-auto flex gap-3.5 pt-1 text-[13px] leading-[1.2]">
+          {links.map((l) => (
+            <a
+              class="link"
+              href={l.href}
+              target={l.href.startsWith('http') ? '_blank' : undefined}
+              rel={l.href.startsWith('http') ? 'noopener' : undefined}
+              data-todo={isPlaceholder(l.href) ? '' : undefined}
+            >
+              <T en={l.label} es={labelEs[l.label] ?? l.label} />
+            </a>
+          ))}
+        </p>
+      )
+    }
+  </div>
+</article>

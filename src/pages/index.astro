@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import T from '../components/T.astro';
+import pixel from '../assets/icons/pixel.svg?raw';
+import { projects } from '../data/projects';
+---
+
+<Base>
+  <Hero />
+
+  <section id="about" class="relative mx-auto max-w-[1194px] scroll-mt-24">
+    <div class="page pt-8 sm:pt-[39px]">
+      <div class="max-w-[512px] text-[18px] leading-[24px] sm:text-[24px] sm:leading-[1.2]">
+        <p>
+          <T
+            en="I'm a designer with expertise in <u>UX/UI</u> and <u>visual identity</u> development."
+            es="Soy diseñadora con experiencia en <u>UX/UI</u> y en el desarrollo de <u>identidad visual</u>."
+          />
+        </p>
+        <p class="mt-[1.2em]">
+          <T
+            en="My focus is on user research, prototyping, and the creation of <u>design systems</u>, emphasising innovative and functional solutions that enhance the user experience."
+            es="Me enfoco en la investigación con usuarios, el prototipado y la creación de <u>sistemas de diseño</u>, con soluciones innovadoras y funcionales que mejoran la experiencia de usuario."
+          />
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="relative mt-10 sm:mt-[72px]">
+    <Marquee />
+    <span class="absolute top-[53px] right-0 hidden lg:block" set:html={pixel} aria-hidden="true" />
+  </div>
+
+  <section id="projects" class="page mt-10 scroll-mt-24 sm:mt-[72px]" aria-label="Projects">
+    <h2 class="sr-only">Projects</h2>
+    <div class="grid gap-x-[73px] gap-y-10 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-3 lg:gap-x-[73px]">
+      {projects.filter((p) => !p.hidden).map((p, i) => <ProjectCard project={p} eager={i < 3} index={i} />)}
+    </div>
+  </section>
+</Base>

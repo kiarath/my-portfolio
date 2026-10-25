@@ -1,0 +1,59 @@
+---
+/** Scrolling keyword bar ("Marquee keywords (prototipo)": linear, 24 s loop). */
+const words = [
+  'ECOMMERCE',
+  'AI PLATFORMS',
+  'APPS',
+  'B2B',
+  'B2C',
+  'DESIGN',
+  'STREAMING',
+  'DASHBOARD',
+  'SAAS',
+  'LANDING PAGES',
+  'RESEARCH',
+  'AI-ASSISTED WORKFLOW',
+  'RESPONSIVE',
+];
+---
+
+<div class="marquee relative overflow-hidden py-1 select-none" role="marquee" aria-label={words.join(', ')}>
+  <div class="marquee-track flex w-max" aria-hidden="true">
+    {
+      [0, 1].map(() => (
+        <ul class="flex shrink-0 items-center gap-[15px] pr-[15px]">
+          {words.map((w) => (
+            <>
+              <li
+                class:list={[
+                  'font-mono text-[18px] leading-[1.2] whitespace-nowrap sm:text-[24px]',
+                  w === 'DESIGN' ? 'marquee-accent font-bold' : 'text-muted',
+                ]}
+              >
+                {w}
+              </li>
+              <li class="text-[10px] text-muted">✦</li>
+            </>
+          ))}
+        </ul>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .marquee-track {
+    animation: marquee 48s linear infinite;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .marquee-accent {
+    background-image: linear-gradient(90deg, #ff5655, #0f80a5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+</style>

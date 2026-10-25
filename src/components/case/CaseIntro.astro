@@ -1,0 +1,32 @@
+---
+import type { CaseStudy } from '../../data/types';
+
+interface Props {
+  study: CaseStudy;
+}
+const { study } = Astro.props;
+const external = (href: string) => href.startsWith('http');
+---
+
+<p class="mt-5 font-mono text-[13px] text-muted uppercase">{study.tags.join('  ·  ')}</p>
+<h1 class="mt-2 text-[44px] leading-[1.1] font-bold sm:text-[64px]">{study.title}</h1>
+<p class="mt-4 max-w-[820px] text-[18px] leading-[1.5] font-light sm:text-[20px]">{study.summary}</p>
+<p class="mt-5 flex flex-wrap gap-x-8 gap-y-2 text-[14px]">
+  {
+    study.links.map((l) => (
+      <a class="link whitespace-pre" href={l.href} target={external(l.href) ? '_blank' : undefined} rel={external(l.href) ? 'noopener' : undefined}>
+        {l.label}
+      </a>
+    ))
+  }
+</p>
+<dl class="mt-12 grid grid-cols-2 gap-x-6 gap-y-6 md:grid-cols-4">
+  {
+    study.meta.map((m) => (
+      <div>
+        <dt class="text-[14px] font-bold">{m.label}</dt>
+        <dd class="mt-1.5 text-[16px] font-light">{m.value}</dd>
+      </div>
+    ))
+  }
+</dl>

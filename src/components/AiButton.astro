@@ -1,0 +1,516 @@
+---
+/**
+ * Floating "AI Button" + chat (Figma: Desarollo › Home 20:10278, and the
+ * "use ai — frustration concept" section). The chat floats above the button,
+ * follows the scroll and plays the sequence automatically:
+ * vague prompt → wrong result → frustration → new chat → the brief → how I use AI.
+ */
+import { Image } from 'astro:assets';
+import T from './T.astro';
+import robot from '../assets/icons/robot.svg?raw';
+import { site } from '../data/site';
+import banana from '../assets/projects/ai-banana.jpg';
+import bananaShop from '../assets/projects/ai-banana-shop.jpg';
+
+const brief = {
+  en: [
+    'Role: senior UX/UI designer',
+    'Brief: personal portfolio, UX/UI designer',
+    'Style: Swiss grid, minimal, coral accent',
+    'Rules: lightweight, built with Astro',
+    'Output: 3 variants + rationale',
+  ],
+  es: [
+    'Rol: diseñadora UX/UI senior',
+    'Brief: portafolio personal, diseñadora UX/UI',
+    'Estilo: grilla suiza, minimalista, acento coral',
+    'Reglas: liviano, hecho con Astro',
+    'Entrega: 3 variantes + fundamentos',
+  ],
+};
+/** Typed messages: the script picks the text of the active language. */
+const say = {
+  prompt: { en: 'make me an incredible ecommerce design, no mistakes', es: 'haceme un diseño de ecommerce increíble, sin errores' },
+  complaint: { en: "that's a banana, I asked for a design", es: 'eso es una banana, te pedí un diseño' },
+  ugh: { en: 'ughh!!', es: '¡¡uffff!!' },
+};
+---
+
+<div class="ai-dock fixed z-40 flex flex-col items-end gap-[15px]" data-ai-dock>
+  <div class="ai-overlay fixed inset-0 bg-black/35" data-ai-overlay hidden></div>
+  <section
+    id="ai-chat"
+    class="ai-panel relative h-[340px] w-[347px] max-w-[calc(100vw-32px)] overflow-hidden rounded-[8px] text-ink"
+    aria-label="AI chat demo"
+    data-ai-panel
+    hidden
+  >
+    <button
+      type="button"
+      class="ai-close absolute top-1.5 right-1.5 z-20 grid size-6 place-items-center rounded-full bg-white/80 font-mono text-[11px] leading-none text-muted transition-colors hover:text-ink"
+      data-ai-close
+      aria-label="Close chat">✕</button
+    >
+    <!-- Mobile bottom sheet: drag handle + title -->
+    <div class="ai-grab absolute inset-x-0 top-0 z-10 h-14 sm:hidden" data-ai-grab aria-hidden="true">
+      <span class="absolute top-2.5 left-1/2 h-1 w-9 -translate-x-1/2 rounded-full bg-line"></span>
+      <span class="absolute top-7 left-4 font-mono text-[12px] text-muted"><T en="AI Button" es="Botón de IA" /></span>
+    </div>
+
+    <!-- Conversation 1: the vague prompt -->
+    <div class="ai-scroll absolute inset-0 flex flex-col gap-4 overflow-y-auto px-4 pt-[70px] pb-4 sm:pt-8" data-ai-thread aria-live="polite">
+      <p class="ai-user" data-msg><span data-type data-en={say.prompt.en} data-es={say.prompt.es}>{say.prompt.en}</span></p>
+      <figure class="ai-img w-[220px] sm:w-[178px]" data-msg>
+        <Image src={banana} alt="The AI answers with a photo of a banana" widths={[178, 356]} sizes="178px" class="aspect-[178/113] w-full object-cover" />
+      </figure>
+      <p class="ai-user" data-msg><span data-type data-en={say.complaint.en} data-es={say.complaint.es}>{say.complaint.en}</span></p>
+      <figure class="ai-img w-[220px]" data-msg>
+        <Image
+          src={bananaShop}
+          alt="The AI answers with a banana e-commerce page on a laptop, still on top of the banana"
+          widths={[220, 440]}
+          sizes="220px"
+          class="aspect-[16/9] w-full object-cover"
+        />
+      </figure>
+      <p class="ai-user ai-shake" data-msg><span data-type data-en={say.ugh.en} data-es={say.ugh.es}>{say.ugh.en}</span></p>
+    </div>
+
+    <!-- Conversation 2: the brief -->
+    <div class="ai-scroll absolute inset-0 flex flex-col gap-3 overflow-y-auto px-4 pt-14 pb-4 opacity-0 sm:pt-4" data-ai-new aria-live="polite">
+      <span data-ai-pill class="w-fit shrink-0 rounded-[15px] border border-[#e2e2e2] bg-white px-3 py-1 font-mono text-[11px]"><T en="+ new chat" es="+ nuevo chat" /></span>
+
+      <p class="absolute inset-x-0 top-[45%] text-center font-mono text-[12px] text-muted" data-ai-hint><T en="start with a brief, not a wish" es="empezá con un brief, no con un deseo" /></p>
+
+      <pre
+        class="mt-4 ml-auto w-full max-w-[268px] shrink-0 rounded-[6px] border border-black bg-white px-3 py-2 font-mono text-[10px] leading-[1.5] whitespace-pre-wrap"
+        data-ai-brief><span class="t-en" lang="en">{brief.en.join('\n')}</span><span class="t-es" lang="es">{brief.es.join('\n')}</span></pre>
+
+      <p class="w-fit shrink-0 rounded-[6px] border border-[#e2e2e2] bg-white px-3 py-2 font-mono text-[11px] text-muted" data-ai-thinking>
+        <T en="thinking" es="pensando" /><span class="ai-dots"></span>
+      </p>
+
+      <div class="shrink-0 flex-col items-start gap-1.5" data-ai-result>
+        <div class="ai-mini" role="img" aria-label="Result: a minimal Swiss-grid portfolio with coral accents (this site)">
+          <div class="ai-mini-stage">
+            {[66, 132, 198, 264].map((x) => <i class="absolute top-0 h-full w-px bg-[#e8e8e8]" style={`left:calc(${x}*var(--m))`} />)}
+            {[36, 76, 116].map((y) => <i class="absolute left-0 h-px w-full bg-[#e8e8e8]" style={`top:calc(${y}*var(--m))`} />)}
+            <i class="absolute bg-coral" style="left:calc(2*var(--m));top:calc(20*var(--m));width:calc(24*var(--m));height:calc(24*var(--m))"></i>
+            <i class="absolute bg-coral" style="right:0;top:calc(92*var(--m));width:calc(24*var(--m));height:calc(54*var(--m))"></i>
+            <span class="absolute" style="left:calc(12*var(--m));top:calc(6*var(--m));font-size:calc(8*var(--m))">kiara/correa</span>
+            <span class="absolute font-bold" style="right:calc(10*var(--m));top:calc(6*var(--m));font-size:calc(6*var(--m))">info&nbsp;&nbsp;&nbsp;contact</span>
+            <span class="absolute font-mono" style="left:calc(12*var(--m));top:calc(70*var(--m));font-size:calc(6*var(--m))">product &amp; graphic</span>
+            <span class="absolute leading-[1.15] font-bold" style="left:calc(12*var(--m));top:calc(82*var(--m));font-size:calc(19*var(--m))"
+              ><T en="designer of<br />unique <span class='text-gradient'>interfaces</span>" es="diseñadora<br />de interfaces <span class='text-gradient'>únicas</span>" /></span
+            >
+          </div>
+        </div>
+        <a href={site.links.github} target="_blank" rel="noopener" class="w-fit border border-black bg-white px-2 py-0.5 text-[11px] transition-colors hover:bg-ink hover:text-white"
+          ><T en="view github&nbsp;&nbsp;→" es="ver en github&nbsp;&nbsp;→" /></a
+        >
+      </div>
+
+      <div class="mt-auto flex h-10 shrink-0 items-center rounded-[6px] border border-[#e2e2e2] bg-white px-3" data-ai-input>
+        <span class="truncate font-mono text-[11px]" data-ai-typed></span><i class="ai-caret"></i>
+      </div>
+
+      <div class="mt-auto shrink-0 flex-col items-start rounded-[8px] bg-white px-4 py-3" data-ai-cta>
+        <p class="text-[14px] font-bold"><T en="AI is a tool, not the designer." es="La IA es una herramienta, no la diseñadora." /></p>
+        <p class="mt-0.5 text-[12px] leading-[1.35]"><T en="I use it with clear briefs, constraints and my own judgment." es="La uso con briefs claros, restricciones y mi propio criterio." /></p>
+        <div class="mt-1.5 flex w-full items-center justify-between">
+          <a href="#contact" class="text-[14px] font-bold transition-colors hover:text-coral" data-ai-close><T en="let’s talk&nbsp;&nbsp;→" es="hablemos&nbsp;&nbsp;→" /></a>
+          <button type="button" class="font-mono text-[11px] text-muted underline underline-offset-2 hover:text-ink" data-ai-replay><T en="replay ↺" es="repetir ↺" /></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ai-trigger flex w-[135px] flex-col gap-1.5 max-sm:w-auto">
+    <span class="border-[0.5px] border-black bg-white px-[3px] font-mono text-[11px] leading-[14px] max-sm:hidden">
+      <T en="try our new_" es="probá lo nuevo_" />
+    </span>
+    <button
+      type="button"
+      class="ai-gradient flex h-[34px] items-center justify-center gap-[5px] font-mono text-[15px] text-white transition-transform hover:-translate-y-0.5 active:translate-y-0 max-sm:size-14 max-sm:rounded-full"
+      data-ai-open
+      aria-controls="ai-chat"
+      aria-expanded="false"
+    >
+      <span class="ai-robot h-5 w-[19px]" set:html={robot} aria-hidden="true" />
+      <span class="max-sm:sr-only"><T en="AI Button" es="Botón de IA" /></span>
+    </button>
+  </div>
+</div>
+
+<style>
+  /* Position from the Figma Home frame (button at x1032–1167 of 1194, bottom at 995 of 1053):
+     27px from the right edge and 58px above the bottom of the viewport. */
+  .ai-dock {
+    right: 16px;
+    bottom: max(24px, calc(env(safe-area-inset-bottom) + 16px));
+  }
+  @media (min-width: 640px) {
+    .ai-dock {
+      right: 27px;
+      bottom: 58px;
+    }
+    .ai-overlay {
+      display: none;
+    }
+  }
+  /* Mobile (Figma C/D): round button that appears after the hero, chat as a bottom sheet. */
+  @media (max-width: 639px) {
+    .ai-dock {
+      transition:
+        opacity 0.3s,
+        visibility 0.3s;
+    }
+    .ai-dock[data-hidden]:not(.is-open) {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .ai-dock.is-open .ai-trigger {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .ai-robot {
+      width: 25px;
+      height: 26px;
+    }
+    .ai-robot :global(svg) {
+      width: 100%;
+      height: 100%;
+    }
+    .ai-dock .ai-panel {
+      position: fixed;
+      inset: auto 0 0 0;
+      width: 100%;
+      max-width: none;
+      height: min(560px, 78dvh);
+      border-radius: 16px 16px 0 0;
+      background: #f3f3f3;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      box-shadow: 0 -8px 30px rgb(0 0 0 / 0.12);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .ai-dock .ai-panel:not([hidden]) {
+      animation: sheet-in 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .ai-dock .ai-close {
+      top: 20px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      background: #fff;
+      font-size: 14px;
+    }
+    .ai-dock .ai-user {
+      max-width: 248px;
+      font-size: 16px;
+    }
+    .ai-overlay:not([hidden]) {
+      animation: fade-in 0.25s ease-out;
+    }
+  }
+  @keyframes sheet-in {
+    from {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+  .ai-gradient {
+    background-image: linear-gradient(111.9deg, #6c8cd9 35.7%, #f6484a 74.8%, #d1bf30 102.2%);
+    filter: drop-shadow(0 0 2px #e64c18);
+  }
+  /* Glass panel: #f3f3f3 at 55% + background blur (Figma "Glass" effect). */
+  .ai-panel {
+    background: rgb(243 243 243 / 0.55);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    backdrop-filter: blur(12px) saturate(1.2);
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.6),
+      0 12px 40px rgb(0 0 0 / 0.08);
+    transform-origin: bottom right;
+  }
+  .ai-panel:not([hidden]) {
+    animation: ai-in 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  @keyframes ai-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.96);
+    }
+  }
+  .ai-scroll {
+    scrollbar-width: none;
+    transition: opacity 0.4s;
+  }
+  .ai-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .ai-user {
+    align-self: flex-end;
+    max-width: 224px;
+    text-align: right;
+    font-size: 15px;
+    line-height: 1.33;
+  }
+  .ai-img {
+    overflow: hidden;
+    border: 1px solid #e2e2e2;
+    border-radius: 6px;
+    background: #fff;
+  }
+  [data-msg],
+  [data-ai-brief],
+  [data-ai-thinking],
+  [data-ai-result],
+  [data-ai-cta] {
+    display: none;
+  }
+  .is-shown {
+    display: block !important;
+    animation: pop 0.35s ease-out;
+  }
+  [data-ai-result].is-shown,
+  [data-ai-cta].is-shown {
+    display: flex !important;
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+  .ai-shake.is-shown {
+    animation: shake 0.45s ease-in-out;
+  }
+  @keyframes shake {
+    25% {
+      transform: translateX(-6px) rotate(-2deg);
+    }
+    50% {
+      transform: translateX(5px) rotate(2deg);
+    }
+    75% {
+      transform: translateX(-3px);
+    }
+  }
+  .ai-caret {
+    display: inline-block;
+    width: 1.5px;
+    height: 18px;
+    background: #000;
+    margin-left: 2px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  .ai-dots::after {
+    content: '';
+    animation: dots 1.2s steps(4) infinite;
+  }
+  @keyframes dots {
+    25% {
+      content: '.';
+    }
+    50% {
+      content: '..';
+    }
+    75% {
+      content: '...';
+    }
+  }
+  .ai-mini {
+    container-type: inline-size;
+    width: 236px;
+    max-width: 100%;
+    border: 1px solid #e2e2e2;
+    border-radius: 6px;
+    background: #fff;
+    overflow: hidden;
+  }
+  .ai-mini-stage {
+    --m: calc(100cqw / 360);
+    position: relative;
+    aspect-ratio: 360 / 150;
+  }
+</style>
+
+<script>
+  const panel = document.querySelector<HTMLElement>('[data-ai-panel]');
+  const openBtn = document.querySelector<HTMLButtonElement>('[data-ai-open]');
+
+  if (panel && openBtn) {
+    const $ = (sel: string) => panel.querySelector<HTMLElement>(sel)!;
+    const thread = $('[data-ai-thread]');
+    const fresh = $('[data-ai-new]');
+    const hint = $('[data-ai-hint]');
+    const pill = $('[data-ai-pill]');
+    const brief = $('[data-ai-brief]');
+    const thinking = $('[data-ai-thinking]');
+    const result = $('[data-ai-result]');
+    const input = $('[data-ai-input]');
+    const typed = $('[data-ai-typed]');
+    const cta = $('[data-ai-cta]');
+    const msgs = [...panel.querySelectorAll<HTMLElement>('[data-msg]')];
+
+    const lang = () => (document.documentElement.dataset.lang === 'es' ? 'es' : 'en');
+    const briefText = {
+      en: 'Role: senior UX/UI designer · Brief: personal portfolio · Style: Swiss grid, minimal, coral accent…',
+      es: 'Rol: diseñadora UX/UI senior · Brief: portafolio personal · Estilo: grilla suiza, minimalista, acento coral…',
+    };
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let run = 0; // cancels a running sequence when replayed or closed
+    const sleep = (ms: number, id: number) =>
+      new Promise<void>((resolve, reject) => setTimeout(() => (id === run ? resolve() : reject('cancel')), reduced ? 0 : ms));
+
+    const scrollDown = (box: HTMLElement) => box.scrollTo({ top: box.scrollHeight, behavior: reduced ? 'auto' : 'smooth' });
+    const show = (el: HTMLElement) => {
+      el.classList.add('is-shown');
+      scrollDown(thread.contains(el) ? thread : fresh);
+    };
+    const hide = (el: HTMLElement) => el.classList.remove('is-shown');
+
+    async function typeInto(el: HTMLElement, text: string, speed: number, id: number) {
+      el.textContent = '';
+      for (const ch of text) {
+        el.textContent += ch;
+        await sleep(speed, id);
+      }
+    }
+
+    function reset() {
+      msgs.forEach(hide);
+      [brief, thinking, result, cta].forEach(hide);
+      thread.style.opacity = '1';
+      thread.style.visibility = '';
+      fresh.style.opacity = '0';
+      fresh.style.visibility = 'hidden';
+      thread.scrollTop = 0;
+      fresh.scrollTop = 0;
+      hint.style.display = '';
+      input.style.display = '';
+      pill.style.display = '';
+      brief.style.marginTop = '';
+      typed.textContent = '';
+    }
+
+    async function play() {
+      const id = ++run;
+      reset();
+      try {
+        const say = async (el: HTMLElement) => {
+          const span = el.querySelector<HTMLElement>('[data-type]');
+          const text = (lang() === 'es' ? span?.dataset.es : span?.dataset.en) ?? '';
+          if (span) span.textContent = '';
+          show(el);
+          if (span) await typeInto(span, text, 26, id);
+        };
+        await sleep(400, id);
+        await say(msgs[0]); // 01 vague prompt
+        await sleep(700, id);
+        show(msgs[1]); // banana
+        await sleep(1500, id);
+        await say(msgs[2]); // 02 wrong result
+        await sleep(700, id);
+        show(msgs[3]); // page with banana
+        await sleep(1500, id);
+        await say(msgs[4]); // 03 frustration
+        await sleep(1500, id);
+        thread.style.opacity = '0'; // 04 new chat
+        thread.style.visibility = 'hidden';
+        fresh.style.visibility = '';
+        fresh.style.opacity = '1';
+        await sleep(1400, id);
+        await typeInto(typed, briefText[lang()], 22, id); // 05 the brief
+        await sleep(350, id);
+        typed.textContent = '';
+        hint.style.display = 'none';
+        show(brief);
+        await sleep(600, id);
+        show(thinking);
+        await sleep(1800, id);
+        hide(thinking); // 06 how I use AI
+        input.style.display = 'none';
+        pill.style.display = 'none';
+        brief.style.marginTop = '0';
+        show(result);
+        await sleep(500, id);
+        show(cta);
+      } catch {
+        /* cancelled */
+      }
+    }
+
+    const dock = document.querySelector<HTMLElement>('[data-ai-dock]')!;
+    const overlay = document.querySelector<HTMLElement>('[data-ai-overlay]')!;
+    const mobile = window.matchMedia('(max-width: 639px)');
+
+    const open = () => {
+      panel.hidden = false;
+      overlay.hidden = false;
+      dock.classList.add('is-open');
+      openBtn.setAttribute('aria-expanded', 'true');
+      if (mobile.matches) document.documentElement.style.overflow = 'hidden';
+      play();
+    };
+    const close = () => {
+      panel.hidden = true;
+      overlay.hidden = true;
+      dock.classList.remove('is-open');
+      panel.style.transform = '';
+      openBtn.setAttribute('aria-expanded', 'false');
+      document.documentElement.style.overflow = '';
+      run++;
+    };
+    overlay.addEventListener('click', close);
+
+    // Mobile: drag the sheet down to close it.
+    const grab = $('[data-ai-grab]');
+    let startY = 0;
+    let dy = 0;
+    grab.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+      dy = 0;
+      panel.style.transition = 'none';
+    }, { passive: true });
+    grab.addEventListener('touchmove', (e) => {
+      dy = Math.max(0, e.touches[0].clientY - startY);
+      panel.style.transform = `translateY(${dy}px)`;
+    }, { passive: true });
+    grab.addEventListener('touchend', () => {
+      panel.style.transition = 'transform 0.25s ease-out';
+      if (dy > 80) close();
+      else panel.style.transform = '';
+    });
+
+    // Mobile: the round button only shows once the hero is out of view.
+    const hero = document.querySelector('[aria-labelledby="hero-title"]');
+    if (hero) {
+      dock.toggleAttribute('data-hidden', true);
+      new IntersectionObserver(([entry]) => dock.toggleAttribute('data-hidden', entry.isIntersecting), {
+        rootMargin: '0px 0px -40% 0px',
+      }).observe(hero);
+    }
+
+    openBtn.addEventListener('click', () => (panel.hidden ? open() : close()));
+    panel.querySelectorAll('[data-ai-close]').forEach((el) => el.addEventListener('click', close));
+    $('[data-ai-replay]').addEventListener('click', play);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !panel.hidden) {
+        close();
+        openBtn.focus();
+      }
+    });
+  }
+</script>

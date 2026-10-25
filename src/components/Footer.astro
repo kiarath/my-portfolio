@@ -1,0 +1,60 @@
+---
+import T from './T.astro';
+import { site, ui } from '../data/site';
+import mail from '../assets/icons/mail.svg?raw';
+import linkedin from '../assets/icons/linkedin.svg?raw';
+import resume from '../assets/icons/resume.svg?raw';
+import pixel from '../assets/icons/pixel.svg?raw';
+
+const contacts = [
+  { icon: mail, en: ui.en.sendMessage, es: ui.es.sendMessage, href: site.links.email },
+  { icon: linkedin, en: ui.en.letsConnect, es: ui.es.letsConnect, href: site.links.linkedin },
+];
+---
+
+<footer id="contact" class="relative mt-[102px] overflow-hidden pt-3 pb-[100px]">
+  <div class="absolute top-0 left-0 hidden md:block" set:html={pixel} aria-hidden="true" />
+  <div class="absolute top-[37px] right-[max(16px,calc(50%-557px))] flex w-10 flex-col gap-1" aria-hidden="true">
+    <span class="h-[37px] bg-cyan"></span>
+    <span class="h-[37px] bg-blush"></span>
+    <span class="h-9 bg-white"></span>
+    <span class="h-9 bg-blush"></span>
+    <span class="h-[37px] bg-cyan"></span>
+  </div>
+  <div class="page">
+    <h2 class="font-mono text-[32px] leading-[1.2] sm:text-[40px]"><T en={ui.en.letsCreate} es={ui.es.letsCreate} /></h2>
+    <p class="mt-[18px] max-w-[539px] pr-14 text-[16px] leading-[1.2] sm:pr-0"><T en={ui.en.footerText} es={ui.es.footerText} /></p>
+    <ul class="mt-[27px] flex flex-col gap-1.5">
+      {
+        contacts.map((c) => (
+          <li>
+            <a
+              href={c.href}
+              class="group flex h-6 w-fit items-center gap-2.5 text-[15px] leading-[1.2] transition-colors hover:text-coral"
+              target={c.href.startsWith('http') ? '_blank' : undefined}
+              rel={c.href.startsWith('http') ? 'noopener' : undefined}
+            >
+              <span class="size-6 shrink-0" set:html={c.icon} aria-hidden="true" />
+              <T en={c.en} es={c.es} />
+            </a>
+          </li>
+        ))
+      }
+      {
+        (['en', 'es'] as const).map((lang) => (
+          <li class={`t-${lang}`} lang={lang}>
+            <a
+              href={site.links.resume[lang]}
+              class="flex h-6 w-fit items-center gap-2.5 text-[15px] leading-[1.2] transition-colors hover:text-coral"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="size-6 shrink-0" set:html={resume} aria-hidden="true" />
+              {ui[lang].checkResume}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>

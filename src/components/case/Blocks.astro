@@ -1,0 +1,432 @@
+---
+import { Image } from 'astro:assets';
+import type { Block, Tone } from '../../data/types';
+import Persona from './Persona.astro';
+
+interface Props {
+  blocks: Block[];
+}
+const { blocks } = Astro.props;
+
+const toneBg: Record<Tone, string> = { ink: 'bg-ink', muted: 'bg-muted', coral: 'bg-coral' };
+const cols = { 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-2 md:grid-cols-3', 4: 'grid-cols-2 md:grid-cols-4' } as const;
+const lines = (b?: string | string[]) => (b === undefined ? [] : Array.isArray(b) ? b : [b]);
+---
+
+{
+  blocks.map((b) => {
+    switch (b.type) {
+      case 'lead':
+        return <p class="text-[18px] leading-[1.5] font-light">{b.text}</p>;
+      case 'text':
+        return <p class="text-[15px] leading-[22px] font-light">{b.text}</p>;
+      case 'statement':
+        return <p class="text-[18px] leading-[1.5] font-bold">{b.text}</p>;
+      case 'subhead':
+        return <h3 class="pt-2 text-[16px] font-bold">{b.text}</h3>;
+      case 'label':
+        return <p class="pt-2 font-mono text-[13px] whitespace-pre text-muted">{b.text}</p>;
+      case 'cards':
+        return (
+          <ul class:list={['grid gap-4', cols[b.cols]]}>
+            {b.items.map((c) => (
+              <li class="bg-surface p-4">
+                {c.big && <p class="mb-1 text-[32px] leading-none font-bold">{c.big}</p>}
+                {c.title && <h4 class="text-[15px] leading-[1.25] font-bold">{c.title}</h4>}
+                {lines(c.body).map((l) => (
+                  <p class="mt-1.5 text-[14px] leading-[20px] font-light">{l}</p>
+                ))}
+              </li>
+            ))}
+          </ul>
+        );
+      case 'columns':
+        return (
+          <div class="grid gap-6 md:grid-cols-3">
+            {b.items.map((c) => (
+              <div>
+                <h3 class="text-[16px] font-bold">{c.title}</h3>
+                <p class="mt-2 text-[15px] leading-[22px] font-light">{c.body}</p>
+              </div>
+            ))}
+          </div>
+        );
+      case 'persona':
+        return <Persona persona={b.persona} />;
+      case 'personas':
+        return (
+          <div class="grid gap-6 md:grid-cols-2">
+            {b.items.map((p) => (
+              <Persona persona={p} compact />
+            ))}
+          </div>
+        );
+      case 'chips':
+        return (
+          <ul class="flex flex-wrap gap-2.5">
+            {b.items.map((c) => (
+              <li class="rounded-[14px] border border-ink px-3.5 py-[5px] text-[13px]">{c}</li>
+            ))}
+          </ul>
+        );
+      case 'image':
+        return (
+          <figure>
+            <Image src={b.src} alt={b.alt} widths={[744, 1200, 1488]} sizes="(min-width: 1024px) 744px, 100vw" class="w-full" />
+          </figure>
+        );
+      case 'gallery':
+        return (
+          <div class="carousel">
+            <div class:list={['carousel-track gap-4 sm:grid', b.cols === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2']} data-carousel>
+              {b.images.map((img) => (
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  widths={[364, 728]}
+                  sizes="(min-width: 1024px) 364px, 70vw"
+                  class:list={['carousel-item h-full w-full object-cover', b.cols === 3 ? 'max-sm:w-[232px]' : 'max-sm:w-[82%]']}
+                />
+              ))}
+            </div>
+            <div class="mt-3 flex items-center gap-1.5 sm:hidden" aria-hidden="true" data-carousel-dots>
+              {b.images.map((_, i) => (
+                <i class:list={['carousel-dot', i === 0 && 'is-active']} />
+              ))}
+              <span class="ml-3 font-mono text-[11px] text-muted">
+                <span class="t-en" lang="en">swipe for more  →</span><span class="t-es" lang="es">deslizá para ver más  →</span>
+              </span>
+            </div>
+          </div>
+        );
+      case 'quote':
+        return (
+          <blockquote class="border-l-[3px] border-coral pl-[15px] text-[16px] leading-[24px] font-light">{b.text}</blockquote>
+        );
+      case 'bars':
+        return (
+          <dl class="flex flex-col gap-4 sm:gap-[18px]" style={`--label:${b.labelWidth ?? 140}px`}>
+            {b.items.map((it) => (
+              <div class="bar-row">
+                <dt class="text-[14px] leading-tight">{it.label}</dt>
+                <dd class="flex items-center gap-2.5">
+                  <span
+                    class:list={['bar h-3.5', toneBg[it.tone]]}
+                    style={`--w:${Math.max(it.ratio, 0.006) * 100}%`}
+                  />
+                  <span class="font-mono text-[12px] whitespace-nowrap">{it.value}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        );
+      case 'flow':
+        return (
+          <div>
+            <ol class="flow relative grid" style={`--n:${b.steps.length}`}>
+              {b.steps.map((s) => (
+                <li class="relative pt-6">
+                  <span class:list={['absolute top-0 left-0 size-[13px] rounded-full', toneBg[s.tone]]} />
+                  <span class="block pr-2 text-[12px] leading-[1.35] font-light">{s.label}</span>
+                </li>
+              ))}
+            </ol>
+            {b.legend && (
+              <ul class="mt-6 flex gap-6">
+                {b.legend.map((l) => (
+                  <li class="flex items-center gap-1.5 font-mono text-[11px] text-muted">
+                    <span class:list={['size-[9px] rounded-full', toneBg[l.tone]]} />
+                    {l.label}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        );
+      case 'sitemap': {
+        const n = b.children.length > 5 ? 3 : b.children.length;
+        return (
+          <>
+          {/* Mobile: indented list so the branches always connect */}
+          <div class="sm:hidden">
+            <p class="w-[140px] rounded-[4px] bg-ink py-2 text-center text-[14px] text-white">{b.root}</p>
+            <ul class="sitemap-list ml-5">
+              {b.children.map((c, i) => (
+                <li class="relative pt-2.5 pl-5">
+                  <span class:list={['absolute top-0 left-0 w-px bg-ink', i === b.children.length - 1 ? 'h-[30px]' : 'h-full']} />
+                  <span class="absolute top-[29px] left-0 h-px w-5 bg-ink" />
+                  <p class="w-[180px] rounded-[4px] border border-ink py-[7px] text-center text-[14px]">{c.label}</p>
+                  {c.sub && (
+                    <ul class="mt-1.5 flex flex-col gap-1 pl-3">
+                      {c.sub.map((sub) => (
+                        <li class="text-[12px] font-light">· {sub}</li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="sitemap max-sm:hidden" style={`--n:${n}`}>
+            <p class="mx-auto w-[136px] rounded-[4px] border border-ink bg-ink py-2 text-center text-[13px] text-white sm:w-[200px] sm:text-[14px]">
+              {b.root}
+            </p>
+            <ul class="sitemap-children">
+              {b.children.map((c, i) => (
+                <li class:list={[i < n && 'has-link']}>
+                  <p class="rounded-[4px] border border-ink py-2 text-center text-[13px] sm:text-[14px]">{c.label}</p>
+                  {c.sub && (
+                    <ul class="mt-2 flex flex-col gap-1.5 pl-2">
+                      {c.sub.map((s) => (
+                        <li class="text-[12px] font-light">{s}</li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          </>
+        );
+      }
+      case 'swatches':
+        return (
+          <div class="flex flex-wrap gap-x-16 gap-y-6">
+            {b.groups.map((g) => (
+              <div>
+                <p class="text-[12px]">{g.label}</p>
+                <ul class="mt-3 flex gap-4">
+                  {g.colors.map((c) => (
+                    <li>
+                      <span class="block size-[72px]" style={`background:${c}`} />
+                      <span class="mt-2 block font-mono text-[11px]">{c}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        );
+      case 'tone':
+        return (
+          <div class="tone">
+            <div class="tone-row tone-scale">
+              <span />
+              <div class="flex justify-between font-mono text-[11px] text-muted">
+                {b.scale.map((s) => (
+                  <span>{s}</span>
+                ))}
+              </div>
+            </div>
+            {b.rows.map((r) => (
+              <div class="tone-row">
+                <span class="text-[14px]">{r.label}</span>
+                <div class="relative h-[13px]">
+                  <span class="absolute top-1.5 left-0 h-px w-full bg-track" />
+                  <span
+                    class:list={['absolute top-0 size-[13px] rounded-full', toneBg[r.tone]]}
+                    style={`left:calc(${r.position} * (100% - 13px))`}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+      case 'summary':
+        return (
+          <div class="bg-surface p-4">
+            <h4 class:list={['font-bold', b.large ? 'text-[18px]' : 'text-[16px]']}>{b.title}</h4>
+            <p class="mt-1.5 text-[14px] leading-[20px] font-light">{b.body}</p>
+          </div>
+        );
+      case 'link':
+        return (
+          <a class="link w-fit text-[14px]" href={b.href}>
+            {b.label}
+          </a>
+        );
+    }
+  })
+}
+
+<style>
+  .bar-row {
+    display: grid;
+    gap: 6px;
+  }
+  .bar {
+    width: var(--w);
+    min-width: 3px;
+  }
+  @media (min-width: 640px) {
+    .bar-row {
+      grid-template-columns: var(--label) 1fr;
+      align-items: center;
+    }
+  }
+  .flow {
+    grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  }
+  .flow::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    height: 1px;
+    background: var(--color-track);
+  }
+  @media (max-width: 639px) {
+    .flow {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding-left: 2px;
+    }
+    .flow::before {
+      top: 6px;
+      bottom: 6px;
+      left: 8px;
+      right: auto;
+      width: 1px;
+      height: auto;
+    }
+    .flow li {
+      padding-top: 0;
+      padding-left: 28px;
+    }
+  }
+  .sitemap-children {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 44px;
+  }
+  .sitemap-children::before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: var(--color-ink);
+  }
+  .sitemap > p {
+    position: relative;
+  }
+  .sitemap > p::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 1px;
+    height: 24px;
+    background: var(--color-ink);
+  }
+  @media (min-width: 640px) {
+    .sitemap-children {
+      grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+    }
+    .sitemap-children::before {
+      left: calc(50% / var(--n));
+      right: calc(50% / var(--n));
+    }
+    .sitemap-children > li {
+      position: relative;
+    }
+    .sitemap-children > li.has-link::before {
+      content: '';
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      width: 1px;
+      height: 24px;
+      background: var(--color-ink);
+    }
+  }
+  .carousel-track {
+    display: flex;
+  }
+  @media (max-width: 639px) {
+    .carousel-track {
+      margin-inline: -16px;
+      padding-inline: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 16px;
+      scrollbar-width: none;
+    }
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+    .carousel-item {
+      flex: none;
+      scroll-snap-align: start;
+      height: auto;
+    }
+  }
+  @media (min-width: 640px) {
+    .carousel-track {
+      display: grid;
+    }
+  }
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--color-line);
+    transition: width 0.2s, background-color 0.2s;
+  }
+  .carousel-dot.is-active {
+    width: 16px;
+    background: var(--color-ink);
+  }
+  .tone {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+  }
+  .tone-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+  @media (min-width: 640px) {
+    .tone-row {
+      grid-template-columns: 184px minmax(0, 471px);
+    }
+  }
+  /* Mobile: label above a full-width track, scale under all rows (Figma E). */
+  @media (max-width: 639px) {
+    .tone {
+      gap: 18px;
+    }
+    .tone-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .tone-scale {
+      order: 99;
+    }
+    .tone-scale > span:first-child {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Mobile carousels: keep the dots in sync with the scroll position.
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((track) => {
+    const dots = [...(track.parentElement?.querySelectorAll<HTMLElement>('.carousel-dot') ?? [])];
+    const items = [...track.children] as HTMLElement[];
+    track.addEventListener(
+      'scroll',
+      () => {
+        const i = items.reduce((best, el, idx) => (Math.abs(el.offsetLeft - track.scrollLeft - 16) < Math.abs(items[best].offsetLeft - track.scrollLeft - 16) ? idx : best), 0);
+        dots.forEach((d, j) => d.classList.toggle('is-active', j === i));
+      },
+      { passive: true },
+    );
+  });
+</script>

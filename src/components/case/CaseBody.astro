@@ -1,0 +1,88 @@
+---
+import Blocks from './Blocks.astro';
+import type { CaseStudy } from '../../data/types';
+
+interface Props {
+  study: CaseStudy;
+  /** Appended to section ids so both language versions can live on the page. */
+  idSuffix?: string;
+  labels: { results: string; sections: string };
+}
+const { study, idSuffix = '', labels } = Astro.props;
+const navLabel = (kicker: string, nav: string) => (/^\d+$/.test(kicker) ? `${kicker}  ${nav}` : nav);
+const external = (href: string) => href.startsWith('http');
+---
+
+<section class="page mt-[50px] border-y border-ink py-5" aria-label={labels.results}>
+  <ul class="grid gap-6 md:grid-cols-3 md:gap-0">
+    {
+      study.stats.map((s) => (
+        <li>
+          <p class="text-[44px] leading-none font-bold sm:text-[56px]">{s.value}</p>
+          <p class="mt-3 max-w-[280px] text-[14px] leading-[20px] font-light">{s.label}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<div class="page mt-20 grid gap-x-[27px] lg:grid-cols-[minmax(0,1fr)_744px]">
+  <nav class="case-index hidden lg:block" aria-label={labels.sections}>
+    <ol class="sticky top-28 flex flex-col gap-[13px] font-mono text-[13px]">
+      {
+        study.sections.map((s) => (
+          <li>
+            <a
+              href={`#${s.id}${idSuffix}`}
+              data-index-link={`${s.id}${idSuffix}`}
+              class="index-link relative block pl-4 whitespace-pre text-muted transition-colors hover:text-ink"
+            >
+              {navLabel(s.kicker, s.nav)}
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </nav>
+
+  <div class="flex min-w-0 flex-col gap-[72px]">
+    {
+      study.sections.map((s) => (
+        <section id={`${s.id}${idSuffix}`} class="scroll-mt-28 border-t border-ink pt-3.5" data-case-section>
+          <p class="font-mono text-[13px] text-muted">{s.kicker}</p>
+          <h2 class="mt-1.5 text-[28px] leading-tight font-bold sm:text-[32px]">{s.title}</h2>
+          <div class="mt-8 flex flex-col gap-6">
+            <Blocks blocks={s.blocks} />
+          </div>
+        </section>
+      ))
+    }
+    {
+      study.closing && (
+        <a
+          class="link w-fit text-[14px] whitespace-pre"
+          href={study.closing.href}
+          target={external(study.closing.href) ? '_blank' : undefined}
+          rel="noopener"
+        >
+          {study.closing.label}
+        </a>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .index-link[aria-current='true'] {
+    color: var(--color-ink);
+  }
+  .index-link[aria-current='true']::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    background: var(--color-coral);
+  }
+</style>

@@ -1,0 +1,156 @@
+---
+import { Image } from 'astro:assets';
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import CaseIntro from '../../components/case/CaseIntro.astro';
+import CaseBody from '../../components/case/CaseBody.astro';
+import T from '../../components/T.astro';
+import { cases, casesEs } from '../../data/projects';
+import { ui } from '../../data/site';
+import { url } from '../../utils';
+import type { CaseStudy } from '../../data/types';
+
+export const getStaticPaths = (() =>
+  cases.map((c, i) => ({
+    params: { slug: c.slug },
+    props: { study: c, studyEs: casesEs[c.slug] ?? c, next: cases[(i + 1) % cases.length] },
+  }))) satisfies GetStaticPaths;
+
+interface Props {
+  study: CaseStudy;
+  studyEs: CaseStudy;
+  next: CaseStudy;
+}
+const { study, studyEs, next } = Astro.props;
+---
+
+<Base title={`${study.title} — Kiara Correa`} description={study.summary}>
+  <article class="relative">
+    {
+      study.accent && (
+        <span
+          class="absolute top-[6px] right-[max(0px,calc(50%-485px-24px))] hidden h-[95px] w-[96px] bg-coral lg:block"
+          aria-hidden="true"
+        />
+      )
+    }
+
+    <!-- Mobile/tablet: sticky bar of sections (replaces the side index, Figma E) -->
+    <div class="section-bar sticky z-20 border-b border-black/[0.08] bg-white/95 backdrop-blur-md lg:hidden" style="top: var(--header-h, 56px)">
+      {
+        [
+          { st: study, suffix: '', lang: 'en' },
+          { st: studyEs, suffix: '-es', lang: 'es' },
+        ].map(({ st, suffix, lang }) => (
+          <ol class={`t-${lang} chip-list flex gap-2 overflow-x-auto px-4 py-2.5`} lang={lang} aria-label={lang === 'es' ? 'Secciones' : 'Sections'}>
+            {st.sections.map((sec) => (
+              <li class="shrink-0">
+                <a href={`#${sec.id}${suffix}`} data-index-link={`${sec.id}${suffix}`} class="chip">
+                  {/^\d+$/.test(sec.kicker) ? `${sec.kicker} ${sec.nav}` : sec.nav}
+                </a>
+              </li>
+            ))}
+          </ol>
+        ))
+      }
+    </div>
+
+    <header class="page pt-[20px]">
+      <a href={url('/#projects')} class="text-[13px] whitespace-pre transition-colors hover:text-coral">
+        ‹   <T en={ui.en.allProjects} es={ui.es.allProjects} />
+      </a>
+      <div class="t-en" lang="en"><CaseIntro study={study} /></div>
+      <div class="t-es" lang="es"><CaseIntro study={studyEs} /></div>
+    </header>
+
+    <div class="page mt-[50px]">
+      <Image
+        src={study.hero.src}
+        alt={study.hero.alt}
+        widths={[640, 971, 1568]}
+        sizes="(min-width: 1003px) 971px, 100vw"
+        class="aspect-[971/560] w-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+
+    <!-- Both languages are rendered; CSS shows the active one (images inside the hidden one are lazy and never load). -->
+    <div class="t-en" lang="en">
+      <CaseBody study={study} labels={{ results: 'Key results', sections: 'Case study sections' }} />
+    </div>
+    <div class="t-es" lang="es">
+      <CaseBody study={studyEs} idSuffix="-es" labels={{ results: 'Resultados clave', sections: 'Secciones del caso' }} />
+    </div>
+
+    <nav class="page mt-[72px]" aria-label="Next project">
+      <a href={url(`/projects/${next.slug}`)} class="link font-mono text-[14px] whitespace-pre">
+        <T en={ui.en.nextProject} es={ui.es.nextProject} />  →  <span class="text-muted"><T en={next.title} es={casesEs[next.slug]?.title ?? next.title} /></span>
+      </a>
+    </nav>
+  </article>
+</Base>
+
+<script>
+  // Scroll-spy for the sticky index (one per language). The coral marker follows the section in view.
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-index-link]')];
+  const setActive = (id: string, list: HTMLAnchorElement[]) =>
+    list.forEach((a) => (a.dataset.indexLink === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+
+  document.querySelectorAll<HTMLElement>('.case-index, .chip-list').forEach((nav) => {
+    const first = nav.querySelector<HTMLAnchorElement>('[data-index-link]');
+    if (first) first.setAttribute('aria-current', 'true');
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (visible[0]) {
+        const id = visible[0].target.id;
+        setActive(id, links.filter((a) => a.dataset.indexLink?.endsWith('-es') === id.endsWith('-es')));
+        // Keep the active chip visible in the horizontal section bar.
+        document.querySelectorAll<HTMLAnchorElement>(`.chip[data-index-link="${id}"]`).forEach((chip) => {
+          const list = chip.closest('ol');
+          if (list) list.scrollTo({ left: chip.parentElement!.offsetLeft - 16, behavior: 'smooth' });
+        });
+      }
+    },
+    { rootMargin: '-15% 0px -70% 0px' },
+  );
+  document.querySelectorAll('[data-case-section]').forEach((s) => observer.observe(s));
+</script>
+
+<style>
+  .chip-list {
+    scrollbar-width: none;
+    mask-image: linear-gradient(to right, #000 85%, transparent);
+  }
+  .chip-list::-webkit-scrollbar {
+    display: none;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 14px;
+    background: #fff;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: #555;
+    white-space: nowrap;
+  }
+  .chip[aria-current='true'] {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+  }
+  .chip[aria-current='true']::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--color-coral);
+  }
+</style>
