@@ -35,7 +35,7 @@ import { projects } from '../data/projects';
     <span class="absolute top-[53px] right-0 hidden lg:block" set:html={pixel} aria-hidden="true" />
   </div>
 
-  <section id="projects" class="page mt-10 scroll-mt-24 sm:mt-[72px]" aria-label="Projects">
+  <section id="projects" class="page mt-[33px] scroll-mt-24 sm:mt-[72px]" aria-label="Projects">
     <h2 class="sr-only">Projects</h2>
     <div class="grid gap-x-[73px] gap-y-10 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-3 lg:gap-x-[73px]">
       {projects.filter((p) => !p.hidden).map((p, i) => <ProjectCard project={p} eager={i < 3} index={i} />)}
