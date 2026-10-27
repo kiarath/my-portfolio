@@ -4,6 +4,59 @@
 @import '@fontsource/inter/400.css';
 @import '@fontsource/inter/600.css';
 
+/* Helvetica Neue, self-hosted so every OS (Windows, Android, Linux) renders the Figma typeface and its light weights
+   instead of falling back to Arial. local() lets Macs/iPhones reuse the installed copy and skip the download.
+   Fonts live in src/assets so Vite fingerprints them and prefixes the deploy base path (/my-portfolio). */
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: local('HelveticaNeue-UltraLight'), url('../assets/fonts/HelveticaNeue-Ultralight.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: local('HelveticaNeue-Thin'), url('../assets/fonts/HelveticaNeue-Thin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('HelveticaNeue-Light'), url('../assets/fonts/HelveticaNeue-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('HelveticaNeue'), url('../assets/fonts/HelveticaNeue-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('HelveticaNeue-Italic'), url('../assets/fonts/HelveticaNeue-RegularItalic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('HelveticaNeue-Medium'), url('../assets/fonts/HelveticaNeue-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('HelveticaNeue-Bold'), url('../assets/fonts/HelveticaNeue-Bold.woff2') format('woff2');
+}
+
 /* Design tokens taken from the Figma file "Portafolio" (page Desarollo) */
 @theme {
   --font-sans: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
