@@ -5,6 +5,7 @@ import { sumun } from './cases/sumun';
 import { cinear } from './cases/cinear';
 import { veggy } from './cases/veggy';
 import { santillana } from './cases/santillana';
+import { surti } from './cases/surti';
 import * as es from './cases/es';
 
 import imgSumun from '../assets/projects/card-sumun.jpg';
@@ -21,9 +22,10 @@ import imgPortfolio from '../assets/projects/card-portfolio.jpg';
 import imgVeggy from '../assets/projects/card-veggy.jpg';
 import imgRacing from '../assets/projects/card-racing-patagonia.jpg';
 import imgPubliflex from '../assets/projects/card-publiflex.jpg';
+import imgSurti from '../assets/projects/card-surti.jpg';
 
 /** Case studies with their own page, in "next project" order. */
-export const cases: CaseStudy[] = [sumun, jodify, cinear, santillana, veggy];
+export const cases: CaseStudy[] = [sumun, jodify, surti, cinear, santillana, veggy];
 
 /** Spanish version of each case, by slug. */
 export const casesEs: Record<string, CaseStudy> = es;
@@ -62,6 +64,21 @@ export const projects: ProjectCard[] = [
       { label: 'app store', href: 'https://apps.apple.com/ar/app/jodify/id6618110536' },
       { label: 'google play', href: 'https://play.google.com/store/apps/details?id=com.markajodi.jodifyapp&pli=1' },
     ],
+  },
+  {
+    slug: 'surti',
+    name: 'Surtí',
+    kind: 'AI Sales Copilot',
+    description:
+      'An AI copilot for consumer-goods pre-sales: a mobile app that suggests each order and explains why, and a web dashboard for supervisors to follow the team and what the AI learns.',
+    es: {
+      kind: 'Copiloto de preventa con IA',
+      description:
+        'Un copiloto con IA para la preventa de consumo masivo: una app mobile que sugiere cada pedido y explica por qué, y un panel web para que la supervisión siga al equipo y lo que aprende la IA.',
+    },
+    image: imgSurti,
+    caseSlug: 'surti',
+    links: [],
   },
   {
     slug: 'lar',
