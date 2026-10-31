@@ -1,12 +1,14 @@
 import type { CaseStudy } from '../../types';
 import { cinear as en } from '../cinear';
 import platform from '../../../assets/projects/cinear-platform.jpg';
+import ilMartinaCinear from '../../../assets/personas/martina-cinear.svg?raw';
+import ilCristinaCinear from '../../../assets/personas/cristina-cinear.svg?raw';
 
 export const cinear: CaseStudy = {
   ...en,
   tags: ['Web', 'Entretenimiento', 'Streaming'],
   summary:
-    'Un rediseño web completo para Cine.AR, el servicio de streaming gratuito de cine argentino, para mejorar la experiencia de usuario y poner en valor el cine local.',
+    'Un rediseño web para Cine.AR, el servicio gratuito de streaming de cine argentino, para que encontrar una película sea más rápido y el cine local gane protagonismo.',
   links: [{ label: 'ver en behance  →', href: en.links[0].href }],
   meta: [
     { label: 'Rol', value: 'Diseñadora UX/UI' },
@@ -74,7 +76,7 @@ export const cinear: CaseStudy = {
             { title: '“…encuentro las cosas más rápido.”', body: 'Usuario de Netflix' },
           ],
         },
-        { type: 'subhead', text: 'Hallazgos clave sobre la plataforma original' },
+        { type: 'subhead', text: 'Lo que mostró la investigación sobre la plataforma original' },
         {
           type: 'cards',
           cols: 3,
@@ -92,6 +94,7 @@ export const cinear: CaseStudy = {
           items: [
             {
               name: 'Martina',
+              illustration: ilMartinaCinear,
               meta: '28  ·  Diseñadora gráfica  ·  Buen nivel tecnológico',
               quote: '“Me encanta el cine argentino, vi muchas películas y me gustaría cambiar algunas cosas.”',
               groups: [
@@ -102,6 +105,7 @@ export const cinear: CaseStudy = {
             },
             {
               name: 'Cristina',
+              illustration: ilCristinaCinear,
               meta: '28  ·  Maestra de primaria  ·  Buen nivel tecnológico',
               quote: '“El cine es mi escape perfecto; me encanta encontrar películas desde la comodidad de mi casa.”',
               groups: [
@@ -332,7 +336,7 @@ export const cinear: CaseStudy = {
             },
             {
               title: '¿Qué?',
-              body: 'Una plataforma que simplifica la búsqueda y ayuda a encontrar películas y documentales por género, con recomendaciones según sus gustos.',
+              body: 'Una plataforma que hace más rápida la búsqueda: películas y documentales por género, con recomendaciones según el gusto de cada persona.',
             },
           ],
         },
@@ -363,17 +367,17 @@ export const cinear: CaseStudy = {
       blocks: [
         {
           type: 'lead',
-          text: 'El rediseño tuvo un impacto directo y medible en la usabilidad de la plataforma y resolvió los problemas centrales detectados en la investigación inicial.',
+          text: 'El rediseño resolvió los problemas que había encontrado la investigación, y los tests midieron la diferencia.',
         },
         {
           type: 'cards',
           cols: 3,
           items: [
             { title: 'Navegación', body: 'El éxito en el tree testing pasó del 35% al 95%.' },
-            { title: 'Tareas clave', body: 'El 100% de los usuarios eligió y alquiló una película en el test moderado.' },
+            { title: 'Tareas principales', body: 'El 100% de los usuarios eligió y alquiló una película en el test moderado.' },
             {
-              title: 'Cambios basados en datos',
-              body: 'La interfaz que el 60% de los usuarios consideraba desordenada se reemplazó por una estructura validada y centrada en el usuario.',
+              title: 'Cambios con datos detrás',
+              body: 'La interfaz que el 60% de los usuarios consideraba desordenada pasó a ser una estructura validada en los tests.',
             },
           ],
         },

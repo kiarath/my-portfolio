@@ -88,7 +88,7 @@ export const sumun: CaseStudy = {
             },
           ],
         },
-        { type: 'subhead', text: 'Necesidades clave' },
+        { type: 'subhead', text: 'Lo que necesitaba el sitio' },
         {
           type: 'cards',
           cols: 4,
@@ -123,7 +123,7 @@ export const sumun: CaseStudy = {
         },
         {
           type: 'lead',
-          text: 'Un lenguaje visual que combina la seriedad institucional con calidez: azul petróleo para la confianza, naranja para la energía, y formas 3D translúcidas tipo vidrio y cintas fluidas que le dan a la tecnología un carácter humano y orgánico.',
+          text: 'Un lenguaje visual que combina la seriedad institucional con calidez: azul petróleo para la confianza, naranja para la energía, y formas 3D translúcidas tipo vidrio y cintas que hacen que la tecnología se sienta menos fría.',
         },
         {
           type: 'swatches',
@@ -200,10 +200,10 @@ export const sumun: CaseStudy = {
             },
             {
               title: 'El producto en contexto',
-              body: 'Los dashboards de progreso, las metas diarias y el chat del Tutor IA aparecen dentro de las páginas, así los visitantes ven el producto en lugar de solo leer sobre él.',
+              body: 'Los dashboards de progreso, las metas diarias y el chat del Tutor IA aparecen dentro de las páginas, así los visitantes ven el producto funcionando en lugar de leer una descripción.',
             },
             {
-              title: 'Hub de liderazgo de opinión',
+              title: 'Hub de conversaciones',
               body: 'Conversaciones Sumun presenta a sus expertos, un artículo destacado y una lista filtrable con etiquetas de categoría y audiencia.',
             },
             {

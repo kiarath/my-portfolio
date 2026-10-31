@@ -2,8 +2,27 @@ import type { ImageMetadata } from 'astro';
 
 export type Tone = 'ink' | 'muted' | 'coral';
 
+/** Line icons shown next to a card title (see components/case/icons.ts). */
+export type CardIcon =
+  | 'context'
+  | 'problem'
+  | 'objective'
+  | 'solution'
+  | 'route'
+  | 'order'
+  | 'offline'
+  | 'dashboard'
+  | 'link'
+  | 'scan'
+  | 'ticket'
+  | 'pin'
+  | 'search'
+  | 'star'
+  | 'pencil';
+
 export interface CardItem {
   title: string;
+  icon?: CardIcon;
   /** A string, or several lines (rendered as separate lines / bullets). */
   body?: string | string[];
   /** Big number shown above the title (e.g. "70%"). */
@@ -15,6 +34,8 @@ export interface Persona {
   meta: string;
   quote?: string;
   bio?: string;
+  /** Raw SVG markup of the persona's line illustration (72×72). */
+  illustration?: string;
   /** Labelled lists (Motivations, Frustrations…) or short label/value pairs. */
   groups: { label: string; items: string[] }[];
 }

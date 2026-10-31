@@ -2,6 +2,7 @@ import type { CaseStudy } from '../types';
 import hero from '../../assets/projects/jodify-hero.jpg';
 import designSystem from '../../assets/projects/jodify-design-system.jpg';
 import finalScreens from '../../assets/projects/jodify-final.jpg';
+import ilMartinaJodify from '../../assets/personas/martina-jodify.svg?raw';
 
 export const jodify: CaseStudy = {
   slug: 'jodify',
@@ -67,6 +68,7 @@ export const jodify: CaseStudy = {
           type: 'persona',
           persona: {
             name: 'Martina',
+            illustration: ilMartinaJodify,
             meta: '26  ·  University student  ·  Good tech skills',
             bio: 'A student who recently started going to electronic music parties. She can only go once or twice a month, so she researches and asks friends for recommendations to make the most of each night.',
             groups: [
@@ -104,11 +106,11 @@ export const jodify: CaseStudy = {
             { title: 'Primary objective', body: 'Adapt the existing web app to meet App Store and Google Play requirements.' },
             {
               title: 'Secondary objective',
-              body: 'Give users compelling reasons to download the native app: a fast, centralized and location-aware experience.',
+              body: 'Give people a reason to download the native app instead of using the web: it’s faster, it gathers every event in one place and it knows where you are.',
             },
           ],
         },
-        { type: 'subhead', text: 'Key user needs' },
+        { type: 'subhead', text: 'What users needed' },
         {
           type: 'cards',
           cols: 4,
@@ -129,7 +131,7 @@ export const jodify: CaseStudy = {
       blocks: [
         {
           type: 'lead',
-          text: 'The old web app was analyzed and broken into four components. A new design system then kept iOS and Android consistent.',
+          text: 'I broke the old web app down into four components, and a new design system kept iOS and Android consistent.',
         },
         { type: 'chips', items: ['Branding', 'Search & Filters', 'Dates', 'Events'] },
         {
@@ -204,7 +206,7 @@ export const jodify: CaseStudy = {
       blocks: [
         {
           type: 'lead',
-          text: 'The JODIFY native app for iOS and Android: bottom navigation (Home, Search, Profile), a prominent event carousel and a clean, filterable list of events, all unified by the new design system and ready for launch.',
+          text: 'The JODIFY native app for iOS and Android: bottom navigation (Home, Search, Profile), a carousel of featured events and a list you can filter, all built on the new design system and ready to launch.',
         },
         {
           type: 'cards',

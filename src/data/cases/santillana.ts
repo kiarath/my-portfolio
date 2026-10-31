@@ -43,18 +43,22 @@ export const santillana: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'context',
               title: 'Context',
               body: 'Santillana Colombia wanted to celebrate Teacher’s Day with a site where each teacher who registers lights up a point on the map, leaves a public message and enters a draw for UNIR Master’s scholarships (100% and 70%) and a basket of books.',
             },
             {
+              icon: 'problem',
               title: 'The challenge',
               body: 'With many registrations, the dots would pile up and the map would become unreadable. Most teachers would arrive from their phones, but the idea was imagined for desktop. And the map had to lead while still explaining the campaign.',
             },
             {
+              icon: 'objective',
               title: 'Objective',
               body: 'Make every teacher visible across the whole country, in a flow simple enough to finish on a phone.',
             },
             {
+              icon: 'solution',
               title: 'Solution',
               body: 'A map grouped by department with progressive zoom, a mobile-first responsive layout and an emotional hero that leads into a guided four-step registration.',
             },

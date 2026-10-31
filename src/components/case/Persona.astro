@@ -9,8 +9,20 @@ const { persona, compact = false } = Astro.props;
 ---
 
 <article class:list={['bg-surface', compact ? 'p-5' : 'p-6']}>
-  <h4 class:list={['font-bold', compact ? 'text-[20px]' : 'text-[24px]']}>{persona.name}</h4>
-  <p class="mt-1 font-mono text-[11px] tracking-wide text-muted uppercase sm:text-[12px]">{persona.meta}</p>
+  <header class="flex items-center gap-4">
+    {
+      persona.illustration && (
+        <span
+          class:list={['shrink-0 [&>svg]:h-full [&>svg]:w-full', compact ? 'size-14' : 'size-[72px]']}
+          set:html={persona.illustration}
+        />
+      )
+    }
+    <div>
+      <h4 class:list={['font-bold', compact ? 'text-[20px]' : 'text-[24px]']}>{persona.name}</h4>
+      <p class="mt-1 font-mono text-[11px] tracking-wide text-muted uppercase sm:text-[12px]">{persona.meta}</p>
+    </div>
+  </header>
   {
     persona.quote && (
       <p

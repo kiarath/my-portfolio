@@ -2,6 +2,7 @@ import type { CaseStudy } from '../../types';
 import { jodify as en } from '../jodify';
 import designSystem from '../../../assets/projects/jodify-design-system.jpg';
 import finalScreens from '../../../assets/projects/jodify-final.jpg';
+import ilMartinaJodify from '../../../assets/personas/martina-jodify.svg?raw';
 
 export const jodify: CaseStudy = {
   ...en,
@@ -66,6 +67,7 @@ export const jodify: CaseStudy = {
           type: 'persona',
           persona: {
             name: 'Martina',
+            illustration: ilMartinaJodify,
             meta: '26  ·  Estudiante universitaria  ·  Buen manejo tecnológico',
             bio: 'Una estudiante que hace poco empezó a ir a fiestas de música electrónica. Solo puede salir una o dos veces por mes, así que investiga y pide recomendaciones a sus amigos para aprovechar cada noche.',
             groups: [
@@ -103,11 +105,11 @@ export const jodify: CaseStudy = {
             { title: 'Objetivo principal', body: 'Adaptar la web app existente a los requisitos de App Store y Google Play.' },
             {
               title: 'Objetivo secundario',
-              body: 'Darle a los usuarios razones de peso para descargar la app nativa: una experiencia rápida, centralizada y basada en la ubicación.',
+              body: 'Darle a la gente un motivo para bajar la app nativa en vez de usar la web: es más rápida, junta todos los eventos en un lugar y sabe dónde estás.',
             },
           ],
         },
-        { type: 'subhead', text: 'Necesidades clave de los usuarios' },
+        { type: 'subhead', text: 'Lo que necesitaban los usuarios' },
         {
           type: 'cards',
           cols: 4,
@@ -128,7 +130,7 @@ export const jodify: CaseStudy = {
       blocks: [
         {
           type: 'lead',
-          text: 'Se analizó la web app anterior y se la dividió en cuatro componentes. Después, un nuevo sistema de diseño mantuvo la coherencia entre iOS y Android.',
+          text: 'Dividí la web app anterior en cuatro componentes, y un nuevo sistema de diseño mantuvo la coherencia entre iOS y Android.',
         },
         { type: 'chips', items: ['Branding', 'Búsqueda y filtros', 'Fechas', 'Eventos'] },
         {
@@ -203,7 +205,7 @@ export const jodify: CaseStudy = {
       blocks: [
         {
           type: 'lead',
-          text: 'La app nativa de JODIFY para iOS y Android: navegación inferior (Inicio, Buscar, Perfil), un carrusel de eventos destacado y una lista de eventos limpia y filtrable, todo unificado por el nuevo sistema de diseño y listo para el lanzamiento.',
+          text: 'La app nativa de JODIFY para iOS y Android: navegación inferior (Inicio, Buscar, Perfil), un carrusel de eventos destacados y una lista que se puede filtrar, todo sobre el nuevo sistema de diseño y lista para lanzar.',
         },
         {
           type: 'cards',

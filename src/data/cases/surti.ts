@@ -14,6 +14,8 @@ import kpisBefore from '../../assets/projects/surti-kpis-before.jpg';
 import kpisAfter from '../../assets/projects/surti-kpis-after.jpg';
 import insightsBefore from '../../assets/projects/surti-insights-before.jpg';
 import insightsAfter from '../../assets/projects/surti-insights-after.jpg';
+import ilLucasSurti from '../../assets/personas/lucas-surti.svg?raw';
+import ilCarlaSurti from '../../assets/personas/carla-surti.svg?raw';
 
 export const surti: CaseStudy = {
   slug: 'surti',
@@ -46,18 +48,22 @@ export const surti: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'context',
               title: 'Context',
               body: 'In consumer goods, a pre-sales rep visits dozens of stores a day and builds each order from memory, with only a few minutes per visit and often without signal.',
             },
             {
+              icon: 'problem',
               title: 'The problem',
               body: 'He can’t remember what each customer bought, promotions change often and supervisors find out late about what happened on the route. Sales are lost and nobody sees them.',
             },
             {
+              icon: 'objective',
               title: 'Objective',
               body: 'Help the rep sell better in less time, without losing control or the store owner’s trust.',
             },
             {
+              icon: 'solution',
               title: 'Solution',
               body: 'A copilot that suggests the order and explains why, and a dashboard so the supervisor can see the team and what the AI is learning.',
             },
@@ -75,6 +81,7 @@ export const surti: CaseStudy = {
           type: 'persona',
           persona: {
             name: 'Lucas',
+            illustration: ilLucasSurti,
             meta: '29  ·  Pre-sales rep  ·  Downtown area',
             quote: '“I get five minutes per kiosk and I build the order from memory. If I forget something, that sale is lost.”',
             bio: 'He has covered the same area for four years. He uses his phone with one hand, out on the street and in the sun, and often loses signal between one store and the next.',
@@ -92,9 +99,18 @@ export const surti: CaseStudy = {
           },
         },
         {
-          type: 'summary',
-          title: 'Carla, supervisor',
-          body: 'Works from her computer, between meetings. She needs to see how the day is going, spot problems in time and manage her team of pre-sales reps.',
+          type: 'persona',
+          persona: {
+            name: 'Carla',
+            illustration: ilCarlaSurti,
+            meta: 'Sales supervisor  ·  Downtown team',
+            bio: 'She works from her computer, between meetings. She needs to see how the day is going, spot problems in time and manage her team of pre-sales reps.',
+            groups: [
+              { label: 'Goals', items: ['See how the day is going at a glance', 'Spot problems on the route while there is still time', 'Keep her team’s access and stores up to date'] },
+              { label: 'Motivations', items: ['Help each rep hit their target', 'Understand what the AI suggests to her team'] },
+              { label: 'Frustrations', items: ['Finding out late what happened on the route', 'Reports that only arrive at the end of the day', 'Managing codes and stores by hand'] },
+            ],
+          },
         },
       ],
     },
@@ -110,18 +126,22 @@ export const surti: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'route',
               title: 'Optimized route',
               body: 'The day’s stores in order, as a list or on a map, with an explanation of why that order.',
             },
             {
+              icon: 'order',
               title: 'Suggested order',
               body: 'Each product with its reason and its confidence level, to accept, change or remove with a single tap.',
             },
             {
+              icon: 'offline',
               title: 'Works offline',
               body: 'The order is saved on the phone and sent automatically when the connection comes back.',
             },
             {
+              icon: 'dashboard',
               title: 'Supervision dashboard',
               body: 'The team on the route, the AI’s performance, stores, inventory and access codes.',
             },

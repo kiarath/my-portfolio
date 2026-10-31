@@ -1,6 +1,8 @@
 import type { CaseStudy } from '../types';
 import hero from '../../assets/projects/cinear-hero.jpg';
 import platform from '../../assets/projects/cinear-platform.jpg';
+import ilMartinaCinear from '../../assets/personas/martina-cinear.svg?raw';
+import ilCristinaCinear from '../../assets/personas/cristina-cinear.svg?raw';
 
 const behance = 'https://www.behance.net/gallery/185152481/Cine-AR-Rediseno-Web';
 
@@ -9,7 +11,7 @@ export const cinear: CaseStudy = {
   title: 'Cine.AR',
   tags: ['Web', 'Entertainment', 'Streaming'],
   summary:
-    'A complete web redesign for Cine.AR, an Argentinian-focused free streaming service, enhancing the user experience and showcasing local cinema.',
+    'A web redesign for Cine.AR, the free streaming service for Argentine cinema, so people find a movie faster and local films get the spotlight.',
   links: [{ label: 'view on behance  →', href: behance }],
   meta: [
     { label: 'Role', value: 'UX/UI Designer' },
@@ -77,7 +79,7 @@ export const cinear: CaseStudy = {
             { title: '“…I can find things faster.”', body: 'Netflix user' },
           ],
         },
-        { type: 'subhead', text: 'Key findings with the original platform' },
+        { type: 'subhead', text: 'What research found on the original platform' },
         {
           type: 'cards',
           cols: 3,
@@ -95,6 +97,7 @@ export const cinear: CaseStudy = {
           items: [
             {
               name: 'Martina',
+              illustration: ilMartinaCinear,
               meta: '28  ·  Graphic designer  ·  Good tech level',
               quote: '“I love Argentine cinema, I’ve seen many movies and I’d like to change some things.”',
               groups: [
@@ -105,6 +108,7 @@ export const cinear: CaseStudy = {
             },
             {
               name: 'Cristina',
+              illustration: ilCristinaCinear,
               meta: '28  ·  Primary school teacher  ·  Good tech level',
               quote: '“Cinema is my perfect escape; I love finding movies from the comfort of my home.”',
               groups: [
@@ -335,7 +339,7 @@ export const cinear: CaseStudy = {
             },
             {
               title: 'What?',
-              body: 'A platform that streamlines search, helping users find movies and documentaries by genre, with recommendations based on their tastes.',
+              body: 'A platform that makes search faster: movies and documentaries by genre, with recommendations based on each person’s taste.',
             },
           ],
         },
@@ -366,7 +370,7 @@ export const cinear: CaseStudy = {
       blocks: [
         {
           type: 'lead',
-          text: 'The redesign had a direct, measurable impact on the platform’s usability and addressed the core problems found in the initial research.',
+          text: 'The redesign fixed the problems the research had found, and the tests measured the difference.',
         },
         {
           type: 'cards',
@@ -375,8 +379,8 @@ export const cinear: CaseStudy = {
             { title: 'Navigation', body: 'Task success in tree testing rose from 35% to 95%.' },
             { title: 'Core tasks', body: '100% of users completed choosing and renting a movie in moderated testing.' },
             {
-              title: 'Data-driven fixes',
-              body: 'The interface that 60% of users called disorganized was replaced by a validated, user-centric structure.',
+              title: 'Fixes backed by data',
+              body: 'The interface that 60% of users called disorganized became a structure validated in testing.',
             },
           ],
         },

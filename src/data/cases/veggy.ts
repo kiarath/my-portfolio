@@ -6,6 +6,7 @@ import wfLow from '../../assets/projects/veggy-wf-low.jpg';
 import wfMid from '../../assets/projects/veggy-wf-mid.jpg';
 import wfHigh from '../../assets/projects/veggy-wf-high.jpg';
 import iteration from '../../assets/projects/veggy-iteration.jpg';
+import ilNadiaVeggy from '../../assets/personas/nadia-veggy.svg?raw';
 
 const behance = 'https://www.behance.net/gallery/176414951/Vegan-App-UXUI-Case-Study';
 
@@ -15,7 +16,7 @@ export const veggy: CaseStudy = {
   tags: ['Mobile', 'Food', 'Research'],
   accent: true,
   summary:
-    'A UX/UI case study for a mobile app that helps users discover local restaurants with vegan options, making plant-based dining accessible and enjoyable.',
+    'A UX/UI case study for a mobile app that finds nearby restaurants with vegan options, reviewed by people who actually eat vegetarian or vegan.',
   links: [{ label: 'view on behance  →', href: behance }],
   meta: [
     { label: 'Role', value: 'UX/UI Designer & Researcher' },
@@ -41,18 +42,22 @@ export const veggy: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'context',
               title: 'Context',
               body: 'More people are vegetarian or vegan, and restaurants are adding more veggie options to their menus.',
             },
             {
+              icon: 'problem',
               title: 'The problem',
               body: 'Many of those options exist just to meet demand and appear as “veggie” on Google Maps or Tripadvisor. Reviews often come from people who don’t eat vegetarian food, so good places are hard to find.',
             },
             {
+              icon: 'objective',
               title: 'Objective',
               body: 'Help people find vegetarian restaurants and options nearby, with reliable information about each place.',
             },
             {
+              icon: 'solution',
               title: 'Solution',
               body: 'Use geolocation to show the closest veggie-friendly places, with reviews written only by members of the veggie community.',
             },
@@ -70,6 +75,7 @@ export const veggy: CaseStudy = {
           type: 'persona',
           persona: {
             name: 'Nadia',
+            illustration: ilNadiaVeggy,
             meta: '26  ·  Programmer  ·  Wants to find new restaurants',
             quote:
               '“When we try new places, the vegan offer on their menus is usually limited and not very varied, so we end up going to the same restaurants.”',
@@ -101,25 +107,29 @@ export const veggy: CaseStudy = {
       blocks: [
         {
           type: 'lead',
-          text: 'To address Nadia’s needs, four core functionalities were defined for the minimum viable product.',
+          text: 'For Nadia, I defined four core features for the minimum viable product.',
         },
         {
           type: 'cards',
           cols: 2,
           items: [
             {
+              icon: 'pin',
               title: 'Find restaurants',
               body: 'Veggie-friendly places as soon as the app opens, sorted by distance, on a map with a list below.',
             },
             {
+              icon: 'search',
               title: 'Search',
               body: 'A search bar for cuisines (Mexican, Japanese…) or specific dishes (empanadas, sushi, pizza).',
             },
             {
+              icon: 'star',
               title: 'Read reviews',
               body: 'Reviews from verified veggie users, star ratings for places and dishes, vegan/vegetarian labels and helpful votes.',
             },
             {
+              icon: 'pencil',
               title: 'Write reviews',
               body: 'Rate the place, the dish and the experience, mark the dish as vegan or vegetarian and upload photos.',
             },
@@ -174,7 +184,7 @@ export const veggy: CaseStudy = {
       blocks: [
         {
           type: 'lead',
-          text: 'The structure was translated into screens, iterating from hand-drawn sketches to high fidelity.',
+          text: 'I took the structure to screens, from hand-drawn sketches to high fidelity.',
         },
         { type: 'label', text: '01  Hand-drawn wireframes' },
         {
@@ -275,7 +285,7 @@ export const veggy: CaseStudy = {
         {
           type: 'summary',
           title: 'Conclusion',
-          body: 'The first prototype confirmed the core idea: 95% found it simple to find a restaurant. But a working core wasn’t enough. Listening to feedback and adding review filters, error reports and clearer UI cues turned a prototype that works into an app that feels intuitive and reliable.',
+          body: 'The first prototype confirmed the core idea: 95% found it simple to find a restaurant. A working core wasn’t enough, though: review filters, error reports and clearer UI cues, all from user feedback, are what made the app easy to trust.',
         },
       ],
     },

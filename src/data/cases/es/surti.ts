@@ -14,6 +14,8 @@ import kpisBefore from '../../../assets/projects/surti-kpis-before.jpg';
 import kpisAfter from '../../../assets/projects/surti-kpis-after.jpg';
 import insightsBefore from '../../../assets/projects/surti-insights-before.jpg';
 import insightsAfter from '../../../assets/projects/surti-insights-after.jpg';
+import ilLucasSurti from '../../../assets/personas/lucas-surti.svg?raw';
+import ilCarlaSurti from '../../../assets/personas/carla-surti.svg?raw';
 
 export const surti: CaseStudy = {
   ...en,
@@ -44,18 +46,22 @@ export const surti: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'context',
               title: 'Contexto',
               body: 'En consumo masivo, el preventista visita decenas de comercios por día y arma cada pedido de memoria, con pocos minutos por visita y muchas veces sin señal.',
             },
             {
+              icon: 'problem',
               title: 'El problema',
               body: 'No recuerda qué compró cada cliente, las promos cambian seguido y la supervisión se entera tarde de lo que pasó en la ruta. Se pierden ventas que nadie ve.',
             },
             {
+              icon: 'objective',
               title: 'Objetivo',
               body: 'Ayudar al preventista a vender mejor en menos tiempo, sin que pierda el control ni la confianza del comerciante.',
             },
             {
+              icon: 'solution',
               title: 'Solución',
               body: 'Un copiloto que sugiere el pedido y explica por qué, y un panel para que la supervisora vea al equipo y lo que aprende la IA.',
             },
@@ -73,6 +79,7 @@ export const surti: CaseStudy = {
           type: 'persona',
           persona: {
             name: 'Lucas',
+            illustration: ilLucasSurti,
             meta: '29  ·  Preventista  ·  Zona Centro',
             quote: '“Tengo cinco minutos por kiosco y armo el pedido de memoria. Si me olvido algo, esa venta se pierde.”',
             bio: 'Recorre la misma zona hace cuatro años. Usa el teléfono con una mano, en la calle y con sol, y muchas veces se queda sin señal entre un comercio y otro.',
@@ -90,9 +97,18 @@ export const surti: CaseStudy = {
           },
         },
         {
-          type: 'summary',
-          title: 'Carla, supervisora',
-          body: 'Trabaja desde la compu, entre reuniones. Necesita ver cómo va el día, detectar problemas a tiempo y gestionar a su equipo de preventistas.',
+          type: 'persona',
+          persona: {
+            name: 'Carla',
+            illustration: ilCarlaSurti,
+            meta: 'Supervisora de ventas  ·  Equipo Zona Centro',
+            bio: 'Trabaja desde la compu, entre reuniones. Necesita ver cómo va el día, detectar problemas a tiempo y gestionar a su equipo de preventistas.',
+            groups: [
+              { label: 'Objetivos', items: ['Ver cómo va el día de un vistazo', 'Detectar problemas en la ruta cuando todavía hay tiempo', 'Tener al día los accesos y los comercios del equipo'] },
+              { label: 'Motivaciones', items: ['Que cada preventista llegue a su objetivo', 'Entender qué le sugiere la IA a su equipo'] },
+              { label: 'Frustraciones', items: ['Enterarse tarde de lo que pasó en la ruta', 'Reportes que llegan recién a fin del día', 'Gestionar códigos y comercios a mano'] },
+            ],
+          },
         },
       ],
     },
@@ -108,18 +124,22 @@ export const surti: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'route',
               title: 'Ruta optimizada',
               body: 'Los comercios del día en orden, en lista o en mapa, con la explicación de por qué ese orden.',
             },
             {
+              icon: 'order',
               title: 'Pedido sugerido',
               body: 'Cada producto con su motivo y su nivel de confianza, para aceptar, cambiar o quitar con un toque.',
             },
             {
+              icon: 'offline',
               title: 'Funciona sin señal',
               body: 'El pedido se guarda en el teléfono y se envía solo cuando vuelve la conexión.',
             },
             {
+              icon: 'dashboard',
               title: 'Panel de supervisión',
               body: 'El equipo en ruta, el rendimiento de la IA, comercios, inventario y códigos de acceso.',
             },

@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { Block, Tone } from '../../data/types';
 import Persona from './Persona.astro';
+import { cardIcon } from './icons';
 
 interface Props {
   blocks: Block[];
@@ -32,7 +33,15 @@ const lines = (b?: string | string[]) => (b === undefined ? [] : Array.isArray(b
             {b.items.map((c) => (
               <li class="bg-surface p-4">
                 {c.big && <p class="mb-1 text-[32px] leading-none font-bold">{c.big}</p>}
-                {c.title && <h4 class="text-[15px] leading-[1.25] font-bold">{c.title}</h4>}
+                {c.title &&
+                  (c.icon ? (
+                    <h4 class="flex items-center gap-2 text-[15px] leading-[1.25] font-bold">
+                      <span class="shrink-0" set:html={cardIcon(c.icon)} />
+                      {c.title}
+                    </h4>
+                  ) : (
+                    <h4 class="text-[15px] leading-[1.25] font-bold">{c.title}</h4>
+                  ))}
                 {lines(c.body).map((l) => (
                   <p class="mt-1.5 text-[14px] leading-[20px] font-light">{l}</p>
                 ))}

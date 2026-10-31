@@ -7,6 +7,8 @@ import community from '../../assets/projects/ticketera-community.jpg';
 import scanner from '../../assets/projects/ticketera-scanner.jpg';
 import app from '../../assets/projects/ticketera-app.jpg';
 import checkout from '../../assets/projects/ticketera-checkout.jpg';
+import ilMartinaJodify from '../../assets/personas/martina-jodify.svg?raw';
+import ilMaxiTicketera from '../../assets/personas/maxi-ticketera.svg?raw';
 
 export const ticketera: CaseStudy = {
   slug: 'ticketera',
@@ -42,18 +44,22 @@ export const ticketera: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'context',
               title: 'Context',
               body: 'Jodify was already the app for finding electronic music parties in Latin America. Selling the tickets was the next step, and that made the promoter the customer.',
             },
             {
+              icon: 'problem',
               title: 'The problem',
               body: 'The same party sells through Instagram, WhatsApp, promoter-rep links and sometimes another ticketing site. In the end the promoter sees a total and can’t tell which channel sold.',
             },
             {
+              icon: 'objective',
               title: 'Objective',
               body: 'Let the promoter understand their sales from one dashboard, and validate every ticket at the door in seconds.',
             },
             {
+              icon: 'solution',
               title: 'Solution',
               body: 'A SaaS with four surfaces on top of the same sales record: web dashboard, promoter-rep portal, scanner app and checkout.',
             },
@@ -71,6 +77,7 @@ export const ticketera: CaseStudy = {
           type: 'persona',
           persona: {
             name: 'Martina',
+            illustration: ilMartinaJodify,
             meta: '26  ·  Student  ·  Ticket buyer',
             bio: 'She goes out once or twice a month, so she researches first and asks friends for recommendations to make each night count. She already used the Jodify app to find parties, and wanted to buy right there.',
             groups: [
@@ -87,9 +94,18 @@ export const ticketera: CaseStudy = {
           },
         },
         {
-          type: 'summary',
-          title: 'The promoter, the SaaS customer',
-          body: 'Runs several events a month and sells with a team of promoter reps. Needs to know which channel sells to decide where to put the promotion, and to run the door on the night of the event.',
+          type: 'persona',
+          persona: {
+            name: 'Maxi',
+            illustration: ilMaxiTicketera,
+            meta: 'Promoter  ·  Melt Underground',
+            bio: 'He runs several events a month and sells with a team of promoter reps. He needs to know which channel sells to decide where to put the promotion, and to run the door on the night of the event.',
+            groups: [
+              { label: 'Goals', items: ['Know which channel sold each ticket', 'Get paid through Mercado Pago without chasing transfers', 'Get people in fast on the night'] },
+              { label: 'Motivations', items: ['Fill the venue every weekend', 'Build a crowd that comes back'] },
+              { label: 'Frustrations', items: ['Sales scattered across Instagram, WhatsApp and reps’ links', 'Tallying each rep’s sales by hand', 'Lines at the door when a ticket fails to scan'] },
+            ],
+          },
         },
       ],
     },
@@ -108,18 +124,22 @@ export const ticketera: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'dashboard',
               title: 'Web dashboard',
               body: 'Dashboard, per-event analytics, event creation wizard, community and payments through Mercado Pago.',
             },
             {
+              icon: 'link',
               title: 'Promoter-rep portal',
               body: 'Each rep joins by invitation, sells with their own link and sees only their own sales.',
             },
             {
+              icon: 'scan',
               title: 'Scanner app',
               body: 'Live sales and QR access control for the night of the event.',
             },
             {
+              icon: 'ticket',
               title: 'Checkout',
               body: 'Buying in the app and on the web, with or without an account, and the QR saved in the profile.',
             },

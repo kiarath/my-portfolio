@@ -89,7 +89,7 @@ export const sumun: CaseStudy = {
             },
           ],
         },
-        { type: 'subhead', text: 'Key needs' },
+        { type: 'subhead', text: 'What the site needed' },
         {
           type: 'cards',
           cols: 4,
@@ -124,7 +124,7 @@ export const sumun: CaseStudy = {
         },
         {
           type: 'lead',
-          text: 'A visual language that mixes institutional seriousness with warmth: deep teal for trust, orange for energy, and translucent glass-like 3D shapes and flowing ribbons that give the technology a human, organic feel.',
+          text: 'A visual language that mixes institutional seriousness with warmth: deep teal for trust, orange for energy, and translucent glass-like 3D shapes and ribbons that make the technology feel less cold.',
         },
         {
           type: 'swatches',
@@ -201,10 +201,10 @@ export const sumun: CaseStudy = {
             },
             {
               title: 'Product in context',
-              body: 'Progress dashboards, daily goals and the AI Tutor chat appear inside the pages, so visitors see the product, not just read about it.',
+              body: 'Progress dashboards, daily goals and the AI Tutor chat appear inside the pages, so visitors see the product working instead of reading a description of it.',
             },
             {
-              title: 'Thought leadership hub',
+              title: 'Conversations hub',
               body: 'Conversaciones Sumun features its experts, a highlighted article and a filterable list with category and audience tags.',
             },
             {

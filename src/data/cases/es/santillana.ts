@@ -41,18 +41,22 @@ export const santillana: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'context',
               title: 'Contexto',
               body: 'Santillana Colombia quería celebrar el Día del Maestro con un sitio donde cada docente que se registra ilumina un punto en el mapa, deja un mensaje público y participa del sorteo de becas de Maestría UNIR (100% y 70%) y una canasta de libros.',
             },
             {
+              icon: 'problem',
               title: 'El desafío',
               body: 'Con muchos registros, los puntos se iban a amontonar y el mapa se volvería ilegible. La mayoría de los docentes llegaría desde el celular, pero la idea se había pensado para escritorio. Y el mapa tenía que ser protagonista sin dejar de explicar la campaña.',
             },
             {
+              icon: 'objective',
               title: 'Objetivo',
               body: 'Hacer visible a cada docente en todo el país, con un flujo lo bastante simple como para completarlo desde el celular.',
             },
             {
+              icon: 'solution',
               title: 'Solución',
               body: 'Un mapa agrupado por departamento con zoom progresivo, un layout responsive mobile-first y un hero emotivo que lleva a un registro guiado en cuatro pasos.',
             },

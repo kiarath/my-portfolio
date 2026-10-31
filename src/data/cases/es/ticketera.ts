@@ -7,6 +7,8 @@ import community from '../../../assets/projects/ticketera-community.jpg';
 import scanner from '../../../assets/projects/ticketera-scanner.jpg';
 import app from '../../../assets/projects/ticketera-app.jpg';
 import checkout from '../../../assets/projects/ticketera-checkout.jpg';
+import ilMartinaJodify from '../../../assets/personas/martina-jodify.svg?raw';
+import ilMaxiTicketera from '../../../assets/personas/maxi-ticketera.svg?raw';
 
 export const ticketera: CaseStudy = {
   ...en,
@@ -38,18 +40,22 @@ export const ticketera: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'context',
               title: 'Contexto',
               body: 'Jodify ya era la app para descubrir fiestas de electrónica en Latinoamérica. Vender las entradas era el paso siguiente, y con eso la clienta pasó a ser la productora.',
             },
             {
+              icon: 'problem',
               title: 'El problema',
               body: 'La misma fiesta se vende por Instagram, WhatsApp, links de RRPP y a veces otra ticketera. Al final la productora ve un total y no sabe qué canal vendió.',
             },
             {
+              icon: 'objective',
               title: 'Objetivo',
               body: 'Que la productora entienda su venta desde un panel y que en la puerta cada entrada se valide en segundos.',
             },
             {
+              icon: 'solution',
               title: 'Solución',
               body: 'Un SaaS con cuatro superficies sobre el mismo registro de ventas: panel web, portal de RRPP, app con escáner y checkout.',
             },
@@ -67,6 +73,7 @@ export const ticketera: CaseStudy = {
           type: 'persona',
           persona: {
             name: 'Martina',
+            illustration: ilMartinaJodify,
             meta: '26  ·  Estudiante  ·  Compradora',
             bio: 'Sale una o dos veces por mes, así que investiga antes y pide recomendaciones para aprovechar cada noche. Ya usaba la app de Jodify para encontrar fiestas, y ahí mismo quería comprar.',
             groups: [
@@ -83,9 +90,18 @@ export const ticketera: CaseStudy = {
           },
         },
         {
-          type: 'summary',
-          title: 'La productora, clienta del SaaS',
-          body: 'Publica varios eventos por mes y vende con un equipo de RRPP. Necesita saber qué canal vende para decidir dónde poner la difusión, y operar la puerta la noche del evento.',
+          type: 'persona',
+          persona: {
+            name: 'Maxi',
+            illustration: ilMaxiTicketera,
+            meta: 'Productor  ·  Melt Underground',
+            bio: 'Publica varios eventos por mes y vende con un equipo de RRPP. Necesita saber qué canal vende para decidir dónde poner la difusión, y operar la puerta la noche del evento.',
+            groups: [
+              { label: 'Objetivos', items: ['Saber de qué canal salió cada entrada', 'Cobrar por Mercado Pago sin perseguir transferencias', 'Que la gente entre rápido la noche del evento'] },
+              { label: 'Motivaciones', items: ['Llenar el lugar cada fin de semana', 'Armar un público que vuelva'] },
+              { label: 'Frustraciones', items: ['Ventas repartidas entre Instagram, WhatsApp y los links de RRPP', 'Contar a mano las ventas de cada RRPP', 'Filas en la puerta cuando una entrada no escanea'] },
+            ],
+          },
         },
       ],
     },
@@ -104,18 +120,22 @@ export const ticketera: CaseStudy = {
           cols: 2,
           items: [
             {
+              icon: 'dashboard',
               title: 'Panel web',
               body: 'Dashboard, analítica por evento, wizard de creación, comunidad y cobros con Mercado Pago.',
             },
             {
+              icon: 'link',
               title: 'Portal de RRPP',
               body: 'Cada RRPP entra por invitación, vende con su link y ve solo sus ventas.',
             },
             {
+              icon: 'scan',
               title: 'App con escáner',
               body: 'La venta en curso y el control de acceso por QR para la noche del evento.',
             },
             {
+              icon: 'ticket',
               title: 'Checkout',
               body: 'Compra en app y webapp, con o sin cuenta, y el QR guardado en el perfil.',
             },
