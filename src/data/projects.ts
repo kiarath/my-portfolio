@@ -62,10 +62,7 @@ export const projects: ProjectCard[] = [
     },
     image: imgJodify,
     caseSlug: 'jodify',
-    links: [
-      { label: 'app store', href: 'https://apps.apple.com/ar/app/jodify/id6618110536' },
-      { label: 'google play', href: 'https://play.google.com/store/apps/details?id=com.markajodi.jodifyapp&pli=1' },
-    ],
+    links: [{ label: 'visit website', href: 'https://jodify.com.ar' }],
   },
   {
     slug: 'surti',
