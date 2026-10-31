@@ -13,6 +13,7 @@ export const ticketera: CaseStudy = {
   tags: ['SaaS B2B', 'Desktop', 'Mobile'],
   summary:
     'Un SaaS para que las productoras de música electrónica vendan entradas y sepan de qué canal salió cada una, con un escáner para controlar la puerta la noche del evento.',
+  links: [{ label: 'ver sitio  →', href: en.links[0].href }],
   meta: [
     { label: 'Rol', value: 'Diseñadora UX/UI' },
     { label: 'Año', value: '2026' },

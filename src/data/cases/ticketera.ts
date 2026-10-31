@@ -14,7 +14,7 @@ export const ticketera: CaseStudy = {
   tags: ['SaaS B2B', 'Desktop', 'Mobile'],
   summary:
     'A SaaS that lets electronic music promoters sell tickets and see which channel each one came from, with a scanner to run the door on the night of the event.',
-  links: [],
+  links: [{ label: 'visit website  →', href: 'https://jodify.com.ar/promoters' }],
   meta: [
     { label: 'Role', value: 'UX/UI Designer' },
     { label: 'Year', value: '2026' },

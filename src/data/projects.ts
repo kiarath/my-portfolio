@@ -95,7 +95,7 @@ export const projects: ProjectCard[] = [
     },
     image: imgTicketera,
     caseSlug: 'ticketera',
-    links: [],
+    links: [{ label: 'visit website', href: 'https://jodify.com.ar/promoters' }],
   },
   {
     slug: 'lar',
