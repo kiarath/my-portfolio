@@ -6,6 +6,7 @@ import { cinear } from './cases/cinear';
 import { veggy } from './cases/veggy';
 import { santillana } from './cases/santillana';
 import { surti } from './cases/surti';
+import { ticketera } from './cases/ticketera';
 import * as es from './cases/es';
 
 import imgSumun from '../assets/projects/card-sumun.jpg';
@@ -23,9 +24,10 @@ import imgVeggy from '../assets/projects/card-veggy.jpg';
 import imgRacing from '../assets/projects/card-racing-patagonia.jpg';
 import imgPubliflex from '../assets/projects/card-publiflex.jpg';
 import imgSurti from '../assets/projects/card-surti.jpg';
+import imgTicketera from '../assets/projects/card-ticketera.jpg';
 
 /** Case studies with their own page, in "next project" order. */
-export const cases: CaseStudy[] = [sumun, jodify, surti, cinear, santillana, veggy];
+export const cases: CaseStudy[] = [sumun, jodify, surti, ticketera, cinear, santillana, veggy];
 
 /** Spanish version of each case, by slug. */
 export const casesEs: Record<string, CaseStudy> = es;
@@ -78,6 +80,21 @@ export const projects: ProjectCard[] = [
     },
     image: imgSurti,
     caseSlug: 'surti',
+    links: [],
+  },
+  {
+    slug: 'ticketera',
+    name: 'Jodify Ticketera',
+    kind: 'SaaS for event promoters',
+    description:
+      'A ticketing SaaS for electronic music promoters: a web dashboard to publish events and see which channel sells, a portal for promoter reps, a door scanner app and the checkout.',
+    es: {
+      kind: 'SaaS para productoras de eventos',
+      description:
+        'Un SaaS de venta de entradas para productoras de música electrónica: un panel web para publicar eventos y ver qué canal vende, un portal para RRPP, una app con escáner para la puerta y el checkout.',
+    },
+    image: imgTicketera,
+    caseSlug: 'ticketera',
     links: [],
   },
   {
