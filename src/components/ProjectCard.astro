@@ -13,6 +13,24 @@ const labelEs: Record<string, string> = {
   'google play': 'google play',
 };
 
+/** 14px icons (Material, filled, currentColor) so each link reads at a glance. */
+const svg = (d: string) =>
+  `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="${d}"/></svg>`;
+const icons = {
+  case: svg('M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z'),
+  site: svg('M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'),
+  app: svg('M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z'),
+  code: svg('M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z'),
+};
+const iconFor = (label: string) =>
+  label === 'explore case'
+    ? icons.case
+    : label === 'explore github'
+      ? icons.code
+      : ['app store', 'google play', 'download app'].includes(label)
+        ? icons.app
+        : icons.site;
+
 interface Props {
   project: ProjectCard;
   eager?: boolean;
@@ -60,15 +78,16 @@ const links = [
     <p class="text-[12px] leading-[1.2] font-light"><T en={project.description} es={project.es.description} /></p>
     {
       links.length > 0 && (
-        <p class="mt-auto flex gap-3.5 pt-1 text-[13px] leading-[1.2]">
+        <p class="mt-auto flex flex-wrap gap-x-3.5 gap-y-2 pt-1 text-[13px] leading-[1.2]">
           {links.map((l) => (
             <a
-              class="link"
+              class="link inline-flex items-center gap-1"
               href={l.href}
               target={l.href.startsWith('http') ? '_blank' : undefined}
               rel={l.href.startsWith('http') ? 'noopener' : undefined}
               data-todo={isPlaceholder(l.href) ? '' : undefined}
             >
+              <span class="shrink-0" set:html={iconFor(l.label)} />
               <T en={l.label} es={labelEs[l.label] ?? l.label} />
             </a>
           ))}
